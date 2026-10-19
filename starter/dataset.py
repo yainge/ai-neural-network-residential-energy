@@ -134,6 +134,17 @@ def prepare_datasets() -> tuple[ConsumptionDataset, ConsumptionDataset]:
     X_train, y_train = build_windows(train_df)
     X_val, y_val = build_windows(val_df)
 
+    ###### OPTIONAL: ONLY MIDNIGHT ALIGNED WINDOWS
+    # Keep only windows whose forecast starts at 00:00, as on the platform.
+    val_aligned = X_val[:, -1, 1] == 23
+    X_val, y_val = X_val[val_aligned], y_val[val_aligned]
+
+    ALIGN_TRAIN = True  # experiment: True = train on midnight-aligned windows only
+    if ALIGN_TRAIN:
+        train_aligned = X_train[:, -1, 1] == 23
+        X_train, y_train = X_train[train_aligned], y_train[train_aligned]
+    ###### END
+
     print(f"Train windows: {len(X_train)}")
     print(f"Val windows:   {len(X_val)}")
     return ConsumptionDataset(X_train, y_train), ConsumptionDataset(X_val, y_val)

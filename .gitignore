@@ -12,11 +12,10 @@ venv/
 # Jupyter
 .ipynb_checkpoints/
 
-# Data & models
-# data/
+# models
 # checkpoints/
-# *.pt
-# *.pth
+*.pt
+*.pth
 
 # Logs / experiment tracking
 # runs/
