@@ -16,10 +16,10 @@ from torch.utils.data import DataLoader
 from dataset import prepare_datasets
 from model import ConsumptionPredictor
 
-EPOCHS =
-BATCH_SIZE =
-LEARNING_RATE =
-PATIENCE =
+EPOCHS =        100
+BATCH_SIZE =    16
+LEARNING_RATE = 1e-3
+PATIENCE =      30
 CHECKPOINT = Path(__file__).resolve().parent / "model.pt"
 
 

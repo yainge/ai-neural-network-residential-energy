@@ -22,7 +22,26 @@ class ConsumptionPredictor(nn.Module):
         self.register_buffer("mu", torch.tensor(float(mu), dtype=torch.float32))
         self.register_buffer("sigma", torch.tensor(float(sigma), dtype=torch.float32))
 
-        self.network =
+        self.network = nn.Sequential(
+            nn.Linear(168 * 3 + 1, 256),  # flattened window + weekend flag
+            nn.ReLU(),
+            nn.Dropout(0.1),
+            nn.Linear(256, 512),
+            nn.ReLU(),
+            nn.Linear(512, 24),           # [B, 24], normalized kWh
+        )
+        # one more layer test
+        # self.network = nn.Sequential(
+        #     nn.Linear(168 * 3 + 1, 256),  # flattened window + weekend flag
+        #     nn.ReLU(),
+        #     nn.Dropout(0.3),
+        #     nn.Linear(256, 128),
+        #     nn.ReLU(),
+        #     nn.Dropout(0.3),
+        #     nn.Linear(128, 512),
+        #     nn.ReLU(),
+        #     nn.Linear(512, 24),           # [B, 24], normalized kWh
+        # )
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         # Channel 0: standardize kWh using statistics learned from training data.
@@ -32,9 +51,17 @@ class ConsumptionPredictor(nn.Module):
         # platform can always send the raw contract values 0..23 and 0..6.
         hour = x[..., 1:2] / 23.0
         dayofweek = x[..., 2:3] / 6.0
-        x_model = torch.cat([kwh, hour, dayofweek], dim=-1)
+        x_model = torch.cat([kwh, hour, dayofweek], dim=-1).flatten(1)  # [B, 504]
 
-        y_normalized = self.network(x_model)
+        # Weekday of the first forecast hour. The platform always forecasts from
+        # midnight, so this is the weekday of the output day.
+        last_hour = x[:, -1, 1]
+        target_dow = torch.remainder(x[:, -1, 2] + (last_hour == 23.0).float(), 7.0)
+
+        # Weekend flag for the output day: 1 for Saturday/Sunday, 0 otherwise.
+        target_weekend = (target_dow >= 5.0).float().unsqueeze(1)        # [B, 1]
+
+        y_normalized = self.network(torch.cat([x_model, target_weekend], dim=1))
         return y_normalized * self.sigma + self.mu
 
 
