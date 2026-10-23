@@ -16,10 +16,10 @@ from torch.utils.data import DataLoader
 from dataset import prepare_datasets
 from model import ConsumptionPredictor
 
-EPOCHS =
-BATCH_SIZE =
-LEARNING_RATE =
-PATIENCE =
+EPOCHS = 200
+BATCH_SIZE = 32
+LEARNING_RATE = 0.00875
+PATIENCE = 50
 CHECKPOINT = Path(__file__).resolve().parent / "model.pt"
 
 
@@ -73,7 +73,7 @@ def main() -> None:
     val_loader = DataLoader(val_ds, batch_size=BATCH_SIZE, shuffle=False)
 
     model = ConsumptionPredictor(mu=mu, sigma=sigma).to(device)
-    optimizer = torch.optim.Adam(model.parameters(), lr=LEARNING_RATE)
+    optimizer = torch.optim.Adam(model.parameters(), lr=LEARNING_RATE)   
     loss_fn = nn.L1Loss()
 
     best_val = float("inf")
