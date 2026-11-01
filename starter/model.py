@@ -15,10 +15,10 @@ import torch.nn as nn
 import numpy as np
 
 #Hyperparameter of the model
-HIDDEN1 = 256
-HIDDEN2 = 128
-DROPOUT1 = 0.2
-DROPOUT2 = 0.05
+HIDDEN1 = 512
+HIDDEN2 = 256
+DROPOUT1 = 0.05
+DROPOUT2 = 0.0
 
 
 class ConsumptionPredictor(nn.Module):
@@ -32,9 +32,9 @@ class ConsumptionPredictor(nn.Module):
 
         #self.LSTM = nn.LSTM(input_size=3,hidden_size=64,num_layers=2,batch_first=True,dropout=0.1) # [B,168, hidden_size]
 
-        #I addded proxy values to help the network learn. This makes the input size 5 * 168 + 3 
+        #I addded proxy values to help the network learn. This makes the input size 4 * 168 + 3 
         self.network = nn.Sequential(
-            nn.Linear(5*168 + 3 ,HIDDEN1),
+            nn.Linear(4*168 + 3 ,HIDDEN1),
             nn.ReLU(), 
             nn.Dropout(DROPOUT1), 
             nn.Linear(HIDDEN1,HIDDEN2),
@@ -59,17 +59,15 @@ class ConsumptionPredictor(nn.Module):
         #Cycle Encoding the time 
         hour_sin = torch.sin(raw_hour *2 *np.pi /24)
         hour_cos = torch.cos(raw_hour *2 *np.pi /24)
-        day_cos = torch.cos(raw_dayofweek *2 *np.pi /7)
-        day_sin = torch.sin(raw_dayofweek *2 *np.pi /7)
+       
 
         #Concatenating everything 
-        x_proxy1 = torch.cat([kwh_norm,hour_sin,hour_cos,day_cos,day_sin],dim= -1) # [B,168,5]
-        x_flat = x_proxy1.flatten(1) #[B,168*5]
-        x_proxy2 = torch.cat([x_flat,mean_24,mean_168,std_24],dim= -1) #[B,168 * 5 + 3]
+        x_proxy1 = torch.cat([kwh_norm,hour_sin,hour_cos,raw_dayofweek/6],dim= -1) # [B,168,4]
+        x_flat = x_proxy1.flatten(1) #[B,168*4]
+        x_proxy2 = torch.cat([x_flat,mean_24,mean_168,std_24],dim= -1) #[B,168 * 4 + 3]
 
         #Base model 
         x_model = torch.cat([kwh_norm, raw_hour/23, raw_dayofweek/6],dim = -1).flatten(1) #[B,168*3]
-
 
         y_normalized = self.network(x_proxy2)
         return y_normalized * self.sigma + self.mu

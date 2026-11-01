@@ -13,14 +13,21 @@ import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
 
-from dataset import prepare_datasets
+from dataset import prepare_multi_oot_datasets
 from model import ConsumptionPredictor
 
-EPOCHS = 200
+EPOCHS = 100
 BATCH_SIZE = 32
-LEARNING_RATE = 0.00875
+LEARNING_RATE = 0.001
 PATIENCE = 50
 CHECKPOINT = Path(__file__).resolve().parent / "model.pt"
+
+SEASON_WEIGHTS = {
+    "winter": 0.30,
+    "spring": 0.15,
+    "summer": 0.15,
+    "autumn": 0.40,
+}
 
 
 def training_statistics(train_ds) -> tuple[float, float]:
@@ -42,6 +49,7 @@ def train_epoch(model, loader, optimizer, loss_fn, device) -> float:
         loss = loss_fn(prediction, y)
         loss.backward()
         optimizer.step()
+
         total += loss.item() * X.size(0)
     return total / len(loader.dataset)
 
@@ -65,27 +73,47 @@ def main() -> None:
     device = "cuda" if torch.cuda.is_available() else "cpu"
     print(f"Device: {device}")
 
-    train_ds, val_ds = prepare_datasets()
+    train_ds, val_dict = prepare_multi_oot_datasets()
     mu, sigma = training_statistics(train_ds)
     print(f"Training kWh statistics: mu={mu:+.4f}, sigma={sigma:.4f}")
 
     train_loader = DataLoader(train_ds, batch_size=BATCH_SIZE, shuffle=True)
-    val_loader = DataLoader(val_ds, batch_size=BATCH_SIZE, shuffle=False)
+    val_loaders = {
+        name: DataLoader(ds, batch_size=BATCH_SIZE, shuffle=False)
+        for name, ds in val_dict.items()
+    }
 
     model = ConsumptionPredictor(mu=mu, sigma=sigma).to(device)
-    optimizer = torch.optim.Adam(model.parameters(), lr=LEARNING_RATE)   
+    optimizer = torch.optim.AdamW(
+        model.parameters(), lr=LEARNING_RATE, weight_decay=1e-3
+    )
+    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
+        optimizer, T_max=EPOCHS, eta_min=1e-6
+    )
     loss_fn = nn.L1Loss()
 
     best_val = float("inf")
     epochs_without_improvement = 0
 
     for epoch in range(1, EPOCHS + 1):
-        train_mae = train_epoch(model, train_loader, optimizer, loss_fn, device)
-        val_mae = evaluate_epoch(model, val_loader, loss_fn, device)
+        train_mae = train_epoch(
+            model, train_loader, optimizer, loss_fn, device
+        )
+
+        # Evaluate across all 4 seasonal blocks
+        seasonal_maes = {
+            name: evaluate_epoch(model, loader, loss_fn, device)
+            for name, loader in val_loaders.items()
+        }
+        weighted_val_mae = sum(
+            seasonal_maes[s] * SEASON_WEIGHTS[s] for s in SEASON_WEIGHTS
+        )
+
+        scheduler.step()
         marker = ""
 
-        if val_mae < best_val:
-            best_val = val_mae
+        if weighted_val_mae < best_val:
+            best_val = weighted_val_mae
             epochs_without_improvement = 0
             torch.save(
                 {
@@ -103,14 +131,18 @@ def main() -> None:
 
         print(
             f"Epoch {epoch:02d} | train MAE={train_mae:.4f} kWh "
-            f"| val MAE={val_mae:.4f} kWh{marker}"
+            f"| weighted val MAE={weighted_val_mae:.4f} kWh "
+            f"[W:{seasonal_maes['winter']:.2f}, Sp:{seasonal_maes['spring']:.2f}, "
+            f"Su:{seasonal_maes['summer']:.2f}, Au:{seasonal_maes['autumn']:.2f}]{marker}"
         )
 
         if epochs_without_improvement >= PATIENCE:
-            print(f"Early stopping after {PATIENCE} epochs without improvement.")
+            print(
+                f"Early stopping after {PATIENCE} epochs without improvement."
+            )
             break
 
-    print(f"\n✓ Best validation MAE: {best_val:.4f} kWh")
+    print(f"\n✓ Best weighted validation MAE: {best_val:.4f} kWh")
     print(f"✓ Checkpoint: {CHECKPOINT}")
 
 

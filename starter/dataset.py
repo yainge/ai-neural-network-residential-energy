@@ -78,13 +78,14 @@ def load_and_enrich(csv_path: Path = RAW_CSV) -> pd.DataFrame:
     return df
 
 
-def build_windows(df: pd.DataFrame) -> tuple[np.ndarray, np.ndarray]:
+def build_windows(
+    df: pd.DataFrame, align_midnight: bool = False
+) -> tuple[np.ndarray, np.ndarray]:
+    """Extract sliding input windows [N, 168, 3] and targets [N, 24]."""
     values = df[["kwh", "hour", "dayofweek"]].to_numpy(dtype=np.float32)
     total = len(values) - WINDOW - HORIZON + 1
     if total <= 0:
-        raise ValueError(
-            f"Not enough data to create one sample: need at least {WINDOW + HORIZON} rows."
-        )
+        raise ValueError("Not enough rows to generate windows.")
 
     X = np.empty((total, WINDOW, 3), dtype=np.float32)
     y = np.empty((total, HORIZON), dtype=np.float32)
@@ -92,6 +93,12 @@ def build_windows(df: pd.DataFrame) -> tuple[np.ndarray, np.ndarray]:
     for i in range(total):
         X[i] = values[i : i + WINDOW]
         y[i] = values[i + WINDOW : i + WINDOW + HORIZON, 0]
+
+    if align_midnight:
+        # Keep only windows ending at 23:00 (forecast target begins at 00:00)
+        midnight_mask = X[:, -1, 1] == 23
+        X, y = X[midnight_mask], y[midnight_mask]
+
     return X, y
 
 
@@ -110,50 +117,70 @@ class ConsumptionDataset(Dataset):
 # ---------------------------------------------------------------------------
 # STUDENT-EDITABLE SECTION
 # ---------------------------------------------------------------------------
-def prepare_datasets() -> tuple[ConsumptionDataset, ConsumptionDataset]:
-    """Create train and validation datasets.
+def prepare_multi_oot_datasets() -> (
+    tuple[ConsumptionDataset, dict[str, ConsumptionDataset]]
+):
+    """Prepare training dataset and 4 static midnight-aligned test blocks at different time of the year.
 
-    Starter strategy: reserve the last 28 complete days for validation.
-    Students are encouraged to justify and test alternative time-aware splits.
+    Static Test Periods (14 days each):
+      1. Winter: Feb 1, 2026 -> Feb 15, 2026 (Weight: 30%)
+      2. Spring: May 15, 2026 -> May 29, 2026 (Weight: 15%)
+      3. Summer: Jul 15, 2026 -> Jul 29, 2026 (Weight: 15%)
+      4. Autumn: Oct 15, 2026 -> Oct 29, 2026 (Weight: 40%)
+
+    A 168h purge window before each block is removed from the training set
+    to eliminate data leakage.
     """
     df = load_and_enrich()
 
-    validation_hours = 24 * 28
-    minimum_train_hours = WINDOW + HORIZON
-    if len(df) <= validation_hours + minimum_train_hours:
-        raise ValueError(
-            "Not enough history for the starter 28-day validation split. "
-            "Choose a shorter validation period in dataset.py."
+    test_blocks = {
+        "winter": ("2026-02-01 00:00:00", "2026-02-15 00:00:00"),
+        "spring": ("2026-05-15 00:00:00", "2026-05-29 00:00:00"),
+        "summer": ("2026-07-15 00:00:00", "2026-07-29 00:00:00"),
+        "autumn": ("2026-10-15 00:00:00", "2026-10-29 00:00:00"),
+    }
+
+    train_mask = pd.Series(True, index=df.index)
+    val_datasets: dict[str, ConsumptionDataset] = {}
+
+    for name, (start_str, end_str) in test_blocks.items():
+        start_ts = pd.to_datetime(start_str)
+        end_ts = pd.to_datetime(end_str)
+        purge_start_ts = start_ts - pd.Timedelta(hours=WINDOW)
+
+        #  Mask out (purge_start <= timestamp < end_ts) from training set
+        train_mask &= ~(
+            (df["timestamp"] >= purge_start_ts) & (df["timestamp"] < end_ts)
         )
 
-    train_df = df.iloc[:-validation_hours].reset_index(drop=True)
-    # Include the preceding input window so the first validation target begins
-    # exactly at the validation boundary.
-    val_df = df.iloc[-validation_hours - WINDOW :].reset_index(drop=True)
+        # 2. Extract test slice including the 168h context for evaluation
+        block_df = df[
+            (df["timestamp"] >= purge_start_ts) & (df["timestamp"] < end_ts)
+        ].reset_index(drop=True)
+        X_val, y_val = build_windows(block_df, align_midnight=True)
+        val_datasets[name] = ConsumptionDataset(X_val, y_val)
 
-    X_train, y_train = build_windows(train_df)
-    X_val, y_val = build_windows(val_df)
+    # Build training set (ALIGN_TRAIN = False for maximum samples)
+    train_df = df[train_mask].reset_index(drop=True)
+    X_train, y_train = build_windows(train_df, align_midnight=False)
+    train_ds = ConsumptionDataset(X_train, y_train)
 
-    ###### OPTIONAL: ONLY MIDNIGHT ALIGNED WINDOWS
-    # Keep only windows whose forecast starts at 00:00, as on the platform.
-    val_aligned = X_val[:, -1, 1] == 23
-    X_val, y_val = X_val[val_aligned], y_val[val_aligned]
+    print(f"Train samples (dense): {len(X_train)}")
+    for name, ds in val_datasets.items():
+        print(f"Val block '{name}': {len(ds)} midnight-aligned windows")
 
-    ALIGN_TRAIN = True  # experiment: True = train on midnight-aligned windows only
-    if ALIGN_TRAIN:
-        train_aligned = X_train[:, -1, 1] == 23
-        X_train, y_train = X_train[train_aligned], y_train[train_aligned]
-    ###### END
+    return train_ds, val_datasets 
 
-    print(f"Train windows: {len(X_train)}")
-    print(f"Val windows:   {len(X_val)}")
-    return ConsumptionDataset(X_train, y_train), ConsumptionDataset(X_val, y_val)
+
+# Default starter function wrapper
+def prepare_datasets() -> tuple[ConsumptionDataset, ConsumptionDataset]:
+    train_ds, val_dict = prepare_multi_oot_datasets()
+    # Returns autumn as default validation set for standard scripts
+    return train_ds, val_dict["autumn"]
 
 
 if __name__ == "__main__":
-    train_ds, val_ds = prepare_datasets()
+    train_ds, val_dict = prepare_multi_oot_datasets()
     X, y = train_ds[0]
-    print(f"Input sample shape:  {X.shape}")
+    print(f"\nInput sample shape:  {X.shape}")
     print(f"Target sample shape: {y.shape}")
-    print("First three input rows:")
-    print(X[:3])
