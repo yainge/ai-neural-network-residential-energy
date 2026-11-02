@@ -70,7 +70,7 @@ def main() -> None:
     model.load_state_dict(checkpoint["model_state_dict"])
     model.eval()
 
-    print("Multi-OOT Validation Results (4 Seasons)")
+    print("Validation Results (4 Seasons)")
     print("---------------------------------------")
 
     weighted_model_mae = 0.0

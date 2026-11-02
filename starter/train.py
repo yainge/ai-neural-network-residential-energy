@@ -78,10 +78,7 @@ def main() -> None:
     print(f"Training kWh statistics: mu={mu:+.4f}, sigma={sigma:.4f}")
 
     train_loader = DataLoader(train_ds, batch_size=BATCH_SIZE, shuffle=True)
-    val_loaders = {
-        name: DataLoader(ds, batch_size=BATCH_SIZE, shuffle=False)
-        for name, ds in val_dict.items()
-    }
+    val_loaders = {name: DataLoader(ds, batch_size=BATCH_SIZE, shuffle=False)for name, ds in val_dict.items()}
 
     model = ConsumptionPredictor(mu=mu, sigma=sigma).to(device)
     optimizer = torch.optim.AdamW(
@@ -103,8 +100,8 @@ def main() -> None:
         # Evaluate across all 4 seasonal blocks
         seasonal_maes = {
             name: evaluate_epoch(model, loader, loss_fn, device)
-            for name, loader in val_loaders.items()
-        }
+            for name, loader in val_loaders.items()}
+        
         weighted_val_mae = sum(
             seasonal_maes[s] * SEASON_WEIGHTS[s] for s in SEASON_WEIGHTS
         )

@@ -135,7 +135,7 @@ def prepare_multi_oot_datasets() -> (
 
     test_blocks = {
         "winter": ("2026-02-01 00:00:00", "2026-02-15 00:00:00"),
-        "spring": ("2026-05-15 00:00:00", "2026-05-29 00:00:00"),
+        "spring": ("2026-04-15 00:00:00", "2026-04-29 00:00:00"),
         "summer": ("2026-07-15 00:00:00", "2026-07-29 00:00:00"),
         "autumn": ("2026-10-15 00:00:00", "2026-10-29 00:00:00"),
     }
@@ -165,7 +165,7 @@ def prepare_multi_oot_datasets() -> (
     X_train, y_train = build_windows(train_df, align_midnight=False)
     train_ds = ConsumptionDataset(X_train, y_train)
 
-    print(f"Train samples (dense): {len(X_train)}")
+    print(f"Train samples: {len(X_train)}")
     for name, ds in val_datasets.items():
         print(f"Val block '{name}': {len(ds)} midnight-aligned windows")
 
@@ -173,9 +173,9 @@ def prepare_multi_oot_datasets() -> (
 
 
 # Default starter function wrapper
-def prepare_datasets() -> tuple[ConsumptionDataset, ConsumptionDataset]:
+def prepare_datasets():
     train_ds, val_dict = prepare_multi_oot_datasets()
-    # Returns autumn as default validation set for standard scripts
+    # Returns autumn as default validation set 
     return train_ds, val_dict["autumn"]
 
 
