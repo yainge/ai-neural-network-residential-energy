@@ -26,7 +26,9 @@ def main() -> None:
 
     _, val_ds = prepare_datasets()
     checkpoint = torch.load(CHECKPOINT, map_location="cpu")
-    model = ConsumptionPredictor(mu=checkpoint["mu"], sigma=checkpoint["sigma"])
+    model = ConsumptionPredictor(
+        mu=checkpoint["mu"], sigma=checkpoint["sigma"], **checkpoint.get("config", {})
+    )
     model.load_state_dict(checkpoint["model_state_dict"])
     model.eval()
 

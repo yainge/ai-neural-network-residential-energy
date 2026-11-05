@@ -110,11 +110,22 @@ class ConsumptionDataset(Dataset):
 # ---------------------------------------------------------------------------
 # STUDENT-EDITABLE SECTION
 # ---------------------------------------------------------------------------
-def prepare_datasets() -> tuple[ConsumptionDataset, ConsumptionDataset]:
+DARK_DAYS = ["2026-07-06", "2026-09-07"]  # Casa Mila closure days seen in raw.csv
+
+
+def prepare_datasets(
+    align_train: bool = True,
+    augment_copies: int = 0,
+    augment_blocks: int = 0,
+) -> tuple[ConsumptionDataset, ConsumptionDataset]:
     """Create train and validation datasets.
 
     Starter strategy: reserve the last 28 complete days for validation.
     Students are encouraged to justify and test alternative time-aware splits.
+
+    align_train    : True = train on midnight-aligned windows only (starter default)
+    augment_copies : extra copies of the TRAINING range with synthetic dark days
+    augment_blocks : multi-day dark blocks per copy (closure-week assumption)
     """
     df = load_and_enrich()
 
@@ -139,10 +150,26 @@ def prepare_datasets() -> tuple[ConsumptionDataset, ConsumptionDataset]:
     val_aligned = X_val[:, -1, 1] == 23
     X_val, y_val = X_val[val_aligned], y_val[val_aligned]
 
-    ALIGN_TRAIN = True  # experiment: True = train on midnight-aligned windows only
-    if ALIGN_TRAIN:
+    if align_train:
         train_aligned = X_train[:, -1, 1] == 23
         X_train, y_train = X_train[train_aligned], y_train[train_aligned]
+    ###### END
+
+    ###### OPTIONAL: SYNTHETIC DARK DAYS (training range only)
+    if augment_copies > 0:
+        from augment import closure_delta, inject_events
+
+        delta = closure_delta(train_df, DARK_DAYS)
+        Xs, ys = [X_train], [y_train]
+        for seed in range(augment_copies):
+            aug_df, _ = inject_events(train_df, delta, n_blocks=augment_blocks, seed=seed)
+            Xa, ya = build_windows(aug_df)
+            if align_train:
+                keep = Xa[:, -1, 1] == 23
+                Xa, ya = Xa[keep], ya[keep]
+            Xs.append(Xa)
+            ys.append(ya)
+        X_train, y_train = np.concatenate(Xs), np.concatenate(ys)
     ###### END
 
     print(f"Train windows: {len(X_train)}")
