@@ -13,7 +13,7 @@ import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
 
-from dataset import prepare_multi_oot_datasets
+from dataset import prepare_multi_datasets
 from model import ConsumptionPredictor
 
 EPOCHS = 100
@@ -72,7 +72,7 @@ def main() -> None:
     device = "cuda" if torch.cuda.is_available() else "cpu"
     print(f"Device: {device}")
 
-    train_ds, val_dict = prepare_multi_oot_datasets()
+    train_ds, val_dict = prepare_multi_datasets()
     mu, sigma = training_statistics(train_ds)
     print(f"Training kWh statistics: mu={mu:+.4f}, sigma={sigma:.4f}")
 

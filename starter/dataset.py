@@ -117,7 +117,7 @@ class ConsumptionDataset(Dataset):
 # ---------------------------------------------------------------------------
 # STUDENT-EDITABLE SECTION
 # ---------------------------------------------------------------------------
-def prepare_multi_oot_datasets() -> (
+def prepare_multi_datasets() -> (
     tuple[ConsumptionDataset, dict[str, ConsumptionDataset]]
 ):
     """Prepare training dataset and 4 static midnight-aligned test blocks at different time of the year.
@@ -173,13 +173,13 @@ def prepare_multi_oot_datasets() -> (
 
 # Default starter function wrapper
 def prepare_datasets():
-    train_ds, val_dict = prepare_multi_oot_datasets()
+    train_ds, val_dict = prepare_multi_datasets()
     # Returns autumn as default validation set 
     return train_ds, val_dict["autumn"]
 
 
 if __name__ == "__main__":
-    train_ds, val_dict = prepare_multi_oot_datasets()
+    train_ds, val_dict = prepare_multi_datasets()
     X, y = train_ds[0]
     print(f"\nInput sample shape:  {X.shape}")
     print(f"Target sample shape: {y.shape}")
