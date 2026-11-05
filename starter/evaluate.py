@@ -15,9 +15,8 @@ CHECKPOINT = Path(__file__).resolve().parent / "model.pt"
 BATCH_SIZE = 128
 
 SEASON_WEIGHTS = {
-    "winter": 0.30,
-    "spring": 0.15,
-    "summer": 0.15,
+    "winter": 0.40,
+    "spring": 0.20,
     "autumn": 0.40,
 }
 
@@ -70,7 +69,7 @@ def main() -> None:
     model.load_state_dict(checkpoint["model_state_dict"])
     model.eval()
 
-    print("Validation Results (4 Seasons)")
+    print("Validation Results ")
     print("---------------------------------------")
 
     weighted_model_mae = 0.0

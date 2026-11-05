@@ -23,9 +23,8 @@ PATIENCE = 50
 CHECKPOINT = Path(__file__).resolve().parent / "model.pt"
 
 SEASON_WEIGHTS = {
-    "winter": 0.30,
-    "spring": 0.15,
-    "summer": 0.15,
+    "winter": 0.40,
+    "spring": 0.20,
     "autumn": 0.40,
 }
 
@@ -130,7 +129,7 @@ def main() -> None:
             f"Epoch {epoch:02d} | train MAE={train_mae:.4f} kWh "
             f"| weighted val MAE={weighted_val_mae:.4f} kWh "
             f"[W:{seasonal_maes['winter']:.2f}, Sp:{seasonal_maes['spring']:.2f}, "
-            f"Su:{seasonal_maes['summer']:.2f}, Au:{seasonal_maes['autumn']:.2f}]{marker}"
+            f" Au:{seasonal_maes['autumn']:.2f}]{marker}"
         )
 
         if epochs_without_improvement >= PATIENCE:
