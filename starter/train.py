@@ -17,7 +17,7 @@ from dataset import prepare_multi_datasets
 from model import ConsumptionPredictor
 
 EPOCHS = 100
-BATCH_SIZE = 32
+BATCH_SIZE = 64
 LEARNING_RATE = 0.001
 PATIENCE = 50
 CHECKPOINT = Path(__file__).resolve().parent / "model.pt"

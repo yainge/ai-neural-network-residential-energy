@@ -14,67 +14,99 @@ import torch
 import torch.nn as nn
 import numpy as np
 
-#Hyperparameter of the model
-HIDDEN1 = 512
-HIDDEN2 = 256
-DROPOUT1 = 0.05
-DROPOUT2 = 0.0
+class ResBlock(nn.Module):
+    """Residual MLP block with LayerNorm, SiLU activation, and Dropout."""
+
+    def __init__(self, dim: int, dropout: float = 0.1):
+        super().__init__()
+        self.block = nn.Sequential(
+            nn.Linear(dim, dim),
+            nn.LayerNorm(dim),
+            nn.SiLU(),
+            nn.Dropout(dropout),
+            nn.Linear(dim, dim),
+            nn.LayerNorm(dim),
+        )
+        self.act = nn.SiLU()
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        return self.act(x + self.block(x))
 
 
 class ConsumptionPredictor(nn.Module):
-    """Intentionally simple MLP baseline for the assignment."""
-
-    def __init__(self, mu: float = 0.0, sigma: float = 1.0):
+    def __init__(self, mu: float = 0.0, sigma: float = 1.0, hidden_dim: int = 256):
         super().__init__()
         self.register_buffer("mu", torch.tensor(float(mu), dtype=torch.float32))
         self.register_buffer("sigma", torch.tensor(float(sigma), dtype=torch.float32))
 
+        # Inputs count:
+        # 168 (raw kWh)
+        # + 24 (lag t-24)
+        # + 24 (lag t-48)
+        # + 24 (lag t-168)
+        # + 6 (stats: mean/std for 6h, 24h, 168h)
+        # + 7 (target day one-hot)
+        # + 48 (sin/cos for 24 target hours)
+        in_dim = 168 + 24 + 24 + 24 + 6 + 7 + 48
 
-        #self.LSTM = nn.LSTM(input_size=3,hidden_size=64,num_layers=2,batch_first=True,dropout=0.1) # [B,168, hidden_size]
-
-        #I addded proxy values to help the network learn. This makes the input size 4 * 168 + 3 
-        self.network = nn.Sequential(
-            nn.Linear(4*168 + 3 ,HIDDEN1),
-            nn.ReLU(), 
-            nn.Dropout(DROPOUT1), 
-            nn.Linear(HIDDEN1,HIDDEN2),
-            nn.ReLU(), 
-            nn.Dropout(DROPOUT2),
-            nn.Linear(HIDDEN2,24)      
+        self.input_proj = nn.Sequential(
+            nn.Linear(in_dim, hidden_dim),
+            nn.LayerNorm(hidden_dim),
+            nn.SiLU(),
         )
 
+        self.res_block1 = ResBlock(hidden_dim, dropout=0.1)
+        self.res_block2 = ResBlock(hidden_dim, dropout=0.1)
+
+        self.head = nn.Sequential(
+            nn.Linear(hidden_dim, 128),
+            nn.SiLU(),
+            nn.Linear(128, 24),
+        )
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        # Channel 0: standardize kWh using statistics learned from training data + extracting raw hours and days
-        kwh_norm = (x[..., 0:1] - self.mu) / self.sigma
-        raw_hour = x[..., 1:2] 
-        raw_dayofweek = x[..., 2:3] 
+        # x shape: [batch, 168, 3] 
+        kwh_norm = (x[..., 0] - self.mu) / self.sigma  # [batch, 168]
 
+        lag_24 = kwh_norm[:, -24:]       # Yesterday same 24h
+        lag_48 = kwh_norm[:, -48:-24]    # Day before yesterday same 24h
+        lag_168 = kwh_norm[:, :24]       # Last week same 24h
 
-        #Proxy variables 
-        mean_168 = torch.mean(kwh_norm,dim=1)
-        mean_24 = torch.mean(kwh_norm[:,-24:,:],dim= 1) #[B,1]
-        std_24 = torch.std(kwh_norm[:,-24:,:],dim = 1)
+        m_6 = kwh_norm[:, -6:].mean(dim=1, keepdim=True)
+        s_6 = kwh_norm[:, -6:].std(dim=1, keepdim=True)
+        m_24 = kwh_norm[:, -24:].mean(dim=1, keepdim=True)
+        s_24 = kwh_norm[:, -24:].std(dim=1, keepdim=True)
+        m_168 = kwh_norm.mean(dim=1, keepdim=True)
+        s_168 = kwh_norm.std(dim=1, keepdim=True)
 
-        #Cycle Encoding the time 
-        hour_sin = torch.sin(raw_hour *2 *np.pi /24)
-        hour_cos = torch.cos(raw_hour *2 *np.pi /24)
-       
+        stats = torch.cat([m_6, s_6, m_24, s_24, m_168, s_168], dim=-1)
 
-        #Concatenating everything 
-        x_proxy1 = torch.cat([kwh_norm,hour_sin,hour_cos,raw_dayofweek/6],dim= -1) # [B,168,4]
-        x_flat = x_proxy1.flatten(1) #[B,168*4]
-        x_proxy2 = torch.cat([x_flat,mean_24,mean_168,std_24],dim= -1) #[B,168 * 4 + 3]
+        last_hour = x[:, -1, 1]
+        target_day_idx = torch.remainder((x[:, -1, 2] + (last_hour == 23).float()).long(), 7)
+        day_onehot = nn.functional.one_hot(target_day_idx, num_classes=7).float()
 
-        #Base model 
-        x_model = torch.cat([kwh_norm, raw_hour/23, raw_dayofweek/6],dim = -1).flatten(1) #[B,168*3]
+        target_hours = torch.arange(24, device=x.device).float()
+        sin_target = torch.sin(2 * np.pi * target_hours / 24.0).repeat(x.size(0), 1)
+        cos_target = torch.cos(2 * np.pi * target_hours / 24.0).repeat(x.size(0), 1)
 
-        y_normalized = self.network(x_proxy2)
-        return y_normalized * self.sigma + self.mu
+        
+        features = torch.cat(
+            [kwh_norm, lag_24, lag_48, lag_168, stats, day_onehot, sin_target, cos_target],
+            dim=-1,
+        )
+
+        h = self.input_proj(features)
+        h = self.res_block1(h)
+        h = self.res_block2(h)
+        out_norm = self.head(h)
+
+        return out_norm * self.sigma + self.mu
 
 
 if __name__ == "__main__":
     model = ConsumptionPredictor()
     x = torch.randn(2, 168, 3, dtype=torch.float32)
+    x[:, :, 1] = torch.randint(0, 24, (2, 168)).float()
+    x[:, :, 2] = torch.randint(0, 7, (2, 168)).float()
     y = model(x)
     print(f"Input: {tuple(x.shape)} -> Output: {tuple(y.shape)}")
