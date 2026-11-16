@@ -1,0 +1,12 @@
+{
+  "date": "2026-11-16",
+  "git_commit": "f0c623e",
+  "git_uncommitted_changes": true,
+  "data_sha256": "730597e8d757",
+  "data_rows": 7656,
+  "data_last_timestamp": "2026-11-15 23:00:00",
+  "torch_version": "2.15.0",
+  "run_id": "730597e8d757__model_comparison__20261116_015630_330923",
+  "run_started_at": "2026-11-16T01:56:30.330923+01:00",
+  "run_kind": "model_comparison"
+}

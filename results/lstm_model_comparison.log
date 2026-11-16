@@ -1,0 +1,1510 @@
+Models: ['mlp_max', 'lstm_hourly', 'lstm_daily', 'gru_daily', 'mlp_daily']
+Seeds: [42, 43, 44] | epochs: 100 | device: cpu | torch threads: 4
+Settings from train.py: batch=32, lr=0.001, patience=50, weights={'winter': 0.4, 'spring': 0.2, 'autumn': 0.4}
+Ledger: {'date': '2026-11-15', 'git_commit': '88bfeae', 'git_uncommitted_changes': True, 'data_sha256': '0f1e4e06f969', 'data_rows': 6984, 'data_last_timestamp': '2026-10-18 23:00:00', 'torch_version': '2.15.0'}
+
+Train samples: 5521
+Val block 'winter': 14 midnight-aligned windows
+Val block 'spring': 14 midnight-aligned windows
+Val block 'autumn': 4 midnight-aligned windows
+
+####################################################################################################
+# Run 1/15: mlp_max, seed 42
+####################################################################################################
+Device: cpu
+Train samples: 5521
+Val block 'winter': 14 midnight-aligned windows
+Val block 'spring': 14 midnight-aligned windows
+Val block 'autumn': 4 midnight-aligned windows
+Training kWh statistics: mu=+61.4659, sigma=32.1657
+Model: mlp_max | seed=42 | parameters=483,608
+Epoch 01 | train MAE=6.9917 kWh | weighted val MAE=3.3556 kWh [W:3.96, Sp:3.40,  Au:2.73] <- saved
+Epoch 02 | train MAE=5.0412 kWh | weighted val MAE=4.0814 kWh [W:4.24, Sp:3.64,  Au:4.14]
+Epoch 03 | train MAE=4.7969 kWh | weighted val MAE=3.4055 kWh [W:4.06, Sp:3.23,  Au:2.83]
+Epoch 04 | train MAE=4.6582 kWh | weighted val MAE=3.3849 kWh [W:4.20, Sp:3.25,  Au:2.64]
+Epoch 05 | train MAE=4.3981 kWh | weighted val MAE=4.0551 kWh [W:4.81, Sp:4.41,  Au:3.12]
+Epoch 06 | train MAE=4.4462 kWh | weighted val MAE=3.6599 kWh [W:3.92, Sp:3.20,  Au:3.64]
+Epoch 07 | train MAE=4.2869 kWh | weighted val MAE=3.5844 kWh [W:4.51, Sp:3.58,  Au:2.66]
+Epoch 08 | train MAE=4.1348 kWh | weighted val MAE=3.7967 kWh [W:3.73, Sp:3.56,  Au:3.98]
+Epoch 09 | train MAE=4.1255 kWh | weighted val MAE=3.7445 kWh [W:4.74, Sp:3.90,  Au:2.67]
+Epoch 10 | train MAE=4.0555 kWh | weighted val MAE=3.3763 kWh [W:4.38, Sp:3.17,  Au:2.48]
+Epoch 11 | train MAE=3.9360 kWh | weighted val MAE=3.0283 kWh [W:3.34, Sp:2.80,  Au:2.83] <- saved
+Epoch 12 | train MAE=3.9567 kWh | weighted val MAE=3.5379 kWh [W:3.19, Sp:3.30,  Au:4.01]
+Epoch 13 | train MAE=3.9622 kWh | weighted val MAE=3.5597 kWh [W:3.47, Sp:3.47,  Au:3.69]
+Epoch 14 | train MAE=3.8565 kWh | weighted val MAE=3.4162 kWh [W:3.26, Sp:3.26,  Au:3.65]
+Epoch 15 | train MAE=3.8492 kWh | weighted val MAE=2.8147 kWh [W:3.26, Sp:2.94,  Au:2.31] <- saved
+Epoch 16 | train MAE=3.8359 kWh | weighted val MAE=3.9022 kWh [W:3.58, Sp:3.59,  Au:4.38]
+Epoch 17 | train MAE=3.7880 kWh | weighted val MAE=3.1083 kWh [W:2.96, Sp:2.99,  Au:3.32]
+Epoch 18 | train MAE=3.7800 kWh | weighted val MAE=4.3756 kWh [W:5.43, Sp:4.51,  Au:3.25]
+Epoch 19 | train MAE=3.7193 kWh | weighted val MAE=3.6169 kWh [W:3.86, Sp:3.95,  Au:3.21]
+Epoch 20 | train MAE=3.7656 kWh | weighted val MAE=3.1490 kWh [W:3.36, Sp:3.06,  Au:2.98]
+Epoch 21 | train MAE=3.6457 kWh | weighted val MAE=2.9872 kWh [W:2.81, Sp:2.84,  Au:3.23]
+Epoch 22 | train MAE=3.5677 kWh | weighted val MAE=3.1003 kWh [W:2.83, Sp:3.12,  Au:3.36]
+Epoch 23 | train MAE=3.6115 kWh | weighted val MAE=2.8435 kWh [W:3.36, Sp:2.53,  Au:2.48]
+Epoch 24 | train MAE=3.6507 kWh | weighted val MAE=3.1445 kWh [W:3.40, Sp:3.04,  Au:2.95]
+Epoch 25 | train MAE=3.5142 kWh | weighted val MAE=3.2351 kWh [W:3.30, Sp:3.13,  Au:3.22]
+Epoch 26 | train MAE=3.5468 kWh | weighted val MAE=4.1979 kWh [W:4.52, Sp:4.52,  Au:3.71]
+Epoch 27 | train MAE=3.5371 kWh | weighted val MAE=3.0917 kWh [W:3.09, Sp:3.18,  Au:3.05]
+Epoch 28 | train MAE=3.4330 kWh | weighted val MAE=2.8915 kWh [W:3.18, Sp:3.02,  Au:2.54]
+Epoch 29 | train MAE=3.4666 kWh | weighted val MAE=2.7291 kWh [W:3.09, Sp:2.66,  Au:2.40] <- saved
+Epoch 30 | train MAE=3.4177 kWh | weighted val MAE=2.6929 kWh [W:2.87, Sp:2.58,  Au:2.57] <- saved
+Epoch 31 | train MAE=3.4566 kWh | weighted val MAE=2.7204 kWh [W:2.98, Sp:2.63,  Au:2.51]
+Epoch 32 | train MAE=3.3879 kWh | weighted val MAE=3.0273 kWh [W:3.62, Sp:2.93,  Au:2.48]
+Epoch 33 | train MAE=3.3347 kWh | weighted val MAE=3.1067 kWh [W:2.86, Sp:2.99,  Au:3.41]
+Epoch 34 | train MAE=3.3095 kWh | weighted val MAE=2.6672 kWh [W:3.09, Sp:2.70,  Au:2.23] <- saved
+Epoch 35 | train MAE=3.3044 kWh | weighted val MAE=3.4095 kWh [W:2.81, Sp:3.36,  Au:4.03]
+Epoch 36 | train MAE=3.3434 kWh | weighted val MAE=2.8452 kWh [W:3.20, Sp:2.72,  Au:2.56]
+Epoch 37 | train MAE=3.2321 kWh | weighted val MAE=2.8966 kWh [W:3.08, Sp:2.82,  Au:2.75]
+Epoch 38 | train MAE=3.1922 kWh | weighted val MAE=2.8578 kWh [W:2.60, Sp:2.91,  Au:3.09]
+Epoch 39 | train MAE=3.2210 kWh | weighted val MAE=2.9280 kWh [W:3.07, Sp:2.82,  Au:2.84]
+Epoch 40 | train MAE=3.2228 kWh | weighted val MAE=2.8151 kWh [W:2.73, Sp:2.73,  Au:2.94]
+Epoch 41 | train MAE=3.1408 kWh | weighted val MAE=3.0010 kWh [W:2.55, Sp:2.98,  Au:3.46]
+Epoch 42 | train MAE=3.1872 kWh | weighted val MAE=2.4797 kWh [W:2.90, Sp:2.62,  Au:1.98] <- saved
+Epoch 43 | train MAE=3.1939 kWh | weighted val MAE=2.5985 kWh [W:2.72, Sp:2.51,  Au:2.52]
+Epoch 44 | train MAE=3.1609 kWh | weighted val MAE=2.5777 kWh [W:2.89, Sp:2.51,  Au:2.30]
+Epoch 45 | train MAE=3.1158 kWh | weighted val MAE=3.0753 kWh [W:3.42, Sp:3.18,  Au:2.68]
+Epoch 46 | train MAE=3.1361 kWh | weighted val MAE=2.5858 kWh [W:2.49, Sp:2.53,  Au:2.71]
+Epoch 47 | train MAE=3.0783 kWh | weighted val MAE=2.7814 kWh [W:2.84, Sp:2.51,  Au:2.86]
+Epoch 48 | train MAE=3.0655 kWh | weighted val MAE=2.7967 kWh [W:2.44, Sp:2.86,  Au:3.12]
+Epoch 49 | train MAE=3.0520 kWh | weighted val MAE=2.7746 kWh [W:2.49, Sp:2.78,  Au:3.06]
+Epoch 50 | train MAE=3.0235 kWh | weighted val MAE=2.7578 kWh [W:2.70, Sp:2.60,  Au:2.90]
+Epoch 51 | train MAE=2.9649 kWh | weighted val MAE=2.5301 kWh [W:2.59, Sp:2.56,  Au:2.46]
+Epoch 52 | train MAE=2.9596 kWh | weighted val MAE=2.8051 kWh [W:2.87, Sp:2.83,  Au:2.73]
+Epoch 53 | train MAE=2.9481 kWh | weighted val MAE=2.5189 kWh [W:2.85, Sp:2.67,  Au:2.11]
+Epoch 54 | train MAE=2.9198 kWh | weighted val MAE=2.4207 kWh [W:2.37, Sp:2.71,  Au:2.32] <- saved
+Epoch 55 | train MAE=2.9047 kWh | weighted val MAE=2.5952 kWh [W:2.68, Sp:2.78,  Au:2.42]
+Epoch 56 | train MAE=2.8996 kWh | weighted val MAE=2.5006 kWh [W:2.60, Sp:2.55,  Au:2.38]
+Epoch 57 | train MAE=2.8746 kWh | weighted val MAE=2.7055 kWh [W:3.04, Sp:2.69,  Au:2.38]
+Epoch 58 | train MAE=2.8351 kWh | weighted val MAE=2.5810 kWh [W:2.70, Sp:2.89,  Au:2.31]
+Epoch 59 | train MAE=2.8585 kWh | weighted val MAE=3.4045 kWh [W:2.91, Sp:3.15,  Au:4.03]
+Epoch 60 | train MAE=2.8083 kWh | weighted val MAE=2.9540 kWh [W:2.63, Sp:2.78,  Au:3.37]
+Epoch 61 | train MAE=2.7831 kWh | weighted val MAE=2.7127 kWh [W:2.48, Sp:2.61,  Au:3.00]
+Epoch 62 | train MAE=2.7444 kWh | weighted val MAE=2.7007 kWh [W:2.49, Sp:2.50,  Au:3.01]
+Epoch 63 | train MAE=2.7696 kWh | weighted val MAE=2.6145 kWh [W:2.56, Sp:2.58,  Au:2.68]
+Epoch 64 | train MAE=2.7375 kWh | weighted val MAE=2.9161 kWh [W:2.54, Sp:2.70,  Au:3.40]
+Epoch 65 | train MAE=2.7349 kWh | weighted val MAE=2.5260 kWh [W:2.66, Sp:2.59,  Au:2.36]
+Epoch 66 | train MAE=2.6832 kWh | weighted val MAE=2.8195 kWh [W:3.04, Sp:2.57,  Au:2.73]
+Epoch 67 | train MAE=2.6904 kWh | weighted val MAE=2.6582 kWh [W:2.38, Sp:2.71,  Au:2.91]
+Epoch 68 | train MAE=2.6741 kWh | weighted val MAE=2.6419 kWh [W:2.46, Sp:2.53,  Au:2.88]
+Epoch 69 | train MAE=2.6290 kWh | weighted val MAE=3.3840 kWh [W:2.59, Sp:3.14,  Au:4.30]
+Epoch 70 | train MAE=2.6152 kWh | weighted val MAE=3.1030 kWh [W:2.62, Sp:2.90,  Au:3.68]
+Epoch 71 | train MAE=2.6065 kWh | weighted val MAE=2.7275 kWh [W:2.56, Sp:2.83,  Au:2.85]
+Epoch 72 | train MAE=2.5883 kWh | weighted val MAE=2.7368 kWh [W:2.70, Sp:2.67,  Au:2.81]
+Epoch 73 | train MAE=2.5909 kWh | weighted val MAE=2.8113 kWh [W:2.60, Sp:2.64,  Au:3.11]
+Epoch 74 | train MAE=2.5504 kWh | weighted val MAE=2.9775 kWh [W:2.45, Sp:2.88,  Au:3.55]
+Epoch 75 | train MAE=2.5619 kWh | weighted val MAE=2.4965 kWh [W:2.64, Sp:2.61,  Au:2.29]
+Epoch 76 | train MAE=2.5352 kWh | weighted val MAE=2.8440 kWh [W:2.52, Sp:2.77,  Au:3.21]
+Epoch 77 | train MAE=2.5316 kWh | weighted val MAE=2.7678 kWh [W:2.53, Sp:2.72,  Au:3.03]
+Epoch 78 | train MAE=2.5386 kWh | weighted val MAE=2.7945 kWh [W:2.53, Sp:2.59,  Au:3.15]
+Epoch 79 | train MAE=2.5012 kWh | weighted val MAE=2.8968 kWh [W:2.56, Sp:2.76,  Au:3.30]
+Epoch 80 | train MAE=2.4777 kWh | weighted val MAE=2.7659 kWh [W:2.48, Sp:2.73,  Au:3.07]
+Epoch 81 | train MAE=2.4786 kWh | weighted val MAE=2.8727 kWh [W:2.54, Sp:2.88,  Au:3.20]
+Epoch 82 | train MAE=2.4624 kWh | weighted val MAE=2.7027 kWh [W:2.49, Sp:2.67,  Au:2.93]
+Epoch 83 | train MAE=2.4519 kWh | weighted val MAE=2.7466 kWh [W:2.66, Sp:2.77,  Au:2.82]
+Epoch 84 | train MAE=2.4396 kWh | weighted val MAE=2.7459 kWh [W:2.64, Sp:2.70,  Au:2.87]
+Epoch 85 | train MAE=2.4197 kWh | weighted val MAE=2.6761 kWh [W:2.54, Sp:2.69,  Au:2.81]
+Epoch 86 | train MAE=2.4179 kWh | weighted val MAE=2.7541 kWh [W:2.62, Sp:2.71,  Au:2.91]
+Epoch 87 | train MAE=2.4171 kWh | weighted val MAE=2.7866 kWh [W:2.56, Sp:2.68,  Au:3.07]
+Epoch 88 | train MAE=2.4163 kWh | weighted val MAE=2.7169 kWh [W:2.58, Sp:2.62,  Au:2.91]
+Epoch 89 | train MAE=2.4010 kWh | weighted val MAE=2.8035 kWh [W:2.59, Sp:2.65,  Au:3.10]
+Epoch 90 | train MAE=2.3889 kWh | weighted val MAE=2.7367 kWh [W:2.55, Sp:2.68,  Au:2.96]
+Epoch 91 | train MAE=2.3753 kWh | weighted val MAE=2.8266 kWh [W:2.54, Sp:2.69,  Au:3.18]
+Epoch 92 | train MAE=2.3828 kWh | weighted val MAE=2.8382 kWh [W:2.54, Sp:2.66,  Au:3.23]
+Epoch 93 | train MAE=2.3832 kWh | weighted val MAE=2.8157 kWh [W:2.55, Sp:2.67,  Au:3.16]
+Epoch 94 | train MAE=2.3852 kWh | weighted val MAE=2.8317 kWh [W:2.55, Sp:2.69,  Au:3.19]
+Epoch 95 | train MAE=2.3574 kWh | weighted val MAE=2.7691 kWh [W:2.57, Sp:2.68,  Au:3.02]
+Epoch 96 | train MAE=2.3724 kWh | weighted val MAE=2.7915 kWh [W:2.55, Sp:2.69,  Au:3.08]
+Epoch 97 | train MAE=2.3745 kWh | weighted val MAE=2.7719 kWh [W:2.55, Sp:2.68,  Au:3.04]
+Epoch 98 | train MAE=2.3658 kWh | weighted val MAE=2.7776 kWh [W:2.55, Sp:2.67,  Au:3.06]
+Epoch 99 | train MAE=2.3642 kWh | weighted val MAE=2.7851 kWh [W:2.55, Sp:2.67,  Au:3.08]
+Epoch 100 | train MAE=2.3586 kWh | weighted val MAE=2.7758 kWh [W:2.55, Sp:2.67,  Au:3.05]
+
+✓ Best weighted validation MAE: 2.4207 kWh
+✓ Checkpoint: /Users/yukiainge/Dev/ai-neural-network-residential-energy/starter/checkpoints/mlp_max_seed42.pt
+-> mlp_max seed 42: best epoch 54 weighted MAE 2.4207 (skill +19.14%) | last epoch 100 weighted MAE 2.7758 | 29 s (elapsed 0.5 min)
+
+####################################################################################################
+# Run 2/15: mlp_max, seed 43
+####################################################################################################
+Device: cpu
+Train samples: 5521
+Val block 'winter': 14 midnight-aligned windows
+Val block 'spring': 14 midnight-aligned windows
+Val block 'autumn': 4 midnight-aligned windows
+Training kWh statistics: mu=+61.4659, sigma=32.1657
+Model: mlp_max | seed=43 | parameters=483,608
+Epoch 01 | train MAE=7.0291 kWh | weighted val MAE=4.1887 kWh [W:4.87, Sp:4.58,  Au:3.31] <- saved
+Epoch 02 | train MAE=5.1364 kWh | weighted val MAE=4.5385 kWh [W:4.69, Sp:4.14,  Au:4.59]
+Epoch 03 | train MAE=4.9064 kWh | weighted val MAE=3.9487 kWh [W:4.06, Sp:3.87,  Au:3.88] <- saved
+Epoch 04 | train MAE=4.5664 kWh | weighted val MAE=3.9263 kWh [W:4.29, Sp:3.55,  Au:3.75] <- saved
+Epoch 05 | train MAE=4.4410 kWh | weighted val MAE=3.3053 kWh [W:3.95, Sp:2.97,  Au:2.83] <- saved
+Epoch 06 | train MAE=4.3696 kWh | weighted val MAE=4.2800 kWh [W:4.08, Sp:3.99,  Au:4.62]
+Epoch 07 | train MAE=4.2911 kWh | weighted val MAE=3.5255 kWh [W:4.03, Sp:3.29,  Au:3.13]
+Epoch 08 | train MAE=4.1999 kWh | weighted val MAE=4.0713 kWh [W:3.98, Sp:3.83,  Au:4.28]
+Epoch 09 | train MAE=4.2214 kWh | weighted val MAE=4.1415 kWh [W:3.83, Sp:3.97,  Au:4.54]
+Epoch 10 | train MAE=4.1078 kWh | weighted val MAE=3.1150 kWh [W:3.70, Sp:2.97,  Au:2.60] <- saved
+Epoch 11 | train MAE=4.0816 kWh | weighted val MAE=3.5388 kWh [W:4.75, Sp:3.58,  Au:2.31]
+Epoch 12 | train MAE=3.9705 kWh | weighted val MAE=3.2729 kWh [W:3.57, Sp:3.03,  Au:3.10]
+Epoch 13 | train MAE=4.0067 kWh | weighted val MAE=3.1178 kWh [W:3.45, Sp:2.98,  Au:2.85]
+Epoch 14 | train MAE=3.8725 kWh | weighted val MAE=2.9908 kWh [W:3.76, Sp:2.87,  Au:2.28] <- saved
+Epoch 15 | train MAE=3.8449 kWh | weighted val MAE=3.3104 kWh [W:3.54, Sp:2.92,  Au:3.27]
+Epoch 16 | train MAE=3.8019 kWh | weighted val MAE=3.4158 kWh [W:3.79, Sp:3.14,  Au:3.18]
+Epoch 17 | train MAE=3.8465 kWh | weighted val MAE=3.0972 kWh [W:3.69, Sp:3.07,  Au:2.51]
+Epoch 18 | train MAE=3.7948 kWh | weighted val MAE=2.9977 kWh [W:3.47, Sp:3.08,  Au:2.48]
+Epoch 19 | train MAE=3.7174 kWh | weighted val MAE=2.9224 kWh [W:3.08, Sp:2.79,  Au:2.84] <- saved
+Epoch 20 | train MAE=3.7633 kWh | weighted val MAE=3.2074 kWh [W:3.10, Sp:2.93,  Au:3.45]
+Epoch 21 | train MAE=3.6891 kWh | weighted val MAE=3.2312 kWh [W:3.35, Sp:3.17,  Au:3.14]
+Epoch 22 | train MAE=3.5836 kWh | weighted val MAE=2.9941 kWh [W:3.01, Sp:2.86,  Au:3.04]
+Epoch 23 | train MAE=3.6056 kWh | weighted val MAE=3.7546 kWh [W:3.34, Sp:3.76,  Au:4.16]
+Epoch 24 | train MAE=3.5100 kWh | weighted val MAE=2.8011 kWh [W:3.22, Sp:2.76,  Au:2.40] <- saved
+Epoch 25 | train MAE=3.5533 kWh | weighted val MAE=3.0654 kWh [W:3.21, Sp:3.04,  Au:2.93]
+Epoch 26 | train MAE=3.4858 kWh | weighted val MAE=2.6771 kWh [W:3.10, Sp:2.59,  Au:2.29] <- saved
+Epoch 27 | train MAE=3.4783 kWh | weighted val MAE=2.7636 kWh [W:3.22, Sp:2.80,  Au:2.29]
+Epoch 28 | train MAE=3.5176 kWh | weighted val MAE=2.8540 kWh [W:2.58, Sp:2.86,  Au:3.12]
+Epoch 29 | train MAE=3.4535 kWh | weighted val MAE=3.0723 kWh [W:3.65, Sp:3.30,  Au:2.38]
+Epoch 30 | train MAE=3.4038 kWh | weighted val MAE=3.2245 kWh [W:3.38, Sp:3.04,  Au:3.16]
+Epoch 31 | train MAE=3.3847 kWh | weighted val MAE=3.4617 kWh [W:3.69, Sp:3.79,  Au:3.07]
+Epoch 32 | train MAE=3.4267 kWh | weighted val MAE=3.7673 kWh [W:3.04, Sp:3.66,  Au:4.55]
+Epoch 33 | train MAE=3.2891 kWh | weighted val MAE=2.6976 kWh [W:2.94, Sp:2.72,  Au:2.44]
+Epoch 34 | train MAE=3.2855 kWh | weighted val MAE=3.2236 kWh [W:2.87, Sp:3.08,  Au:3.65]
+Epoch 35 | train MAE=3.3569 kWh | weighted val MAE=2.8583 kWh [W:2.75, Sp:2.97,  Au:2.91]
+Epoch 36 | train MAE=3.3247 kWh | weighted val MAE=3.2438 kWh [W:3.81, Sp:3.07,  Au:2.77]
+Epoch 37 | train MAE=3.2957 kWh | weighted val MAE=3.2684 kWh [W:3.10, Sp:3.09,  Au:3.52]
+Epoch 38 | train MAE=3.2310 kWh | weighted val MAE=2.8985 kWh [W:2.97, Sp:2.78,  Au:2.88]
+Epoch 39 | train MAE=3.2693 kWh | weighted val MAE=2.7200 kWh [W:2.72, Sp:3.01,  Au:2.57]
+Epoch 40 | train MAE=3.2070 kWh | weighted val MAE=2.9586 kWh [W:2.95, Sp:2.83,  Au:3.03]
+Epoch 41 | train MAE=3.1682 kWh | weighted val MAE=2.8087 kWh [W:2.89, Sp:2.68,  Au:2.79]
+Epoch 42 | train MAE=3.1738 kWh | weighted val MAE=2.8603 kWh [W:2.64, Sp:2.72,  Au:3.15]
+Epoch 43 | train MAE=3.1088 kWh | weighted val MAE=3.5103 kWh [W:2.95, Sp:3.33,  Au:4.16]
+Epoch 44 | train MAE=3.1368 kWh | weighted val MAE=2.9161 kWh [W:2.80, Sp:2.71,  Au:3.13]
+Epoch 45 | train MAE=3.1013 kWh | weighted val MAE=2.6902 kWh [W:3.06, Sp:2.64,  Au:2.34]
+Epoch 46 | train MAE=3.0914 kWh | weighted val MAE=3.8997 kWh [W:3.33, Sp:3.78,  Au:4.53]
+Epoch 47 | train MAE=3.0720 kWh | weighted val MAE=2.9876 kWh [W:3.13, Sp:2.81,  Au:2.93]
+Epoch 48 | train MAE=3.0292 kWh | weighted val MAE=2.8788 kWh [W:2.75, Sp:2.88,  Au:3.01]
+Epoch 49 | train MAE=2.9979 kWh | weighted val MAE=2.6963 kWh [W:2.79, Sp:2.72,  Au:2.59]
+Epoch 50 | train MAE=2.9798 kWh | weighted val MAE=2.8322 kWh [W:2.73, Sp:2.77,  Au:2.96]
+Epoch 51 | train MAE=2.9894 kWh | weighted val MAE=2.7627 kWh [W:2.80, Sp:2.67,  Au:2.77]
+Epoch 52 | train MAE=2.8931 kWh | weighted val MAE=3.1007 kWh [W:2.92, Sp:3.02,  Au:3.33]
+Epoch 53 | train MAE=2.9368 kWh | weighted val MAE=2.5118 kWh [W:2.70, Sp:2.57,  Au:2.30] <- saved
+Epoch 54 | train MAE=2.9107 kWh | weighted val MAE=2.9012 kWh [W:2.77, Sp:2.89,  Au:3.04]
+Epoch 55 | train MAE=2.8776 kWh | weighted val MAE=2.8881 kWh [W:2.86, Sp:2.97,  Au:2.88]
+Epoch 56 | train MAE=2.8767 kWh | weighted val MAE=3.2895 kWh [W:2.98, Sp:3.46,  Au:3.51]
+Epoch 57 | train MAE=2.8129 kWh | weighted val MAE=2.7868 kWh [W:2.79, Sp:2.80,  Au:2.77]
+Epoch 58 | train MAE=2.8398 kWh | weighted val MAE=2.9477 kWh [W:2.86, Sp:2.93,  Au:3.04]
+Epoch 59 | train MAE=2.8167 kWh | weighted val MAE=2.7484 kWh [W:2.75, Sp:2.77,  Au:2.74]
+Epoch 60 | train MAE=2.7799 kWh | weighted val MAE=2.9098 kWh [W:3.32, Sp:2.71,  Au:2.60]
+Epoch 61 | train MAE=2.7755 kWh | weighted val MAE=2.7644 kWh [W:2.92, Sp:3.10,  Au:2.44]
+Epoch 62 | train MAE=2.7485 kWh | weighted val MAE=2.8805 kWh [W:3.29, Sp:2.92,  Au:2.45]
+Epoch 63 | train MAE=2.7245 kWh | weighted val MAE=2.9039 kWh [W:2.68, Sp:2.88,  Au:3.14]
+Epoch 64 | train MAE=2.7131 kWh | weighted val MAE=2.7769 kWh [W:2.63, Sp:2.87,  Au:2.87]
+Epoch 65 | train MAE=2.6983 kWh | weighted val MAE=3.1309 kWh [W:2.95, Sp:3.23,  Au:3.26]
+Epoch 66 | train MAE=2.6415 kWh | weighted val MAE=3.3216 kWh [W:2.71, Sp:3.13,  Au:4.03]
+Epoch 67 | train MAE=2.6412 kWh | weighted val MAE=2.8281 kWh [W:2.78, Sp:2.84,  Au:2.87]
+Epoch 68 | train MAE=2.6540 kWh | weighted val MAE=2.7575 kWh [W:2.89, Sp:2.75,  Au:2.63]
+Epoch 69 | train MAE=2.6156 kWh | weighted val MAE=2.7292 kWh [W:2.79, Sp:2.76,  Au:2.65]
+Epoch 70 | train MAE=2.5737 kWh | weighted val MAE=2.8863 kWh [W:2.72, Sp:3.07,  Au:2.96]
+Epoch 71 | train MAE=2.5723 kWh | weighted val MAE=2.7166 kWh [W:2.58, Sp:2.81,  Au:2.81]
+Epoch 72 | train MAE=2.5521 kWh | weighted val MAE=2.6805 kWh [W:2.67, Sp:2.85,  Au:2.61]
+Epoch 73 | train MAE=2.5621 kWh | weighted val MAE=2.9022 kWh [W:2.80, Sp:2.90,  Au:3.01]
+Epoch 74 | train MAE=2.5183 kWh | weighted val MAE=2.7812 kWh [W:2.60, Sp:2.75,  Au:2.97]
+Epoch 75 | train MAE=2.5038 kWh | weighted val MAE=3.0722 kWh [W:2.81, Sp:3.16,  Au:3.29]
+Epoch 76 | train MAE=2.4811 kWh | weighted val MAE=2.7374 kWh [W:2.82, Sp:2.82,  Au:2.62]
+Epoch 77 | train MAE=2.4706 kWh | weighted val MAE=2.9788 kWh [W:2.76, Sp:3.02,  Au:3.17]
+Epoch 78 | train MAE=2.4646 kWh | weighted val MAE=2.7124 kWh [W:2.72, Sp:2.79,  Au:2.67]
+Epoch 79 | train MAE=2.4401 kWh | weighted val MAE=2.8696 kWh [W:2.77, Sp:2.97,  Au:2.93]
+Epoch 80 | train MAE=2.4553 kWh | weighted val MAE=2.8330 kWh [W:2.71, Sp:2.91,  Au:2.92]
+Epoch 81 | train MAE=2.4231 kWh | weighted val MAE=3.2479 kWh [W:2.66, Sp:3.25,  Au:3.83]
+Epoch 82 | train MAE=2.4136 kWh | weighted val MAE=2.8432 kWh [W:2.68, Sp:2.99,  Au:2.93]
+Epoch 83 | train MAE=2.4029 kWh | weighted val MAE=2.8789 kWh [W:2.62, Sp:2.88,  Au:3.14]
+Epoch 84 | train MAE=2.3862 kWh | weighted val MAE=2.8252 kWh [W:2.73, Sp:2.94,  Au:2.86]
+Epoch 85 | train MAE=2.3769 kWh | weighted val MAE=2.8268 kWh [W:2.71, Sp:2.92,  Au:2.89]
+Epoch 86 | train MAE=2.3629 kWh | weighted val MAE=2.9196 kWh [W:2.70, Sp:3.10,  Au:3.05]
+Epoch 87 | train MAE=2.3696 kWh | weighted val MAE=2.8839 kWh [W:2.67, Sp:3.01,  Au:3.03]
+Epoch 88 | train MAE=2.3615 kWh | weighted val MAE=2.9609 kWh [W:2.63, Sp:3.08,  Au:3.23]
+Epoch 89 | train MAE=2.3410 kWh | weighted val MAE=2.9609 kWh [W:2.56, Sp:3.11,  Au:3.29]
+Epoch 90 | train MAE=2.3474 kWh | weighted val MAE=2.8318 kWh [W:2.62, Sp:2.93,  Au:3.00]
+Epoch 91 | train MAE=2.3292 kWh | weighted val MAE=2.7977 kWh [W:2.67, Sp:2.92,  Au:2.87]
+Epoch 92 | train MAE=2.3254 kWh | weighted val MAE=2.7882 kWh [W:2.72, Sp:2.93,  Au:2.78]
+Epoch 93 | train MAE=2.3180 kWh | weighted val MAE=2.8023 kWh [W:2.63, Sp:2.97,  Au:2.89]
+Epoch 94 | train MAE=2.3291 kWh | weighted val MAE=2.8100 kWh [W:2.64, Sp:2.98,  Au:2.89]
+Epoch 95 | train MAE=2.3066 kWh | weighted val MAE=2.8292 kWh [W:2.63, Sp:2.98,  Au:2.96]
+Epoch 96 | train MAE=2.3170 kWh | weighted val MAE=2.8408 kWh [W:2.66, Sp:3.01,  Au:2.93]
+Epoch 97 | train MAE=2.3170 kWh | weighted val MAE=2.8364 kWh [W:2.64, Sp:3.00,  Au:2.95]
+Epoch 98 | train MAE=2.3091 kWh | weighted val MAE=2.8264 kWh [W:2.65, Sp:2.99,  Au:2.92]
+Epoch 99 | train MAE=2.3120 kWh | weighted val MAE=2.8334 kWh [W:2.65, Sp:3.01,  Au:2.93]
+Epoch 100 | train MAE=2.2960 kWh | weighted val MAE=2.8299 kWh [W:2.64, Sp:3.00,  Au:2.93]
+
+✓ Best weighted validation MAE: 2.5118 kWh
+✓ Checkpoint: /Users/yukiainge/Dev/ai-neural-network-residential-energy/starter/checkpoints/mlp_max_seed43.pt
+-> mlp_max seed 43: best epoch 53 weighted MAE 2.5118 (skill +16.10%) | last epoch 100 weighted MAE 2.8300 | 23 s (elapsed 0.9 min)
+
+####################################################################################################
+# Run 3/15: mlp_max, seed 44
+####################################################################################################
+Device: cpu
+Train samples: 5521
+Val block 'winter': 14 midnight-aligned windows
+Val block 'spring': 14 midnight-aligned windows
+Val block 'autumn': 4 midnight-aligned windows
+Training kWh statistics: mu=+61.4659, sigma=32.1657
+Model: mlp_max | seed=44 | parameters=483,608
+Epoch 01 | train MAE=6.8934 kWh | weighted val MAE=4.4274 kWh [W:4.95, Sp:3.61,  Au:4.32] <- saved
+Epoch 02 | train MAE=5.1879 kWh | weighted val MAE=3.3664 kWh [W:3.81, Sp:2.96,  Au:3.13] <- saved
+Epoch 03 | train MAE=4.7010 kWh | weighted val MAE=3.1995 kWh [W:4.06, Sp:2.88,  Au:2.49] <- saved
+Epoch 04 | train MAE=4.6070 kWh | weighted val MAE=3.2200 kWh [W:3.92, Sp:3.04,  Au:2.61]
+Epoch 05 | train MAE=4.5048 kWh | weighted val MAE=4.0834 kWh [W:4.64, Sp:4.22,  Au:3.46]
+Epoch 06 | train MAE=4.4003 kWh | weighted val MAE=3.8547 kWh [W:4.49, Sp:3.95,  Au:3.17]
+Epoch 07 | train MAE=4.3275 kWh | weighted val MAE=3.3702 kWh [W:4.05, Sp:3.34,  Au:2.71]
+Epoch 08 | train MAE=4.1964 kWh | weighted val MAE=4.1971 kWh [W:4.58, Sp:4.32,  Au:3.75]
+Epoch 09 | train MAE=4.0995 kWh | weighted val MAE=3.3904 kWh [W:3.69, Sp:3.21,  Au:3.18]
+Epoch 10 | train MAE=4.2400 kWh | weighted val MAE=3.6220 kWh [W:4.34, Sp:3.48,  Au:2.97]
+Epoch 11 | train MAE=4.0483 kWh | weighted val MAE=3.2174 kWh [W:4.07, Sp:3.01,  Au:2.47]
+Epoch 12 | train MAE=3.9656 kWh | weighted val MAE=3.6480 kWh [W:4.59, Sp:3.75,  Au:2.66]
+Epoch 13 | train MAE=3.8829 kWh | weighted val MAE=3.2687 kWh [W:3.76, Sp:3.20,  Au:2.81]
+Epoch 14 | train MAE=3.9413 kWh | weighted val MAE=3.4526 kWh [W:4.33, Sp:3.54,  Au:2.53]
+Epoch 15 | train MAE=3.9393 kWh | weighted val MAE=3.1114 kWh [W:3.50, Sp:2.85,  Au:2.86] <- saved
+Epoch 16 | train MAE=3.7643 kWh | weighted val MAE=3.5936 kWh [W:3.50, Sp:3.37,  Au:3.79]
+Epoch 17 | train MAE=3.7815 kWh | weighted val MAE=3.4453 kWh [W:3.35, Sp:3.25,  Au:3.64]
+Epoch 18 | train MAE=3.7801 kWh | weighted val MAE=3.3488 kWh [W:3.84, Sp:3.00,  Au:3.03]
+Epoch 19 | train MAE=3.7104 kWh | weighted val MAE=3.7409 kWh [W:3.98, Sp:3.61,  Au:3.57]
+Epoch 20 | train MAE=3.6955 kWh | weighted val MAE=3.0704 kWh [W:3.32, Sp:2.77,  Au:2.97] <- saved
+Epoch 21 | train MAE=3.6959 kWh | weighted val MAE=3.2245 kWh [W:3.27, Sp:2.85,  Au:3.37]
+Epoch 22 | train MAE=3.6271 kWh | weighted val MAE=3.5893 kWh [W:3.50, Sp:3.36,  Au:3.80]
+Epoch 23 | train MAE=3.6208 kWh | weighted val MAE=2.8502 kWh [W:3.42, Sp:2.79,  Au:2.31] <- saved
+Epoch 24 | train MAE=3.5989 kWh | weighted val MAE=3.2377 kWh [W:3.26, Sp:3.25,  Au:3.21]
+Epoch 25 | train MAE=3.5880 kWh | weighted val MAE=3.0134 kWh [W:3.59, Sp:2.97,  Au:2.46]
+Epoch 26 | train MAE=3.5211 kWh | weighted val MAE=3.2868 kWh [W:3.21, Sp:3.16,  Au:3.42]
+Epoch 27 | train MAE=3.4867 kWh | weighted val MAE=3.2183 kWh [W:3.43, Sp:3.20,  Au:3.01]
+Epoch 28 | train MAE=3.4376 kWh | weighted val MAE=3.1316 kWh [W:3.55, Sp:2.84,  Au:2.86]
+Epoch 29 | train MAE=3.4744 kWh | weighted val MAE=3.5131 kWh [W:3.46, Sp:3.29,  Au:3.68]
+Epoch 30 | train MAE=3.4888 kWh | weighted val MAE=3.2794 kWh [W:3.20, Sp:3.18,  Au:3.41]
+Epoch 31 | train MAE=3.4101 kWh | weighted val MAE=3.3844 kWh [W:2.99, Sp:3.31,  Au:3.82]
+Epoch 32 | train MAE=3.3990 kWh | weighted val MAE=2.7272 kWh [W:2.80, Sp:2.66,  Au:2.68] <- saved
+Epoch 33 | train MAE=3.3388 kWh | weighted val MAE=2.8850 kWh [W:2.96, Sp:2.71,  Au:2.89]
+Epoch 34 | train MAE=3.3888 kWh | weighted val MAE=3.1718 kWh [W:3.31, Sp:3.45,  Au:2.89]
+Epoch 35 | train MAE=3.3695 kWh | weighted val MAE=3.0456 kWh [W:3.34, Sp:3.12,  Au:2.71]
+Epoch 36 | train MAE=3.3056 kWh | weighted val MAE=2.6662 kWh [W:3.25, Sp:2.68,  Au:2.08] <- saved
+Epoch 37 | train MAE=3.2612 kWh | weighted val MAE=3.3396 kWh [W:3.12, Sp:3.15,  Au:3.65]
+Epoch 38 | train MAE=3.2275 kWh | weighted val MAE=3.0814 kWh [W:3.73, Sp:2.98,  Au:2.49]
+Epoch 39 | train MAE=3.2192 kWh | weighted val MAE=3.0551 kWh [W:2.70, Sp:3.12,  Au:3.38]
+Epoch 40 | train MAE=3.3044 kWh | weighted val MAE=2.5163 kWh [W:2.81, Sp:2.74,  Au:2.11] <- saved
+Epoch 41 | train MAE=3.2351 kWh | weighted val MAE=3.2433 kWh [W:3.31, Sp:3.27,  Au:3.16]
+Epoch 42 | train MAE=3.2482 kWh | weighted val MAE=2.9167 kWh [W:3.25, Sp:2.78,  Au:2.66]
+Epoch 43 | train MAE=3.1767 kWh | weighted val MAE=3.6254 kWh [W:3.00, Sp:3.54,  Au:4.29]
+Epoch 44 | train MAE=3.1321 kWh | weighted val MAE=2.7865 kWh [W:2.73, Sp:2.75,  Au:2.86]
+Epoch 45 | train MAE=3.0936 kWh | weighted val MAE=2.7394 kWh [W:3.26, Sp:2.60,  Au:2.29]
+Epoch 46 | train MAE=3.1052 kWh | weighted val MAE=2.4884 kWh [W:2.62, Sp:2.64,  Au:2.28] <- saved
+Epoch 47 | train MAE=3.0620 kWh | weighted val MAE=2.6500 kWh [W:3.23, Sp:2.85,  Au:1.97]
+Epoch 48 | train MAE=3.0653 kWh | weighted val MAE=2.9809 kWh [W:3.53, Sp:3.04,  Au:2.40]
+Epoch 49 | train MAE=3.0057 kWh | weighted val MAE=3.2603 kWh [W:3.01, Sp:3.22,  Au:3.53]
+Epoch 50 | train MAE=3.0096 kWh | weighted val MAE=3.6894 kWh [W:2.99, Sp:3.44,  Au:4.51]
+Epoch 51 | train MAE=3.0501 kWh | weighted val MAE=3.1543 kWh [W:2.69, Sp:2.92,  Au:3.73]
+Epoch 52 | train MAE=2.9631 kWh | weighted val MAE=3.0414 kWh [W:2.67, Sp:2.88,  Au:3.49]
+Epoch 53 | train MAE=2.9144 kWh | weighted val MAE=2.8860 kWh [W:3.02, Sp:3.26,  Au:2.56]
+Epoch 54 | train MAE=2.9579 kWh | weighted val MAE=3.4136 kWh [W:3.11, Sp:3.08,  Au:3.88]
+Epoch 55 | train MAE=2.9679 kWh | weighted val MAE=2.7860 kWh [W:3.41, Sp:2.64,  Au:2.24]
+Epoch 56 | train MAE=2.8702 kWh | weighted val MAE=2.9235 kWh [W:2.72, Sp:2.63,  Au:3.28]
+Epoch 57 | train MAE=2.8807 kWh | weighted val MAE=2.6312 kWh [W:3.08, Sp:2.60,  Au:2.19]
+Epoch 58 | train MAE=2.8496 kWh | weighted val MAE=2.6169 kWh [W:2.63, Sp:2.65,  Au:2.59]
+Epoch 59 | train MAE=2.8326 kWh | weighted val MAE=2.9078 kWh [W:2.61, Sp:2.89,  Au:3.21]
+Epoch 60 | train MAE=2.7970 kWh | weighted val MAE=2.6081 kWh [W:2.64, Sp:2.84,  Au:2.45]
+Epoch 61 | train MAE=2.7610 kWh | weighted val MAE=2.6121 kWh [W:2.74, Sp:2.58,  Au:2.50]
+Epoch 62 | train MAE=2.7807 kWh | weighted val MAE=2.7958 kWh [W:2.97, Sp:2.83,  Au:2.60]
+Epoch 63 | train MAE=2.7068 kWh | weighted val MAE=3.0254 kWh [W:2.79, Sp:3.01,  Au:3.27]
+Epoch 64 | train MAE=2.7243 kWh | weighted val MAE=2.7282 kWh [W:2.98, Sp:2.78,  Au:2.45]
+Epoch 65 | train MAE=2.7027 kWh | weighted val MAE=2.7689 kWh [W:2.83, Sp:2.65,  Au:2.77]
+Epoch 66 | train MAE=2.6762 kWh | weighted val MAE=3.1768 kWh [W:3.00, Sp:2.94,  Au:3.47]
+Epoch 67 | train MAE=2.6592 kWh | weighted val MAE=3.1105 kWh [W:3.15, Sp:3.18,  Au:3.03]
+Epoch 68 | train MAE=2.6583 kWh | weighted val MAE=2.8697 kWh [W:2.67, Sp:2.67,  Au:3.17]
+Epoch 69 | train MAE=2.6186 kWh | weighted val MAE=2.9265 kWh [W:2.65, Sp:2.76,  Au:3.29]
+Epoch 70 | train MAE=2.5812 kWh | weighted val MAE=2.7384 kWh [W:2.73, Sp:2.67,  Au:2.79]
+Epoch 71 | train MAE=2.5824 kWh | weighted val MAE=2.7379 kWh [W:2.91, Sp:2.83,  Au:2.52]
+Epoch 72 | train MAE=2.5581 kWh | weighted val MAE=2.6377 kWh [W:2.73, Sp:2.56,  Au:2.58]
+Epoch 73 | train MAE=2.5678 kWh | weighted val MAE=2.7284 kWh [W:2.67, Sp:2.76,  Au:2.77]
+Epoch 74 | train MAE=2.5304 kWh | weighted val MAE=2.7296 kWh [W:2.61, Sp:2.82,  Au:2.81]
+Epoch 75 | train MAE=2.5501 kWh | weighted val MAE=2.7480 kWh [W:2.89, Sp:2.84,  Au:2.56]
+Epoch 76 | train MAE=2.5145 kWh | weighted val MAE=3.0625 kWh [W:2.76, Sp:3.02,  Au:3.39]
+Epoch 77 | train MAE=2.5107 kWh | weighted val MAE=2.8389 kWh [W:2.75, Sp:2.71,  Au:2.99]
+Epoch 78 | train MAE=2.4862 kWh | weighted val MAE=2.8207 kWh [W:2.83, Sp:2.90,  Au:2.77]
+Epoch 79 | train MAE=2.4656 kWh | weighted val MAE=2.7224 kWh [W:2.51, Sp:2.72,  Au:2.93]
+Epoch 80 | train MAE=2.4751 kWh | weighted val MAE=2.7940 kWh [W:2.66, Sp:2.78,  Au:2.93]
+Epoch 81 | train MAE=2.4260 kWh | weighted val MAE=2.8070 kWh [W:2.64, Sp:2.70,  Au:3.03]
+Epoch 82 | train MAE=2.4388 kWh | weighted val MAE=2.6985 kWh [W:2.73, Sp:2.69,  Au:2.67]
+Epoch 83 | train MAE=2.4197 kWh | weighted val MAE=2.6974 kWh [W:2.62, Sp:2.73,  Au:2.76]
+Epoch 84 | train MAE=2.4093 kWh | weighted val MAE=2.5805 kWh [W:2.65, Sp:2.58,  Au:2.51]
+Epoch 85 | train MAE=2.4105 kWh | weighted val MAE=2.7309 kWh [W:2.69, Sp:2.73,  Au:2.77]
+Epoch 86 | train MAE=2.3882 kWh | weighted val MAE=2.7421 kWh [W:2.57, Sp:2.70,  Au:2.93]
+Epoch 87 | train MAE=2.3808 kWh | weighted val MAE=2.7871 kWh [W:2.60, Sp:2.79,  Au:2.97]
+Epoch 88 | train MAE=2.3838 kWh | weighted val MAE=2.7138 kWh [W:2.73, Sp:2.71,  Au:2.70]
+Epoch 89 | train MAE=2.3724 kWh | weighted val MAE=2.7256 kWh [W:2.68, Sp:2.70,  Au:2.79]
+Epoch 90 | train MAE=2.3516 kWh | weighted val MAE=2.7468 kWh [W:2.57, Sp:2.69,  Au:2.96]
+Epoch 91 | train MAE=2.3483 kWh | weighted val MAE=2.7209 kWh [W:2.69, Sp:2.74,  Au:2.74]
+Epoch 92 | train MAE=2.3529 kWh | weighted val MAE=2.7302 kWh [W:2.69, Sp:2.73,  Au:2.78]
+Epoch 93 | train MAE=2.3411 kWh | weighted val MAE=2.7229 kWh [W:2.66, Sp:2.71,  Au:2.79]
+Epoch 94 | train MAE=2.3429 kWh | weighted val MAE=2.7565 kWh [W:2.64, Sp:2.72,  Au:2.89]
+Epoch 95 | train MAE=2.3348 kWh | weighted val MAE=2.7285 kWh [W:2.67, Sp:2.69,  Au:2.80]
+Epoch 96 | train MAE=2.3462 kWh | weighted val MAE=2.7299 kWh [W:2.66, Sp:2.70,  Au:2.82]
+Early stopping after 50 epochs without improvement.
+
+✓ Best weighted validation MAE: 2.4884 kWh
+✓ Checkpoint: /Users/yukiainge/Dev/ai-neural-network-residential-energy/starter/checkpoints/mlp_max_seed44.pt
+-> mlp_max seed 44: best epoch 46 weighted MAE 2.4884 (skill +16.88%) | last epoch 96 weighted MAE 2.7299 | 28 s (elapsed 1.3 min)
+
+####################################################################################################
+# Run 4/15: lstm_hourly, seed 42
+####################################################################################################
+Device: cpu
+Train samples: 5521
+Val block 'winter': 14 midnight-aligned windows
+Val block 'spring': 14 midnight-aligned windows
+Val block 'autumn': 4 midnight-aligned windows
+Training kWh statistics: mu=+61.4659, sigma=32.1657
+Model: lstm_hourly | seed=42 | parameters=19,736
+Epoch 01 | train MAE=14.2461 kWh | weighted val MAE=9.6205 kWh [W:11.51, Sp:8.10,  Au:8.49] <- saved
+Epoch 02 | train MAE=7.8764 kWh | weighted val MAE=5.0884 kWh [W:5.99, Sp:5.54,  Au:3.96] <- saved
+Epoch 03 | train MAE=5.6741 kWh | weighted val MAE=4.2830 kWh [W:4.83, Sp:4.87,  Au:3.44] <- saved
+Epoch 04 | train MAE=5.0186 kWh | weighted val MAE=4.9779 kWh [W:5.00, Sp:5.90,  Au:4.50]
+Epoch 05 | train MAE=4.6470 kWh | weighted val MAE=3.6776 kWh [W:4.49, Sp:3.48,  Au:2.97] <- saved
+Epoch 06 | train MAE=4.3773 kWh | weighted val MAE=3.9152 kWh [W:4.25, Sp:4.40,  Au:3.33]
+Epoch 07 | train MAE=4.2215 kWh | weighted val MAE=3.5224 kWh [W:4.15, Sp:3.39,  Au:2.97] <- saved
+Epoch 08 | train MAE=4.0996 kWh | weighted val MAE=3.6048 kWh [W:4.04, Sp:3.61,  Au:3.17]
+Epoch 09 | train MAE=4.0147 kWh | weighted val MAE=3.4970 kWh [W:3.95, Sp:3.43,  Au:3.08] <- saved
+Epoch 10 | train MAE=3.9249 kWh | weighted val MAE=3.9506 kWh [W:4.22, Sp:3.55,  Au:3.88]
+Epoch 11 | train MAE=3.9121 kWh | weighted val MAE=3.4942 kWh [W:3.93, Sp:3.12,  Au:3.24] <- saved
+Epoch 12 | train MAE=3.8204 kWh | weighted val MAE=3.5096 kWh [W:3.86, Sp:3.21,  Au:3.31]
+Epoch 13 | train MAE=3.8058 kWh | weighted val MAE=3.3779 kWh [W:3.81, Sp:3.29,  Au:2.99] <- saved
+Epoch 14 | train MAE=3.7333 kWh | weighted val MAE=3.5098 kWh [W:4.08, Sp:3.55,  Au:2.92]
+Epoch 15 | train MAE=3.6987 kWh | weighted val MAE=3.2835 kWh [W:3.79, Sp:3.21,  Au:2.81] <- saved
+Epoch 16 | train MAE=3.6451 kWh | weighted val MAE=3.3380 kWh [W:3.84, Sp:3.26,  Au:2.87]
+Epoch 17 | train MAE=3.6297 kWh | weighted val MAE=3.1936 kWh [W:3.93, Sp:3.06,  Au:2.52] <- saved
+Epoch 18 | train MAE=3.5810 kWh | weighted val MAE=3.3714 kWh [W:4.06, Sp:3.17,  Au:2.78]
+Epoch 19 | train MAE=3.5780 kWh | weighted val MAE=3.2889 kWh [W:4.03, Sp:3.23,  Au:2.58]
+Epoch 20 | train MAE=3.5098 kWh | weighted val MAE=3.4025 kWh [W:4.19, Sp:3.26,  Au:2.69]
+Epoch 21 | train MAE=3.4841 kWh | weighted val MAE=3.1762 kWh [W:3.83, Sp:3.04,  Au:2.59] <- saved
+Epoch 22 | train MAE=3.4557 kWh | weighted val MAE=3.1825 kWh [W:3.71, Sp:3.08,  Au:2.70]
+Epoch 23 | train MAE=3.4320 kWh | weighted val MAE=3.3203 kWh [W:3.74, Sp:3.01,  Au:3.05]
+Epoch 24 | train MAE=3.4160 kWh | weighted val MAE=3.7462 kWh [W:4.40, Sp:3.75,  Au:3.09]
+Epoch 25 | train MAE=3.3821 kWh | weighted val MAE=3.2143 kWh [W:3.94, Sp:3.00,  Au:2.59]
+Epoch 26 | train MAE=3.3585 kWh | weighted val MAE=3.1353 kWh [W:3.70, Sp:2.71,  Au:2.79] <- saved
+Epoch 27 | train MAE=3.3305 kWh | weighted val MAE=3.1302 kWh [W:3.76, Sp:3.04,  Au:2.55] <- saved
+Epoch 28 | train MAE=3.3283 kWh | weighted val MAE=3.2145 kWh [W:3.78, Sp:3.15,  Au:2.69]
+Epoch 29 | train MAE=3.2851 kWh | weighted val MAE=3.0775 kWh [W:3.94, Sp:2.73,  Au:2.38] <- saved
+Epoch 30 | train MAE=3.2581 kWh | weighted val MAE=3.0686 kWh [W:3.94, Sp:2.83,  Au:2.31] <- saved
+Epoch 31 | train MAE=3.2519 kWh | weighted val MAE=3.0593 kWh [W:3.92, Sp:2.81,  Au:2.32] <- saved
+Epoch 32 | train MAE=3.2392 kWh | weighted val MAE=3.1184 kWh [W:3.85, Sp:2.67,  Au:2.62]
+Epoch 33 | train MAE=3.2107 kWh | weighted val MAE=3.3173 kWh [W:3.81, Sp:3.06,  Au:2.95]
+Epoch 34 | train MAE=3.1883 kWh | weighted val MAE=2.9869 kWh [W:3.69, Sp:2.57,  Au:2.49] <- saved
+Epoch 35 | train MAE=3.1879 kWh | weighted val MAE=3.0176 kWh [W:3.80, Sp:2.59,  Au:2.45]
+Epoch 36 | train MAE=3.1698 kWh | weighted val MAE=2.9621 kWh [W:3.75, Sp:2.56,  Au:2.38] <- saved
+Epoch 37 | train MAE=3.1379 kWh | weighted val MAE=3.0737 kWh [W:4.10, Sp:2.60,  Au:2.28]
+Epoch 38 | train MAE=3.1378 kWh | weighted val MAE=3.2059 kWh [W:3.89, Sp:2.95,  Au:2.65]
+Epoch 39 | train MAE=3.1260 kWh | weighted val MAE=3.0908 kWh [W:3.93, Sp:2.63,  Au:2.48]
+Epoch 40 | train MAE=3.0980 kWh | weighted val MAE=3.0217 kWh [W:3.72, Sp:2.59,  Au:2.54]
+Epoch 41 | train MAE=3.0997 kWh | weighted val MAE=3.2186 kWh [W:4.03, Sp:3.05,  Au:2.50]
+Epoch 42 | train MAE=3.0907 kWh | weighted val MAE=3.2239 kWh [W:3.72, Sp:2.72,  Au:2.98]
+Epoch 43 | train MAE=3.0878 kWh | weighted val MAE=3.2620 kWh [W:3.64, Sp:2.96,  Au:3.04]
+Epoch 44 | train MAE=3.0654 kWh | weighted val MAE=2.9124 kWh [W:3.75, Sp:2.47,  Au:2.29] <- saved
+Epoch 45 | train MAE=3.0816 kWh | weighted val MAE=2.9860 kWh [W:3.86, Sp:2.51,  Au:2.35]
+Epoch 46 | train MAE=3.0600 kWh | weighted val MAE=3.1338 kWh [W:3.70, Sp:2.67,  Au:2.80]
+Epoch 47 | train MAE=3.0304 kWh | weighted val MAE=3.0111 kWh [W:3.76, Sp:2.58,  Au:2.47]
+Epoch 48 | train MAE=3.0481 kWh | weighted val MAE=3.0412 kWh [W:3.51, Sp:2.73,  Au:2.73]
+Epoch 49 | train MAE=3.0136 kWh | weighted val MAE=3.0230 kWh [W:3.61, Sp:2.67,  Au:2.62]
+Epoch 50 | train MAE=3.0262 kWh | weighted val MAE=3.1118 kWh [W:3.65, Sp:2.82,  Au:2.72]
+Epoch 51 | train MAE=3.0078 kWh | weighted val MAE=3.0077 kWh [W:3.66, Sp:2.67,  Au:2.52]
+Epoch 52 | train MAE=2.9921 kWh | weighted val MAE=3.2576 kWh [W:3.58, Sp:2.85,  Au:3.14]
+Epoch 53 | train MAE=3.0006 kWh | weighted val MAE=3.0379 kWh [W:3.75, Sp:2.74,  Au:2.47]
+Epoch 54 | train MAE=2.9847 kWh | weighted val MAE=2.9860 kWh [W:3.68, Sp:2.55,  Au:2.51]
+Epoch 55 | train MAE=2.9749 kWh | weighted val MAE=2.9596 kWh [W:3.60, Sp:2.58,  Au:2.51]
+Epoch 56 | train MAE=2.9724 kWh | weighted val MAE=3.0902 kWh [W:3.51, Sp:2.71,  Au:2.86]
+Epoch 57 | train MAE=2.9693 kWh | weighted val MAE=3.2458 kWh [W:3.61, Sp:2.88,  Au:3.06]
+Epoch 58 | train MAE=2.9588 kWh | weighted val MAE=2.9337 kWh [W:3.58, Sp:2.51,  Au:2.50]
+Epoch 59 | train MAE=2.9452 kWh | weighted val MAE=3.0361 kWh [W:3.63, Sp:2.74,  Au:2.59]
+Epoch 60 | train MAE=2.9463 kWh | weighted val MAE=2.9435 kWh [W:3.64, Sp:2.56,  Au:2.44]
+Epoch 61 | train MAE=2.9380 kWh | weighted val MAE=3.0586 kWh [W:3.55, Sp:2.66,  Au:2.76]
+Epoch 62 | train MAE=2.9504 kWh | weighted val MAE=2.9932 kWh [W:3.60, Sp:2.61,  Au:2.58]
+Epoch 63 | train MAE=2.9341 kWh | weighted val MAE=3.0985 kWh [W:3.54, Sp:2.74,  Au:2.83]
+Epoch 64 | train MAE=2.9167 kWh | weighted val MAE=2.9499 kWh [W:3.61, Sp:2.55,  Au:2.49]
+Epoch 65 | train MAE=2.9175 kWh | weighted val MAE=2.9130 kWh [W:3.65, Sp:2.48,  Au:2.39]
+Epoch 66 | train MAE=2.9306 kWh | weighted val MAE=2.9877 kWh [W:3.61, Sp:2.64,  Au:2.54]
+Epoch 67 | train MAE=2.9017 kWh | weighted val MAE=2.9896 kWh [W:3.64, Sp:2.60,  Au:2.53]
+Epoch 68 | train MAE=2.9173 kWh | weighted val MAE=2.9551 kWh [W:3.61, Sp:2.62,  Au:2.47]
+Epoch 69 | train MAE=2.8992 kWh | weighted val MAE=2.9466 kWh [W:3.51, Sp:2.60,  Au:2.56]
+Epoch 70 | train MAE=2.8914 kWh | weighted val MAE=2.9350 kWh [W:3.56, Sp:2.51,  Au:2.52]
+Epoch 71 | train MAE=2.8837 kWh | weighted val MAE=2.8817 kWh [W:3.69, Sp:2.45,  Au:2.29] <- saved
+Epoch 72 | train MAE=2.8770 kWh | weighted val MAE=2.9616 kWh [W:3.65, Sp:2.60,  Au:2.46]
+Epoch 73 | train MAE=2.8789 kWh | weighted val MAE=2.8502 kWh [W:3.57, Sp:2.46,  Au:2.33] <- saved
+Epoch 74 | train MAE=2.8756 kWh | weighted val MAE=2.8665 kWh [W:3.50, Sp:2.45,  Au:2.45]
+Epoch 75 | train MAE=2.8729 kWh | weighted val MAE=2.9133 kWh [W:3.66, Sp:2.47,  Au:2.39]
+Epoch 76 | train MAE=2.8659 kWh | weighted val MAE=2.9367 kWh [W:3.50, Sp:2.57,  Au:2.56]
+Epoch 77 | train MAE=2.8646 kWh | weighted val MAE=2.8598 kWh [W:3.51, Sp:2.47,  Au:2.40]
+Epoch 78 | train MAE=2.8576 kWh | weighted val MAE=2.9081 kWh [W:3.52, Sp:2.53,  Au:2.48]
+Epoch 79 | train MAE=2.8580 kWh | weighted val MAE=2.9180 kWh [W:3.57, Sp:2.52,  Au:2.46]
+Epoch 80 | train MAE=2.8496 kWh | weighted val MAE=2.8974 kWh [W:3.59, Sp:2.49,  Au:2.41]
+Epoch 81 | train MAE=2.8546 kWh | weighted val MAE=2.9243 kWh [W:3.61, Sp:2.50,  Au:2.46]
+Epoch 82 | train MAE=2.8488 kWh | weighted val MAE=2.8592 kWh [W:3.54, Sp:2.43,  Au:2.40]
+Epoch 83 | train MAE=2.8417 kWh | weighted val MAE=2.9264 kWh [W:3.59, Sp:2.53,  Au:2.46]
+Epoch 84 | train MAE=2.8427 kWh | weighted val MAE=2.8941 kWh [W:3.57, Sp:2.48,  Au:2.43]
+Epoch 85 | train MAE=2.8394 kWh | weighted val MAE=2.9236 kWh [W:3.55, Sp:2.52,  Au:2.50]
+Epoch 86 | train MAE=2.8363 kWh | weighted val MAE=2.9303 kWh [W:3.58, Sp:2.53,  Au:2.48]
+Epoch 87 | train MAE=2.8352 kWh | weighted val MAE=2.8999 kWh [W:3.59, Sp:2.48,  Au:2.42]
+Epoch 88 | train MAE=2.8327 kWh | weighted val MAE=2.9135 kWh [W:3.54, Sp:2.50,  Au:2.49]
+Epoch 89 | train MAE=2.8340 kWh | weighted val MAE=2.8916 kWh [W:3.56, Sp:2.48,  Au:2.43]
+Epoch 90 | train MAE=2.8296 kWh | weighted val MAE=2.9091 kWh [W:3.54, Sp:2.50,  Au:2.48]
+Epoch 91 | train MAE=2.8257 kWh | weighted val MAE=2.8896 kWh [W:3.56, Sp:2.47,  Au:2.43]
+Epoch 92 | train MAE=2.8255 kWh | weighted val MAE=2.8798 kWh [W:3.56, Sp:2.46,  Au:2.41]
+Epoch 93 | train MAE=2.8233 kWh | weighted val MAE=2.8814 kWh [W:3.56, Sp:2.46,  Au:2.41]
+Epoch 94 | train MAE=2.8219 kWh | weighted val MAE=2.8671 kWh [W:3.56, Sp:2.44,  Au:2.39]
+Epoch 95 | train MAE=2.8216 kWh | weighted val MAE=2.8859 kWh [W:3.56, Sp:2.47,  Au:2.42]
+Epoch 96 | train MAE=2.8205 kWh | weighted val MAE=2.8810 kWh [W:3.56, Sp:2.46,  Au:2.41]
+Epoch 97 | train MAE=2.8199 kWh | weighted val MAE=2.8810 kWh [W:3.56, Sp:2.46,  Au:2.41]
+Epoch 98 | train MAE=2.8191 kWh | weighted val MAE=2.8791 kWh [W:3.56, Sp:2.46,  Au:2.41]
+Epoch 99 | train MAE=2.8185 kWh | weighted val MAE=2.8806 kWh [W:3.56, Sp:2.46,  Au:2.41]
+Epoch 100 | train MAE=2.8184 kWh | weighted val MAE=2.8800 kWh [W:3.56, Sp:2.46,  Au:2.41]
+
+✓ Best weighted validation MAE: 2.8502 kWh
+✓ Checkpoint: /Users/yukiainge/Dev/ai-neural-network-residential-energy/starter/checkpoints/lstm_hourly_seed42.pt
+-> lstm_hourly seed 42: best epoch 73 weighted MAE 2.8502 (skill +4.79%) | last epoch 100 weighted MAE 2.8800 | 366 s (elapsed 7.5 min)
+
+####################################################################################################
+# Run 5/15: lstm_hourly, seed 43
+####################################################################################################
+Device: cpu
+Train samples: 5521
+Val block 'winter': 14 midnight-aligned windows
+Val block 'spring': 14 midnight-aligned windows
+Val block 'autumn': 4 midnight-aligned windows
+Training kWh statistics: mu=+61.4659, sigma=32.1657
+Model: lstm_hourly | seed=43 | parameters=19,736
+Epoch 01 | train MAE=14.2015 kWh | weighted val MAE=9.2926 kWh [W:11.50, Sp:7.58,  Au:7.95] <- saved
+Epoch 02 | train MAE=8.3752 kWh | weighted val MAE=6.2128 kWh [W:7.92, Sp:5.11,  Au:5.05] <- saved
+Epoch 03 | train MAE=6.3725 kWh | weighted val MAE=4.6151 kWh [W:5.45, Sp:4.48,  Au:3.84] <- saved
+Epoch 04 | train MAE=5.1680 kWh | weighted val MAE=3.9314 kWh [W:4.28, Sp:4.34,  Au:3.38] <- saved
+Epoch 05 | train MAE=4.6407 kWh | weighted val MAE=3.7866 kWh [W:4.59, Sp:3.83,  Au:2.96] <- saved
+Epoch 06 | train MAE=4.4194 kWh | weighted val MAE=3.8937 kWh [W:4.46, Sp:3.63,  Au:3.45]
+Epoch 07 | train MAE=4.2733 kWh | weighted val MAE=3.6628 kWh [W:4.31, Sp:3.67,  Au:3.01] <- saved
+Epoch 08 | train MAE=4.1425 kWh | weighted val MAE=3.7871 kWh [W:4.31, Sp:4.01,  Au:3.15]
+Epoch 09 | train MAE=4.0671 kWh | weighted val MAE=3.8965 kWh [W:4.41, Sp:4.17,  Au:3.25]
+Epoch 10 | train MAE=3.9576 kWh | weighted val MAE=3.5189 kWh [W:4.02, Sp:3.72,  Au:2.92] <- saved
+Epoch 11 | train MAE=3.8998 kWh | weighted val MAE=3.8026 kWh [W:4.28, Sp:4.14,  Au:3.16]
+Epoch 12 | train MAE=3.8567 kWh | weighted val MAE=3.4283 kWh [W:3.99, Sp:3.49,  Au:2.83] <- saved
+Epoch 13 | train MAE=3.8204 kWh | weighted val MAE=3.4174 kWh [W:4.13, Sp:3.28,  Au:2.78] <- saved
+Epoch 14 | train MAE=3.7721 kWh | weighted val MAE=3.6681 kWh [W:4.26, Sp:3.77,  Au:3.02]
+Epoch 15 | train MAE=3.7028 kWh | weighted val MAE=3.6031 kWh [W:4.26, Sp:3.82,  Au:2.84]
+Epoch 16 | train MAE=3.6975 kWh | weighted val MAE=3.3566 kWh [W:4.13, Sp:3.40,  Au:2.56] <- saved
+Epoch 17 | train MAE=3.6519 kWh | weighted val MAE=3.2036 kWh [W:4.01, Sp:2.97,  Au:2.51] <- saved
+Epoch 18 | train MAE=3.5911 kWh | weighted val MAE=3.3549 kWh [W:3.88, Sp:3.25,  Au:2.88]
+Epoch 19 | train MAE=3.5747 kWh | weighted val MAE=3.5314 kWh [W:3.72, Sp:3.55,  Au:3.33]
+Epoch 20 | train MAE=3.5815 kWh | weighted val MAE=3.0907 kWh [W:3.99, Sp:2.85,  Au:2.32] <- saved
+Epoch 21 | train MAE=3.5177 kWh | weighted val MAE=3.3407 kWh [W:3.91, Sp:3.36,  Au:2.76]
+Epoch 22 | train MAE=3.4758 kWh | weighted val MAE=3.1653 kWh [W:4.10, Sp:2.98,  Au:2.33]
+Epoch 23 | train MAE=3.4685 kWh | weighted val MAE=3.5216 kWh [W:4.22, Sp:3.57,  Au:2.80]
+Epoch 24 | train MAE=3.4474 kWh | weighted val MAE=3.0767 kWh [W:3.75, Sp:2.99,  Au:2.44] <- saved
+Epoch 25 | train MAE=3.4293 kWh | weighted val MAE=3.1517 kWh [W:3.91, Sp:2.93,  Au:2.51]
+Epoch 26 | train MAE=3.4158 kWh | weighted val MAE=3.0767 kWh [W:3.72, Sp:2.94,  Au:2.50] <- saved
+Epoch 27 | train MAE=3.3873 kWh | weighted val MAE=3.1169 kWh [W:3.87, Sp:2.96,  Au:2.44]
+Epoch 28 | train MAE=3.3707 kWh | weighted val MAE=3.0444 kWh [W:3.79, Sp:2.77,  Au:2.43] <- saved
+Epoch 29 | train MAE=3.3676 kWh | weighted val MAE=3.1300 kWh [W:3.53, Sp:2.97,  Au:2.81]
+Epoch 30 | train MAE=3.3156 kWh | weighted val MAE=3.2083 kWh [W:3.80, Sp:3.17,  Au:2.63]
+Epoch 31 | train MAE=3.2949 kWh | weighted val MAE=3.1423 kWh [W:3.81, Sp:3.02,  Au:2.53]
+Epoch 32 | train MAE=3.2971 kWh | weighted val MAE=3.0024 kWh [W:3.74, Sp:2.74,  Au:2.40] <- saved
+Epoch 33 | train MAE=3.2624 kWh | weighted val MAE=2.9398 kWh [W:3.78, Sp:2.63,  Au:2.25] <- saved
+Epoch 34 | train MAE=3.2418 kWh | weighted val MAE=3.0805 kWh [W:3.76, Sp:2.97,  Au:2.45]
+Epoch 35 | train MAE=3.2563 kWh | weighted val MAE=3.0266 kWh [W:3.82, Sp:2.78,  Au:2.35]
+Epoch 36 | train MAE=3.2331 kWh | weighted val MAE=2.9580 kWh [W:3.64, Sp:2.67,  Au:2.42]
+Epoch 37 | train MAE=3.2060 kWh | weighted val MAE=2.9073 kWh [W:3.61, Sp:2.60,  Au:2.35] <- saved
+Epoch 38 | train MAE=3.2005 kWh | weighted val MAE=3.0225 kWh [W:3.65, Sp:2.86,  Au:2.47]
+Epoch 39 | train MAE=3.1953 kWh | weighted val MAE=3.1505 kWh [W:3.94, Sp:2.92,  Au:2.48]
+Epoch 40 | train MAE=3.1830 kWh | weighted val MAE=2.9590 kWh [W:3.64, Sp:2.73,  Au:2.40]
+Epoch 41 | train MAE=3.1475 kWh | weighted val MAE=2.9893 kWh [W:3.53, Sp:2.67,  Au:2.61]
+Epoch 42 | train MAE=3.1695 kWh | weighted val MAE=2.8623 kWh [W:3.75, Sp:2.59,  Au:2.11] <- saved
+Epoch 43 | train MAE=3.1502 kWh | weighted val MAE=2.9943 kWh [W:3.66, Sp:2.87,  Au:2.39]
+Epoch 44 | train MAE=3.1529 kWh | weighted val MAE=2.8840 kWh [W:3.77, Sp:2.70,  Au:2.09]
+Epoch 45 | train MAE=3.1205 kWh | weighted val MAE=2.9995 kWh [W:3.92, Sp:2.83,  Au:2.16]
+Epoch 46 | train MAE=3.1070 kWh | weighted val MAE=2.8806 kWh [W:3.52, Sp:2.57,  Au:2.39]
+Epoch 47 | train MAE=3.1232 kWh | weighted val MAE=2.9411 kWh [W:3.67, Sp:2.71,  Au:2.32]
+Epoch 48 | train MAE=3.0941 kWh | weighted val MAE=2.9127 kWh [W:3.66, Sp:2.69,  Au:2.28]
+Epoch 49 | train MAE=3.0941 kWh | weighted val MAE=2.9302 kWh [W:3.68, Sp:2.72,  Au:2.28]
+Epoch 50 | train MAE=3.0737 kWh | weighted val MAE=2.8747 kWh [W:3.84, Sp:2.63,  Au:2.04]
+Epoch 51 | train MAE=3.0761 kWh | weighted val MAE=2.9107 kWh [W:3.43, Sp:2.66,  Au:2.52]
+Epoch 52 | train MAE=3.0585 kWh | weighted val MAE=2.8239 kWh [W:3.58, Sp:2.54,  Au:2.21] <- saved
+Epoch 53 | train MAE=3.0527 kWh | weighted val MAE=2.9358 kWh [W:3.61, Sp:2.70,  Au:2.38]
+Epoch 54 | train MAE=3.0543 kWh | weighted val MAE=3.0111 kWh [W:3.84, Sp:2.82,  Au:2.28]
+Epoch 55 | train MAE=3.0521 kWh | weighted val MAE=2.8307 kWh [W:3.70, Sp:2.58,  Au:2.09]
+Epoch 56 | train MAE=3.0356 kWh | weighted val MAE=2.9148 kWh [W:3.62, Sp:2.67,  Au:2.33]
+Epoch 57 | train MAE=3.0423 kWh | weighted val MAE=2.7911 kWh [W:3.57, Sp:2.53,  Au:2.15] <- saved
+Epoch 58 | train MAE=3.0282 kWh | weighted val MAE=2.9258 kWh [W:3.84, Sp:2.65,  Au:2.15]
+Epoch 59 | train MAE=3.0130 kWh | weighted val MAE=2.8552 kWh [W:3.44, Sp:2.68,  Au:2.36]
+Epoch 60 | train MAE=3.0202 kWh | weighted val MAE=2.8042 kWh [W:3.62, Sp:2.67,  Au:2.06]
+Epoch 61 | train MAE=3.0003 kWh | weighted val MAE=2.8572 kWh [W:3.74, Sp:2.56,  Au:2.12]
+Epoch 62 | train MAE=2.9858 kWh | weighted val MAE=2.7980 kWh [W:3.55, Sp:2.52,  Au:2.19]
+Epoch 63 | train MAE=2.9927 kWh | weighted val MAE=2.8498 kWh [W:3.51, Sp:2.70,  Au:2.27]
+Epoch 64 | train MAE=2.9702 kWh | weighted val MAE=2.8972 kWh [W:3.33, Sp:2.69,  Au:2.57]
+Epoch 65 | train MAE=2.9773 kWh | weighted val MAE=2.7678 kWh [W:3.41, Sp:2.52,  Au:2.24] <- saved
+Epoch 66 | train MAE=2.9755 kWh | weighted val MAE=2.7995 kWh [W:3.38, Sp:2.57,  Au:2.34]
+Epoch 67 | train MAE=2.9653 kWh | weighted val MAE=2.7937 kWh [W:3.44, Sp:2.53,  Au:2.28]
+Epoch 68 | train MAE=2.9532 kWh | weighted val MAE=2.8518 kWh [W:3.55, Sp:2.64,  Au:2.26]
+Epoch 69 | train MAE=2.9626 kWh | weighted val MAE=2.7894 kWh [W:3.44, Sp:2.54,  Au:2.27]
+Epoch 70 | train MAE=2.9465 kWh | weighted val MAE=2.8125 kWh [W:3.56, Sp:2.55,  Au:2.20]
+Epoch 71 | train MAE=2.9416 kWh | weighted val MAE=2.8063 kWh [W:3.57, Sp:2.56,  Au:2.17]
+Epoch 72 | train MAE=2.9395 kWh | weighted val MAE=2.7708 kWh [W:3.36, Sp:2.53,  Au:2.30]
+Epoch 73 | train MAE=2.9399 kWh | weighted val MAE=2.7877 kWh [W:3.59, Sp:2.52,  Au:2.12]
+Epoch 74 | train MAE=2.9373 kWh | weighted val MAE=2.7731 kWh [W:3.46, Sp:2.49,  Au:2.22]
+Epoch 75 | train MAE=2.9238 kWh | weighted val MAE=2.7441 kWh [W:3.47, Sp:2.45,  Au:2.16] <- saved
+Epoch 76 | train MAE=2.9260 kWh | weighted val MAE=2.7346 kWh [W:3.39, Sp:2.50,  Au:2.19] <- saved
+Epoch 77 | train MAE=2.9238 kWh | weighted val MAE=2.8222 kWh [W:3.62, Sp:2.56,  Au:2.15]
+Epoch 78 | train MAE=2.9153 kWh | weighted val MAE=2.7620 kWh [W:3.45, Sp:2.52,  Au:2.19]
+Epoch 79 | train MAE=2.9152 kWh | weighted val MAE=2.8028 kWh [W:3.43, Sp:2.59,  Au:2.28]
+Epoch 80 | train MAE=2.9149 kWh | weighted val MAE=2.7262 kWh [W:3.46, Sp:2.48,  Au:2.11] <- saved
+Epoch 81 | train MAE=2.9104 kWh | weighted val MAE=2.7980 kWh [W:3.47, Sp:2.55,  Au:2.25]
+Epoch 82 | train MAE=2.9070 kWh | weighted val MAE=2.7902 kWh [W:3.51, Sp:2.54,  Au:2.19]
+Epoch 83 | train MAE=2.9010 kWh | weighted val MAE=2.7856 kWh [W:3.47, Sp:2.55,  Au:2.22]
+Epoch 84 | train MAE=2.8980 kWh | weighted val MAE=2.7611 kWh [W:3.45, Sp:2.49,  Au:2.21]
+Epoch 85 | train MAE=2.8952 kWh | weighted val MAE=2.7597 kWh [W:3.41, Sp:2.52,  Au:2.23]
+Epoch 86 | train MAE=2.8939 kWh | weighted val MAE=2.7280 kWh [W:3.38, Sp:2.49,  Au:2.20]
+Epoch 87 | train MAE=2.8895 kWh | weighted val MAE=2.7644 kWh [W:3.39, Sp:2.52,  Au:2.26]
+Epoch 88 | train MAE=2.8879 kWh | weighted val MAE=2.7656 kWh [W:3.48, Sp:2.53,  Au:2.16]
+Epoch 89 | train MAE=2.8882 kWh | weighted val MAE=2.7387 kWh [W:3.45, Sp:2.48,  Au:2.16]
+Epoch 90 | train MAE=2.8857 kWh | weighted val MAE=2.7526 kWh [W:3.40, Sp:2.51,  Au:2.23]
+Epoch 91 | train MAE=2.8841 kWh | weighted val MAE=2.7434 kWh [W:3.39, Sp:2.50,  Au:2.22]
+Epoch 92 | train MAE=2.8830 kWh | weighted val MAE=2.7366 kWh [W:3.36, Sp:2.48,  Au:2.24]
+Epoch 93 | train MAE=2.8810 kWh | weighted val MAE=2.7420 kWh [W:3.41, Sp:2.49,  Au:2.20]
+Epoch 94 | train MAE=2.8791 kWh | weighted val MAE=2.7301 kWh [W:3.38, Sp:2.47,  Au:2.21]
+Epoch 95 | train MAE=2.8802 kWh | weighted val MAE=2.7321 kWh [W:3.41, Sp:2.47,  Au:2.19]
+Epoch 96 | train MAE=2.8783 kWh | weighted val MAE=2.7362 kWh [W:3.40, Sp:2.49,  Au:2.19]
+Epoch 97 | train MAE=2.8771 kWh | weighted val MAE=2.7372 kWh [W:3.39, Sp:2.48,  Au:2.21]
+Epoch 98 | train MAE=2.8767 kWh | weighted val MAE=2.7383 kWh [W:3.40, Sp:2.49,  Au:2.21]
+Epoch 99 | train MAE=2.8763 kWh | weighted val MAE=2.7386 kWh [W:3.40, Sp:2.49,  Au:2.20]
+Epoch 100 | train MAE=2.8759 kWh | weighted val MAE=2.7384 kWh [W:3.40, Sp:2.49,  Au:2.20]
+
+✓ Best weighted validation MAE: 2.7262 kWh
+✓ Checkpoint: /Users/yukiainge/Dev/ai-neural-network-residential-energy/starter/checkpoints/lstm_hourly_seed43.pt
+-> lstm_hourly seed 43: best epoch 80 weighted MAE 2.7262 (skill +8.93%) | last epoch 100 weighted MAE 2.7384 | 359 s (elapsed 13.4 min)
+
+####################################################################################################
+# Run 6/15: lstm_hourly, seed 44
+####################################################################################################
+Device: cpu
+Train samples: 5521
+Val block 'winter': 14 midnight-aligned windows
+Val block 'spring': 14 midnight-aligned windows
+Val block 'autumn': 4 midnight-aligned windows
+Training kWh statistics: mu=+61.4659, sigma=32.1657
+Model: lstm_hourly | seed=44 | parameters=19,736
+Epoch 01 | train MAE=14.0861 kWh | weighted val MAE=8.2594 kWh [W:10.26, Sp:6.84,  Au:6.97] <- saved
+Epoch 02 | train MAE=8.5612 kWh | weighted val MAE=7.8561 kWh [W:9.88, Sp:6.07,  Au:6.73] <- saved
+Epoch 03 | train MAE=6.5398 kWh | weighted val MAE=4.2463 kWh [W:4.82, Sp:4.25,  Au:3.68] <- saved
+Epoch 04 | train MAE=5.0546 kWh | weighted val MAE=4.1163 kWh [W:4.35, Sp:4.58,  Au:3.65] <- saved
+Epoch 05 | train MAE=4.5944 kWh | weighted val MAE=3.7953 kWh [W:4.27, Sp:4.06,  Au:3.19] <- saved
+Epoch 06 | train MAE=4.3650 kWh | weighted val MAE=3.6939 kWh [W:4.31, Sp:3.42,  Au:3.21] <- saved
+Epoch 07 | train MAE=4.1647 kWh | weighted val MAE=3.9771 kWh [W:4.42, Sp:3.53,  Au:3.75]
+Epoch 08 | train MAE=4.0785 kWh | weighted val MAE=3.4790 kWh [W:4.06, Sp:3.53,  Au:2.87] <- saved
+Epoch 09 | train MAE=3.9848 kWh | weighted val MAE=3.3412 kWh [W:4.17, Sp:3.24,  Au:2.56] <- saved
+Epoch 10 | train MAE=3.9218 kWh | weighted val MAE=3.4486 kWh [W:3.92, Sp:3.50,  Au:2.96]
+Epoch 11 | train MAE=3.8235 kWh | weighted val MAE=3.2718 kWh [W:4.19, Sp:3.30,  Au:2.34] <- saved
+Epoch 12 | train MAE=3.8541 kWh | weighted val MAE=3.3846 kWh [W:4.04, Sp:3.61,  Au:2.61]
+Epoch 13 | train MAE=3.7565 kWh | weighted val MAE=3.1973 kWh [W:3.81, Sp:3.08,  Au:2.65] <- saved
+Epoch 14 | train MAE=3.7253 kWh | weighted val MAE=3.0291 kWh [W:3.77, Sp:2.84,  Au:2.39] <- saved
+Epoch 15 | train MAE=3.6929 kWh | weighted val MAE=3.3707 kWh [W:3.87, Sp:3.47,  Au:2.82]
+Epoch 16 | train MAE=3.6697 kWh | weighted val MAE=3.0495 kWh [W:3.88, Sp:2.95,  Au:2.27]
+Epoch 17 | train MAE=3.6247 kWh | weighted val MAE=3.3035 kWh [W:3.97, Sp:3.44,  Au:2.56]
+Epoch 18 | train MAE=3.5906 kWh | weighted val MAE=3.1255 kWh [W:3.67, Sp:3.16,  Au:2.56]
+Epoch 19 | train MAE=3.5953 kWh | weighted val MAE=2.9879 kWh [W:3.65, Sp:2.81,  Au:2.41] <- saved
+Epoch 20 | train MAE=3.5624 kWh | weighted val MAE=2.9566 kWh [W:3.84, Sp:2.84,  Au:2.13] <- saved
+Epoch 21 | train MAE=3.5553 kWh | weighted val MAE=2.9540 kWh [W:3.67, Sp:2.86,  Au:2.29] <- saved
+Epoch 22 | train MAE=3.5148 kWh | weighted val MAE=3.0199 kWh [W:3.75, Sp:2.98,  Au:2.30]
+Epoch 23 | train MAE=3.4752 kWh | weighted val MAE=3.0743 kWh [W:3.85, Sp:2.98,  Au:2.34]
+Epoch 24 | train MAE=3.4619 kWh | weighted val MAE=3.1283 kWh [W:3.60, Sp:2.80,  Au:2.82]
+Epoch 25 | train MAE=3.4585 kWh | weighted val MAE=3.2330 kWh [W:3.55, Sp:3.13,  Au:2.96]
+Epoch 26 | train MAE=3.4343 kWh | weighted val MAE=2.8036 kWh [W:3.74, Sp:2.63,  Au:1.95] <- saved
+Epoch 27 | train MAE=3.4480 kWh | weighted val MAE=2.9726 kWh [W:3.70, Sp:2.92,  Au:2.27]
+Epoch 28 | train MAE=3.4213 kWh | weighted val MAE=2.8144 kWh [W:3.69, Sp:2.73,  Au:1.98]
+Epoch 29 | train MAE=3.3771 kWh | weighted val MAE=3.0257 kWh [W:3.82, Sp:2.91,  Au:2.29]
+Epoch 30 | train MAE=3.3614 kWh | weighted val MAE=2.8992 kWh [W:3.68, Sp:2.78,  Au:2.18]
+Epoch 31 | train MAE=3.3930 kWh | weighted val MAE=3.1055 kWh [W:3.77, Sp:3.26,  Au:2.36]
+Epoch 32 | train MAE=3.3509 kWh | weighted val MAE=3.1536 kWh [W:3.57, Sp:2.96,  Au:2.83]
+Epoch 33 | train MAE=3.3292 kWh | weighted val MAE=3.0821 kWh [W:3.93, Sp:3.11,  Au:2.22]
+Epoch 34 | train MAE=3.2969 kWh | weighted val MAE=2.7945 kWh [W:3.56, Sp:2.65,  Au:2.10] <- saved
+Epoch 35 | train MAE=3.2987 kWh | weighted val MAE=2.9633 kWh [W:3.62, Sp:2.84,  Au:2.37]
+Epoch 36 | train MAE=3.2909 kWh | weighted val MAE=2.8790 kWh [W:3.78, Sp:2.75,  Au:2.04]
+Epoch 37 | train MAE=3.2702 kWh | weighted val MAE=2.8698 kWh [W:3.69, Sp:2.77,  Au:2.09]
+Epoch 38 | train MAE=3.2658 kWh | weighted val MAE=3.1597 kWh [W:3.99, Sp:3.13,  Au:2.34]
+Epoch 39 | train MAE=3.2559 kWh | weighted val MAE=2.8532 kWh [W:3.52, Sp:2.70,  Au:2.26]
+Epoch 40 | train MAE=3.2440 kWh | weighted val MAE=2.8369 kWh [W:3.66, Sp:2.64,  Au:2.11]
+Epoch 41 | train MAE=3.2494 kWh | weighted val MAE=2.8701 kWh [W:3.48, Sp:2.70,  Au:2.35]
+Epoch 42 | train MAE=3.2175 kWh | weighted val MAE=2.8602 kWh [W:3.50, Sp:2.76,  Au:2.27]
+Epoch 43 | train MAE=3.2089 kWh | weighted val MAE=2.9218 kWh [W:3.75, Sp:2.81,  Au:2.14]
+Epoch 44 | train MAE=3.1808 kWh | weighted val MAE=2.9687 kWh [W:3.62, Sp:2.71,  Au:2.44]
+Epoch 45 | train MAE=3.1825 kWh | weighted val MAE=2.8499 kWh [W:3.49, Sp:2.66,  Au:2.31]
+Epoch 46 | train MAE=3.1683 kWh | weighted val MAE=2.7785 kWh [W:3.54, Sp:2.56,  Au:2.13] <- saved
+Epoch 47 | train MAE=3.1395 kWh | weighted val MAE=2.8538 kWh [W:3.76, Sp:2.60,  Au:2.07]
+Epoch 48 | train MAE=3.1533 kWh | weighted val MAE=2.8304 kWh [W:3.45, Sp:2.58,  Au:2.33]
+Epoch 49 | train MAE=3.1306 kWh | weighted val MAE=2.7119 kWh [W:3.43, Sp:2.42,  Au:2.15] <- saved
+Epoch 50 | train MAE=3.1132 kWh | weighted val MAE=2.9065 kWh [W:3.65, Sp:2.66,  Au:2.28]
+Epoch 51 | train MAE=3.1083 kWh | weighted val MAE=2.8921 kWh [W:3.65, Sp:2.59,  Au:2.28]
+Epoch 52 | train MAE=3.1021 kWh | weighted val MAE=2.6996 kWh [W:3.50, Sp:2.46,  Au:2.02] <- saved
+Epoch 53 | train MAE=3.0985 kWh | weighted val MAE=2.8011 kWh [W:3.61, Sp:2.61,  Au:2.09]
+Epoch 54 | train MAE=3.0888 kWh | weighted val MAE=2.8216 kWh [W:3.54, Sp:2.62,  Au:2.21]
+Epoch 55 | train MAE=3.0733 kWh | weighted val MAE=2.8571 kWh [W:3.62, Sp:2.73,  Au:2.16]
+Epoch 56 | train MAE=3.0856 kWh | weighted val MAE=2.7867 kWh [W:3.54, Sp:2.49,  Au:2.18]
+Epoch 57 | train MAE=3.0456 kWh | weighted val MAE=2.6289 kWh [W:3.55, Sp:2.33,  Au:1.85] <- saved
+Epoch 58 | train MAE=3.0463 kWh | weighted val MAE=2.8436 kWh [W:3.71, Sp:2.64,  Au:2.09]
+Epoch 59 | train MAE=3.0446 kWh | weighted val MAE=2.7809 kWh [W:3.52, Sp:2.59,  Au:2.13]
+Epoch 60 | train MAE=3.0323 kWh | weighted val MAE=2.8727 kWh [W:3.81, Sp:2.61,  Au:2.07]
+Epoch 61 | train MAE=3.0085 kWh | weighted val MAE=2.8177 kWh [W:3.65, Sp:2.55,  Au:2.12]
+Epoch 62 | train MAE=2.9985 kWh | weighted val MAE=2.8146 kWh [W:3.61, Sp:2.53,  Au:2.16]
+Epoch 63 | train MAE=2.9952 kWh | weighted val MAE=2.8160 kWh [W:3.58, Sp:2.52,  Au:2.20]
+Epoch 64 | train MAE=2.9939 kWh | weighted val MAE=2.8910 kWh [W:3.78, Sp:2.69,  Au:2.10]
+Epoch 65 | train MAE=2.9806 kWh | weighted val MAE=2.9225 kWh [W:3.82, Sp:2.66,  Au:2.16]
+Epoch 66 | train MAE=2.9764 kWh | weighted val MAE=2.8841 kWh [W:3.73, Sp:2.58,  Au:2.19]
+Epoch 67 | train MAE=2.9584 kWh | weighted val MAE=2.7961 kWh [W:3.53, Sp:2.47,  Au:2.23]
+Epoch 68 | train MAE=2.9642 kWh | weighted val MAE=2.7484 kWh [W:3.51, Sp:2.45,  Au:2.14]
+Epoch 69 | train MAE=2.9649 kWh | weighted val MAE=2.7332 kWh [W:3.53, Sp:2.49,  Au:2.06]
+Epoch 70 | train MAE=2.9388 kWh | weighted val MAE=2.8379 kWh [W:3.60, Sp:2.58,  Au:2.20]
+Epoch 71 | train MAE=2.9331 kWh | weighted val MAE=2.7359 kWh [W:3.56, Sp:2.41,  Au:2.07]
+Epoch 72 | train MAE=2.9219 kWh | weighted val MAE=2.7535 kWh [W:3.59, Sp:2.46,  Au:2.06]
+Epoch 73 | train MAE=2.9339 kWh | weighted val MAE=2.7612 kWh [W:3.51, Sp:2.43,  Au:2.18]
+Epoch 74 | train MAE=2.9211 kWh | weighted val MAE=2.8112 kWh [W:3.67, Sp:2.57,  Au:2.07]
+Epoch 75 | train MAE=2.9235 kWh | weighted val MAE=2.8189 kWh [W:3.71, Sp:2.55,  Au:2.06]
+Epoch 76 | train MAE=2.9110 kWh | weighted val MAE=2.8279 kWh [W:3.59, Sp:2.52,  Au:2.22]
+Epoch 77 | train MAE=2.9008 kWh | weighted val MAE=2.8356 kWh [W:3.59, Sp:2.56,  Au:2.21]
+Epoch 78 | train MAE=2.8930 kWh | weighted val MAE=2.7095 kWh [W:3.58, Sp:2.40,  Au:1.99]
+Epoch 79 | train MAE=2.8917 kWh | weighted val MAE=2.7593 kWh [W:3.56, Sp:2.45,  Au:2.11]
+Epoch 80 | train MAE=2.8848 kWh | weighted val MAE=2.7268 kWh [W:3.53, Sp:2.44,  Au:2.07]
+Epoch 81 | train MAE=2.8780 kWh | weighted val MAE=2.7795 kWh [W:3.58, Sp:2.48,  Au:2.12]
+Epoch 82 | train MAE=2.8755 kWh | weighted val MAE=2.7426 kWh [W:3.57, Sp:2.43,  Au:2.07]
+Epoch 83 | train MAE=2.8713 kWh | weighted val MAE=2.7315 kWh [W:3.59, Sp:2.41,  Au:2.03]
+Epoch 84 | train MAE=2.8718 kWh | weighted val MAE=2.7660 kWh [W:3.53, Sp:2.42,  Au:2.17]
+Epoch 85 | train MAE=2.8710 kWh | weighted val MAE=2.7417 kWh [W:3.58, Sp:2.42,  Au:2.06]
+Epoch 86 | train MAE=2.8625 kWh | weighted val MAE=2.7369 kWh [W:3.56, Sp:2.42,  Au:2.07]
+Epoch 87 | train MAE=2.8556 kWh | weighted val MAE=2.7527 kWh [W:3.62, Sp:2.45,  Au:2.04]
+Epoch 88 | train MAE=2.8537 kWh | weighted val MAE=2.7447 kWh [W:3.62, Sp:2.44,  Au:2.02]
+Epoch 89 | train MAE=2.8509 kWh | weighted val MAE=2.7119 kWh [W:3.55, Sp:2.38,  Au:2.04]
+Epoch 90 | train MAE=2.8487 kWh | weighted val MAE=2.7414 kWh [W:3.58, Sp:2.42,  Au:2.06]
+Epoch 91 | train MAE=2.8455 kWh | weighted val MAE=2.7214 kWh [W:3.56, Sp:2.40,  Au:2.05]
+Epoch 92 | train MAE=2.8451 kWh | weighted val MAE=2.7145 kWh [W:3.56, Sp:2.39,  Au:2.03]
+Epoch 93 | train MAE=2.8431 kWh | weighted val MAE=2.7389 kWh [W:3.56, Sp:2.41,  Au:2.08]
+Epoch 94 | train MAE=2.8413 kWh | weighted val MAE=2.7321 kWh [W:3.57, Sp:2.42,  Au:2.05]
+Epoch 95 | train MAE=2.8416 kWh | weighted val MAE=2.7417 kWh [W:3.56, Sp:2.41,  Au:2.09]
+Epoch 96 | train MAE=2.8387 kWh | weighted val MAE=2.7357 kWh [W:3.57, Sp:2.41,  Au:2.07]
+Epoch 97 | train MAE=2.8382 kWh | weighted val MAE=2.7355 kWh [W:3.56, Sp:2.40,  Au:2.08]
+Epoch 98 | train MAE=2.8376 kWh | weighted val MAE=2.7324 kWh [W:3.56, Sp:2.40,  Au:2.07]
+Epoch 99 | train MAE=2.8367 kWh | weighted val MAE=2.7329 kWh [W:3.56, Sp:2.40,  Au:2.07]
+Epoch 100 | train MAE=2.8363 kWh | weighted val MAE=2.7327 kWh [W:3.56, Sp:2.40,  Au:2.07]
+
+✓ Best weighted validation MAE: 2.6289 kWh
+✓ Checkpoint: /Users/yukiainge/Dev/ai-neural-network-residential-energy/starter/checkpoints/lstm_hourly_seed44.pt
+-> lstm_hourly seed 44: best epoch 57 weighted MAE 2.6289 (skill +12.18%) | last epoch 100 weighted MAE 2.7327 | 356 s (elapsed 19.4 min)
+
+####################################################################################################
+# Run 7/15: lstm_daily, seed 42
+####################################################################################################
+Device: cpu
+Train samples: 5521
+Val block 'winter': 14 midnight-aligned windows
+Val block 'spring': 14 midnight-aligned windows
+Val block 'autumn': 4 midnight-aligned windows
+Training kWh statistics: mu=+61.4659, sigma=32.1657
+Model: lstm_daily | seed=42 | parameters=31,593
+Epoch 01 | train MAE=4.1211 kWh | weighted val MAE=2.6142 kWh [W:3.27, Sp:2.92,  Au:1.81] <- saved
+Epoch 02 | train MAE=3.7987 kWh | weighted val MAE=2.6870 kWh [W:3.25, Sp:3.02,  Au:1.96]
+Epoch 03 | train MAE=3.5602 kWh | weighted val MAE=2.5776 kWh [W:3.00, Sp:2.87,  Au:2.01] <- saved
+Epoch 04 | train MAE=3.4198 kWh | weighted val MAE=2.5766 kWh [W:2.97, Sp:2.94,  Au:2.00] <- saved
+Epoch 05 | train MAE=3.3575 kWh | weighted val MAE=2.5786 kWh [W:2.97, Sp:2.97,  Au:1.99]
+Epoch 06 | train MAE=3.2994 kWh | weighted val MAE=2.5592 kWh [W:2.87, Sp:2.94,  Au:2.05] <- saved
+Epoch 07 | train MAE=3.2554 kWh | weighted val MAE=2.5353 kWh [W:2.85, Sp:2.93,  Au:2.03] <- saved
+Epoch 08 | train MAE=3.2272 kWh | weighted val MAE=2.5277 kWh [W:2.85, Sp:2.91,  Au:2.02] <- saved
+Epoch 09 | train MAE=3.1875 kWh | weighted val MAE=2.5073 kWh [W:2.80, Sp:2.88,  Au:2.03] <- saved
+Epoch 10 | train MAE=3.1461 kWh | weighted val MAE=2.5793 kWh [W:2.90, Sp:2.99,  Au:2.06]
+Epoch 11 | train MAE=3.1271 kWh | weighted val MAE=2.4849 kWh [W:2.78, Sp:2.88,  Au:1.99] <- saved
+Epoch 12 | train MAE=3.0874 kWh | weighted val MAE=2.4945 kWh [W:2.83, Sp:2.88,  Au:1.96]
+Epoch 13 | train MAE=3.0677 kWh | weighted val MAE=2.4915 kWh [W:2.76, Sp:2.90,  Au:2.02]
+Epoch 14 | train MAE=3.0288 kWh | weighted val MAE=2.4877 kWh [W:2.73, Sp:2.79,  Au:2.10]
+Epoch 15 | train MAE=2.9924 kWh | weighted val MAE=2.4694 kWh [W:2.66, Sp:2.76,  Au:2.14] <- saved
+Epoch 16 | train MAE=2.9686 kWh | weighted val MAE=2.5850 kWh [W:2.90, Sp:2.94,  Au:2.10]
+Epoch 17 | train MAE=2.9249 kWh | weighted val MAE=2.4695 kWh [W:2.73, Sp:2.82,  Au:2.03]
+Epoch 18 | train MAE=2.8973 kWh | weighted val MAE=2.5992 kWh [W:2.80, Sp:2.82,  Au:2.29]
+Epoch 19 | train MAE=2.8804 kWh | weighted val MAE=2.4779 kWh [W:2.70, Sp:2.87,  Au:2.06]
+Epoch 20 | train MAE=2.8312 kWh | weighted val MAE=2.5350 kWh [W:2.67, Sp:2.83,  Au:2.25]
+Epoch 21 | train MAE=2.8077 kWh | weighted val MAE=2.5914 kWh [W:2.69, Sp:2.82,  Au:2.38]
+Epoch 22 | train MAE=2.7674 kWh | weighted val MAE=2.6227 kWh [W:2.89, Sp:2.84,  Au:2.25]
+Epoch 23 | train MAE=2.7454 kWh | weighted val MAE=2.7400 kWh [W:2.87, Sp:2.77,  Au:2.60]
+Epoch 24 | train MAE=2.7165 kWh | weighted val MAE=2.6748 kWh [W:2.81, Sp:2.87,  Au:2.45]
+Epoch 25 | train MAE=2.6715 kWh | weighted val MAE=2.6030 kWh [W:2.64, Sp:2.82,  Au:2.46]
+Epoch 26 | train MAE=2.6395 kWh | weighted val MAE=2.7532 kWh [W:2.76, Sp:2.82,  Au:2.71]
+Epoch 27 | train MAE=2.6051 kWh | weighted val MAE=2.7075 kWh [W:2.71, Sp:2.86,  Au:2.63]
+Epoch 28 | train MAE=2.5812 kWh | weighted val MAE=2.7613 kWh [W:2.66, Sp:2.92,  Au:2.79]
+Epoch 29 | train MAE=2.5615 kWh | weighted val MAE=2.9382 kWh [W:2.65, Sp:2.99,  Au:3.19]
+Epoch 30 | train MAE=2.5381 kWh | weighted val MAE=2.7599 kWh [W:2.70, Sp:2.93,  Au:2.73]
+Epoch 31 | train MAE=2.4928 kWh | weighted val MAE=2.7096 kWh [W:2.57, Sp:2.84,  Au:2.78]
+Epoch 32 | train MAE=2.4723 kWh | weighted val MAE=2.7646 kWh [W:2.69, Sp:2.90,  Au:2.78]
+Epoch 33 | train MAE=2.4385 kWh | weighted val MAE=2.7732 kWh [W:2.58, Sp:2.79,  Au:2.95]
+Epoch 34 | train MAE=2.4147 kWh | weighted val MAE=2.7936 kWh [W:2.61, Sp:2.90,  Au:2.93]
+Epoch 35 | train MAE=2.3957 kWh | weighted val MAE=2.8745 kWh [W:2.57, Sp:3.00,  Au:3.11]
+Epoch 36 | train MAE=2.3611 kWh | weighted val MAE=2.7655 kWh [W:2.51, Sp:2.91,  Au:2.95]
+Epoch 37 | train MAE=2.3470 kWh | weighted val MAE=2.9501 kWh [W:2.69, Sp:3.07,  Au:3.15]
+Epoch 38 | train MAE=2.3222 kWh | weighted val MAE=2.8852 kWh [W:2.63, Sp:2.99,  Au:3.09]
+Epoch 39 | train MAE=2.2866 kWh | weighted val MAE=2.7711 kWh [W:2.44, Sp:3.04,  Au:2.97]
+Epoch 40 | train MAE=2.2564 kWh | weighted val MAE=2.7982 kWh [W:2.56, Sp:2.91,  Au:2.98]
+Epoch 41 | train MAE=2.2359 kWh | weighted val MAE=2.7628 kWh [W:2.56, Sp:2.99,  Au:2.85]
+Epoch 42 | train MAE=2.2075 kWh | weighted val MAE=2.9140 kWh [W:2.74, Sp:3.03,  Au:3.03]
+Epoch 43 | train MAE=2.1837 kWh | weighted val MAE=2.7873 kWh [W:2.43, Sp:2.99,  Au:3.04]
+Epoch 44 | train MAE=2.1553 kWh | weighted val MAE=2.7246 kWh [W:2.55, Sp:2.96,  Au:2.78]
+Epoch 45 | train MAE=2.1485 kWh | weighted val MAE=2.8835 kWh [W:2.59, Sp:3.07,  Au:3.08]
+Epoch 46 | train MAE=2.1108 kWh | weighted val MAE=2.7955 kWh [W:2.67, Sp:3.02,  Au:2.81]
+Epoch 47 | train MAE=2.0914 kWh | weighted val MAE=2.8097 kWh [W:2.55, Sp:3.01,  Au:2.97]
+Epoch 48 | train MAE=2.0692 kWh | weighted val MAE=2.7848 kWh [W:2.56, Sp:2.95,  Au:2.93]
+Epoch 49 | train MAE=2.0594 kWh | weighted val MAE=2.8284 kWh [W:2.61, Sp:3.01,  Au:2.95]
+Epoch 50 | train MAE=2.0353 kWh | weighted val MAE=2.7621 kWh [W:2.48, Sp:2.95,  Au:2.95]
+Epoch 51 | train MAE=2.0149 kWh | weighted val MAE=2.8541 kWh [W:2.57, Sp:3.09,  Au:3.02]
+Epoch 52 | train MAE=1.9998 kWh | weighted val MAE=2.7527 kWh [W:2.55, Sp:3.02,  Au:2.82]
+Epoch 53 | train MAE=1.9870 kWh | weighted val MAE=2.8222 kWh [W:2.60, Sp:3.07,  Au:2.92]
+Epoch 54 | train MAE=1.9896 kWh | weighted val MAE=2.7692 kWh [W:2.50, Sp:3.01,  Au:2.92]
+Epoch 55 | train MAE=1.9539 kWh | weighted val MAE=2.7654 kWh [W:2.54, Sp:3.06,  Au:2.85]
+Epoch 56 | train MAE=1.9452 kWh | weighted val MAE=2.7675 kWh [W:2.58, Sp:2.99,  Au:2.85]
+Epoch 57 | train MAE=1.9279 kWh | weighted val MAE=2.7455 kWh [W:2.51, Sp:3.04,  Au:2.83]
+Epoch 58 | train MAE=1.9173 kWh | weighted val MAE=2.7833 kWh [W:2.56, Sp:3.04,  Au:2.87]
+Epoch 59 | train MAE=1.9004 kWh | weighted val MAE=2.7907 kWh [W:2.55, Sp:3.05,  Au:2.90]
+Epoch 60 | train MAE=1.8914 kWh | weighted val MAE=2.7964 kWh [W:2.53, Sp:3.03,  Au:2.94]
+Epoch 61 | train MAE=1.8857 kWh | weighted val MAE=2.8260 kWh [W:2.63, Sp:2.99,  Au:2.94]
+Epoch 62 | train MAE=1.8755 kWh | weighted val MAE=2.7812 kWh [W:2.59, Sp:3.07,  Au:2.83]
+Epoch 63 | train MAE=1.8587 kWh | weighted val MAE=2.8412 kWh [W:2.64, Sp:3.02,  Au:2.96]
+Epoch 64 | train MAE=1.8526 kWh | weighted val MAE=2.8086 kWh [W:2.59, Sp:3.04,  Au:2.91]
+Epoch 65 | train MAE=1.8407 kWh | weighted val MAE=2.7869 kWh [W:2.60, Sp:3.05,  Au:2.84]
+Early stopping after 50 epochs without improvement.
+
+✓ Best weighted validation MAE: 2.4694 kWh
+✓ Checkpoint: /Users/yukiainge/Dev/ai-neural-network-residential-energy/starter/checkpoints/lstm_daily_seed42.pt
+-> lstm_daily seed 42: best epoch 15 weighted MAE 2.4694 (skill +17.51%) | last epoch 65 weighted MAE 2.7869 | 20 s (elapsed 19.7 min)
+
+####################################################################################################
+# Run 8/15: lstm_daily, seed 43
+####################################################################################################
+Device: cpu
+Train samples: 5521
+Val block 'winter': 14 midnight-aligned windows
+Val block 'spring': 14 midnight-aligned windows
+Val block 'autumn': 4 midnight-aligned windows
+Training kWh statistics: mu=+61.4659, sigma=32.1657
+Model: lstm_daily | seed=43 | parameters=31,593
+Epoch 01 | train MAE=4.1409 kWh | weighted val MAE=2.6304 kWh [W:3.25, Sp:3.04,  Au:1.81] <- saved
+Epoch 02 | train MAE=3.8223 kWh | weighted val MAE=2.5907 kWh [W:3.15, Sp:2.94,  Au:1.85] <- saved
+Epoch 03 | train MAE=3.5715 kWh | weighted val MAE=2.5013 kWh [W:2.98, Sp:2.87,  Au:1.84] <- saved
+Epoch 04 | train MAE=3.4453 kWh | weighted val MAE=2.5299 kWh [W:2.96, Sp:3.00,  Au:1.86]
+Epoch 05 | train MAE=3.3648 kWh | weighted val MAE=2.4485 kWh [W:2.87, Sp:2.85,  Au:1.82] <- saved
+Epoch 06 | train MAE=3.3089 kWh | weighted val MAE=2.4380 kWh [W:2.81, Sp:2.93,  Au:1.83] <- saved
+Epoch 07 | train MAE=3.2642 kWh | weighted val MAE=2.4728 kWh [W:2.80, Sp:2.96,  Au:1.90]
+Epoch 08 | train MAE=3.2238 kWh | weighted val MAE=2.4093 kWh [W:2.75, Sp:2.91,  Au:1.81] <- saved
+Epoch 09 | train MAE=3.1855 kWh | weighted val MAE=2.4714 kWh [W:2.81, Sp:2.99,  Au:1.88]
+Epoch 10 | train MAE=3.1518 kWh | weighted val MAE=2.4387 kWh [W:2.75, Sp:2.98,  Au:1.85]
+Epoch 11 | train MAE=3.1119 kWh | weighted val MAE=2.3928 kWh [W:2.71, Sp:2.94,  Au:1.80] <- saved
+Epoch 12 | train MAE=3.0646 kWh | weighted val MAE=2.4162 kWh [W:2.75, Sp:2.99,  Au:1.80]
+Epoch 13 | train MAE=3.0348 kWh | weighted val MAE=2.4500 kWh [W:2.75, Sp:3.08,  Au:1.83]
+Epoch 14 | train MAE=2.9948 kWh | weighted val MAE=2.3865 kWh [W:2.66, Sp:2.97,  Au:1.82] <- saved
+Epoch 15 | train MAE=2.9680 kWh | weighted val MAE=2.4337 kWh [W:2.68, Sp:3.00,  Au:1.90]
+Epoch 16 | train MAE=2.9215 kWh | weighted val MAE=2.3859 kWh [W:2.67, Sp:3.02,  Au:1.78] <- saved
+Epoch 17 | train MAE=2.8973 kWh | weighted val MAE=2.4394 kWh [W:2.66, Sp:3.09,  Au:1.89]
+Epoch 18 | train MAE=2.8612 kWh | weighted val MAE=2.4223 kWh [W:2.62, Sp:3.10,  Au:1.89]
+Epoch 19 | train MAE=2.8219 kWh | weighted val MAE=2.3581 kWh [W:2.58, Sp:2.98,  Au:1.82] <- saved
+Epoch 20 | train MAE=2.7838 kWh | weighted val MAE=2.4079 kWh [W:2.55, Sp:3.09,  Au:1.92]
+Epoch 21 | train MAE=2.7560 kWh | weighted val MAE=2.4469 kWh [W:2.70, Sp:3.09,  Au:1.87]
+Epoch 22 | train MAE=2.7113 kWh | weighted val MAE=2.4383 kWh [W:2.64, Sp:2.97,  Au:1.97]
+Epoch 23 | train MAE=2.6811 kWh | weighted val MAE=2.3795 kWh [W:2.52, Sp:2.99,  Au:1.94]
+Epoch 24 | train MAE=2.6394 kWh | weighted val MAE=2.3948 kWh [W:2.44, Sp:2.99,  Au:2.05]
+Epoch 25 | train MAE=2.6190 kWh | weighted val MAE=2.4302 kWh [W:2.48, Sp:2.95,  Au:2.11]
+Epoch 26 | train MAE=2.5716 kWh | weighted val MAE=2.4680 kWh [W:2.52, Sp:2.99,  Au:2.16]
+Epoch 27 | train MAE=2.5315 kWh | weighted val MAE=2.4405 kWh [W:2.58, Sp:2.94,  Au:2.05]
+Epoch 28 | train MAE=2.5054 kWh | weighted val MAE=2.4667 kWh [W:2.58, Sp:2.88,  Au:2.15]
+Epoch 29 | train MAE=2.4539 kWh | weighted val MAE=2.4184 kWh [W:2.48, Sp:2.91,  Au:2.11]
+Epoch 30 | train MAE=2.4299 kWh | weighted val MAE=2.5093 kWh [W:2.50, Sp:2.99,  Au:2.28]
+Epoch 31 | train MAE=2.3878 kWh | weighted val MAE=2.4372 kWh [W:2.46, Sp:2.98,  Au:2.15]
+Epoch 32 | train MAE=2.3469 kWh | weighted val MAE=2.6433 kWh [W:2.66, Sp:3.01,  Au:2.45]
+Epoch 33 | train MAE=2.3343 kWh | weighted val MAE=2.7170 kWh [W:2.62, Sp:3.17,  Au:2.59]
+Epoch 34 | train MAE=2.2955 kWh | weighted val MAE=2.6074 kWh [W:2.58, Sp:3.12,  Au:2.38]
+Epoch 35 | train MAE=2.2611 kWh | weighted val MAE=2.5811 kWh [W:2.56, Sp:3.17,  Au:2.31]
+Epoch 36 | train MAE=2.2354 kWh | weighted val MAE=2.6487 kWh [W:2.46, Sp:3.12,  Au:2.60]
+Epoch 37 | train MAE=2.2096 kWh | weighted val MAE=2.6137 kWh [W:2.42, Sp:3.05,  Au:2.58]
+Epoch 38 | train MAE=2.1822 kWh | weighted val MAE=2.6843 kWh [W:2.48, Sp:3.33,  Au:2.56]
+Epoch 39 | train MAE=2.1482 kWh | weighted val MAE=2.6868 kWh [W:2.58, Sp:3.22,  Au:2.52]
+Epoch 40 | train MAE=2.1245 kWh | weighted val MAE=2.8126 kWh [W:2.60, Sp:3.36,  Au:2.76]
+Epoch 41 | train MAE=2.1029 kWh | weighted val MAE=2.6884 kWh [W:2.54, Sp:3.26,  Au:2.55]
+Epoch 42 | train MAE=2.0803 kWh | weighted val MAE=2.6639 kWh [W:2.57, Sp:3.09,  Au:2.55]
+Epoch 43 | train MAE=2.0504 kWh | weighted val MAE=2.6752 kWh [W:2.38, Sp:3.10,  Au:2.76]
+Epoch 44 | train MAE=2.0324 kWh | weighted val MAE=2.7474 kWh [W:2.53, Sp:3.09,  Au:2.79]
+Epoch 45 | train MAE=2.0121 kWh | weighted val MAE=2.7200 kWh [W:2.57, Sp:3.18,  Au:2.64]
+Epoch 46 | train MAE=1.9756 kWh | weighted val MAE=2.7069 kWh [W:2.55, Sp:3.26,  Au:2.59]
+Epoch 47 | train MAE=1.9812 kWh | weighted val MAE=2.7477 kWh [W:2.54, Sp:3.02,  Au:2.82]
+Epoch 48 | train MAE=1.9419 kWh | weighted val MAE=2.7120 kWh [W:2.56, Sp:3.09,  Au:2.68]
+Epoch 49 | train MAE=1.9279 kWh | weighted val MAE=2.8491 kWh [W:2.62, Sp:3.36,  Au:2.82]
+Epoch 50 | train MAE=1.9193 kWh | weighted val MAE=2.7784 kWh [W:2.57, Sp:3.11,  Au:2.82]
+Epoch 51 | train MAE=1.9000 kWh | weighted val MAE=2.7703 kWh [W:2.63, Sp:3.08,  Au:2.76]
+Epoch 52 | train MAE=1.8921 kWh | weighted val MAE=2.7731 kWh [W:2.56, Sp:3.19,  Au:2.78]
+Epoch 53 | train MAE=1.8598 kWh | weighted val MAE=2.9600 kWh [W:2.75, Sp:3.33,  Au:2.99]
+Epoch 54 | train MAE=1.8521 kWh | weighted val MAE=2.7630 kWh [W:2.59, Sp:3.08,  Au:2.78]
+Epoch 55 | train MAE=1.8327 kWh | weighted val MAE=2.9646 kWh [W:2.70, Sp:3.42,  Au:3.00]
+Epoch 56 | train MAE=1.8234 kWh | weighted val MAE=2.8205 kWh [W:2.72, Sp:3.19,  Au:2.74]
+Epoch 57 | train MAE=1.8159 kWh | weighted val MAE=2.8924 kWh [W:2.73, Sp:3.16,  Au:2.92]
+Epoch 58 | train MAE=1.8053 kWh | weighted val MAE=2.9667 kWh [W:2.82, Sp:3.25,  Au:2.97]
+Epoch 59 | train MAE=1.7935 kWh | weighted val MAE=2.8259 kWh [W:2.63, Sp:3.26,  Au:2.81]
+Epoch 60 | train MAE=1.7873 kWh | weighted val MAE=2.8708 kWh [W:2.65, Sp:3.26,  Au:2.90]
+Epoch 61 | train MAE=1.7769 kWh | weighted val MAE=2.8589 kWh [W:2.64, Sp:3.26,  Au:2.88]
+Epoch 62 | train MAE=1.7765 kWh | weighted val MAE=2.8484 kWh [W:2.67, Sp:3.27,  Au:2.82]
+Epoch 63 | train MAE=1.7628 kWh | weighted val MAE=2.9376 kWh [W:2.71, Sp:3.30,  Au:2.98]
+Epoch 64 | train MAE=1.7558 kWh | weighted val MAE=2.9547 kWh [W:2.73, Sp:3.36,  Au:2.98]
+Epoch 65 | train MAE=1.7488 kWh | weighted val MAE=2.8518 kWh [W:2.71, Sp:3.20,  Au:2.82]
+Epoch 66 | train MAE=1.7411 kWh | weighted val MAE=2.9049 kWh [W:2.71, Sp:3.29,  Au:2.90]
+Epoch 67 | train MAE=1.7313 kWh | weighted val MAE=2.9353 kWh [W:2.73, Sp:3.32,  Au:2.94]
+Epoch 68 | train MAE=1.7267 kWh | weighted val MAE=2.9143 kWh [W:2.71, Sp:3.27,  Au:2.94]
+Epoch 69 | train MAE=1.7184 kWh | weighted val MAE=2.9135 kWh [W:2.69, Sp:3.29,  Au:2.95]
+Early stopping after 50 epochs without improvement.
+
+✓ Best weighted validation MAE: 2.3581 kWh
+✓ Checkpoint: /Users/yukiainge/Dev/ai-neural-network-residential-energy/starter/checkpoints/lstm_daily_seed43.pt
+-> lstm_daily seed 43: best epoch 19 weighted MAE 2.3581 (skill +21.23%) | last epoch 69 weighted MAE 2.9135 | 20 s (elapsed 20.0 min)
+
+####################################################################################################
+# Run 9/15: lstm_daily, seed 44
+####################################################################################################
+Device: cpu
+Train samples: 5521
+Val block 'winter': 14 midnight-aligned windows
+Val block 'spring': 14 midnight-aligned windows
+Val block 'autumn': 4 midnight-aligned windows
+Training kWh statistics: mu=+61.4659, sigma=32.1657
+Model: lstm_daily | seed=44 | parameters=31,593
+Epoch 01 | train MAE=4.1373 kWh | weighted val MAE=2.5544 kWh [W:3.21, Sp:2.95,  Au:1.70] <- saved
+Epoch 02 | train MAE=3.8096 kWh | weighted val MAE=2.5507 kWh [W:3.15, Sp:2.93,  Au:1.76] <- saved
+Epoch 03 | train MAE=3.5956 kWh | weighted val MAE=2.5064 kWh [W:2.98, Sp:2.89,  Au:1.84] <- saved
+Epoch 04 | train MAE=3.4564 kWh | weighted val MAE=2.4981 kWh [W:2.95, Sp:2.92,  Au:1.84] <- saved
+Epoch 05 | train MAE=3.3685 kWh | weighted val MAE=2.5267 kWh [W:2.91, Sp:2.98,  Au:1.91]
+Epoch 06 | train MAE=3.3103 kWh | weighted val MAE=2.4965 kWh [W:2.88, Sp:2.96,  Au:1.88] <- saved
+Epoch 07 | train MAE=3.2715 kWh | weighted val MAE=2.4341 kWh [W:2.77, Sp:2.86,  Au:1.89] <- saved
+Epoch 08 | train MAE=3.2211 kWh | weighted val MAE=2.4940 kWh [W:2.80, Sp:2.97,  Au:1.95]
+Epoch 09 | train MAE=3.1791 kWh | weighted val MAE=2.4576 kWh [W:2.78, Sp:2.95,  Au:1.89]
+Epoch 10 | train MAE=3.1451 kWh | weighted val MAE=2.4254 kWh [W:2.68, Sp:2.93,  Au:1.91] <- saved
+Epoch 11 | train MAE=3.1138 kWh | weighted val MAE=2.4760 kWh [W:2.71, Sp:2.99,  Au:1.98]
+Epoch 12 | train MAE=3.0704 kWh | weighted val MAE=2.4560 kWh [W:2.68, Sp:3.02,  Au:1.95]
+Epoch 13 | train MAE=3.0464 kWh | weighted val MAE=2.4443 kWh [W:2.68, Sp:3.06,  Au:1.90]
+Epoch 14 | train MAE=2.9894 kWh | weighted val MAE=2.4621 kWh [W:2.60, Sp:2.98,  Au:2.06]
+Epoch 15 | train MAE=2.9627 kWh | weighted val MAE=2.4960 kWh [W:2.66, Sp:3.05,  Au:2.06]
+Epoch 16 | train MAE=2.9301 kWh | weighted val MAE=2.4350 kWh [W:2.59, Sp:3.08,  Au:1.96]
+Epoch 17 | train MAE=2.8865 kWh | weighted val MAE=2.4228 kWh [W:2.58, Sp:2.96,  Au:2.00] <- saved
+Epoch 18 | train MAE=2.8292 kWh | weighted val MAE=2.4683 kWh [W:2.51, Sp:3.00,  Au:2.16]
+Epoch 19 | train MAE=2.8067 kWh | weighted val MAE=2.4788 kWh [W:2.53, Sp:2.98,  Au:2.17]
+Epoch 20 | train MAE=2.7664 kWh | weighted val MAE=2.5100 kWh [W:2.49, Sp:3.03,  Au:2.28]
+Epoch 21 | train MAE=2.7398 kWh | weighted val MAE=2.4719 kWh [W:2.56, Sp:3.02,  Au:2.11]
+Epoch 22 | train MAE=2.7080 kWh | weighted val MAE=2.4009 kWh [W:2.35, Sp:2.95,  Au:2.18] <- saved
+Epoch 23 | train MAE=2.6713 kWh | weighted val MAE=2.3768 kWh [W:2.39, Sp:2.97,  Au:2.06] <- saved
+Epoch 24 | train MAE=2.6371 kWh | weighted val MAE=2.3487 kWh [W:2.36, Sp:2.89,  Au:2.06] <- saved
+Epoch 25 | train MAE=2.6066 kWh | weighted val MAE=2.4541 kWh [W:2.57, Sp:2.95,  Au:2.09]
+Epoch 26 | train MAE=2.5837 kWh | weighted val MAE=2.3816 kWh [W:2.49, Sp:2.89,  Au:2.02]
+Epoch 27 | train MAE=2.5637 kWh | weighted val MAE=2.4222 kWh [W:2.40, Sp:2.82,  Au:2.25]
+Epoch 28 | train MAE=2.5197 kWh | weighted val MAE=2.4725 kWh [W:2.49, Sp:2.85,  Au:2.26]
+Epoch 29 | train MAE=2.4942 kWh | weighted val MAE=2.5168 kWh [W:2.43, Sp:2.89,  Au:2.42]
+Epoch 30 | train MAE=2.4637 kWh | weighted val MAE=2.4436 kWh [W:2.53, Sp:2.82,  Au:2.17]
+Epoch 31 | train MAE=2.4346 kWh | weighted val MAE=2.4447 kWh [W:2.45, Sp:2.85,  Au:2.23]
+Epoch 32 | train MAE=2.4057 kWh | weighted val MAE=2.4936 kWh [W:2.52, Sp:2.89,  Au:2.27]
+Epoch 33 | train MAE=2.3792 kWh | weighted val MAE=2.5491 kWh [W:2.65, Sp:2.91,  Au:2.26]
+Epoch 34 | train MAE=2.3556 kWh | weighted val MAE=2.5840 kWh [W:2.43, Sp:2.91,  Au:2.58]
+Epoch 35 | train MAE=2.3147 kWh | weighted val MAE=2.5847 kWh [W:2.71, Sp:2.94,  Au:2.28]
+Epoch 36 | train MAE=2.2889 kWh | weighted val MAE=2.5584 kWh [W:2.76, Sp:2.98,  Au:2.14]
+Epoch 37 | train MAE=2.2574 kWh | weighted val MAE=2.5463 kWh [W:2.49, Sp:2.94,  Au:2.41]
+Epoch 38 | train MAE=2.2270 kWh | weighted val MAE=2.6545 kWh [W:2.61, Sp:3.02,  Au:2.52]
+Epoch 39 | train MAE=2.2037 kWh | weighted val MAE=2.7309 kWh [W:2.51, Sp:3.05,  Au:2.80]
+Epoch 40 | train MAE=2.1777 kWh | weighted val MAE=2.7055 kWh [W:2.53, Sp:3.05,  Au:2.71]
+Epoch 41 | train MAE=2.1500 kWh | weighted val MAE=2.7064 kWh [W:2.49, Sp:3.05,  Au:2.75]
+Epoch 42 | train MAE=2.1154 kWh | weighted val MAE=2.7832 kWh [W:2.74, Sp:3.14,  Au:2.65]
+Epoch 43 | train MAE=2.0955 kWh | weighted val MAE=2.8035 kWh [W:2.67, Sp:3.14,  Au:2.77]
+Epoch 44 | train MAE=2.0737 kWh | weighted val MAE=2.8281 kWh [W:2.82, Sp:3.18,  Au:2.66]
+Epoch 45 | train MAE=2.0501 kWh | weighted val MAE=2.8054 kWh [W:2.60, Sp:3.22,  Au:2.80]
+Epoch 46 | train MAE=2.0240 kWh | weighted val MAE=2.8634 kWh [W:2.73, Sp:3.15,  Au:2.85]
+Epoch 47 | train MAE=2.0069 kWh | weighted val MAE=2.8592 kWh [W:2.74, Sp:3.15,  Au:2.84]
+Epoch 48 | train MAE=1.9883 kWh | weighted val MAE=2.8920 kWh [W:2.67, Sp:3.23,  Au:2.94]
+Epoch 49 | train MAE=1.9560 kWh | weighted val MAE=2.8613 kWh [W:2.72, Sp:3.21,  Au:2.83]
+Epoch 50 | train MAE=1.9505 kWh | weighted val MAE=2.8513 kWh [W:2.60, Sp:3.24,  Au:2.91]
+Epoch 51 | train MAE=1.9305 kWh | weighted val MAE=2.9564 kWh [W:2.57, Sp:3.26,  Au:3.19]
+Epoch 52 | train MAE=1.9190 kWh | weighted val MAE=2.9659 kWh [W:2.79, Sp:3.25,  Au:3.00]
+Epoch 53 | train MAE=1.9026 kWh | weighted val MAE=2.9397 kWh [W:2.78, Sp:3.27,  Au:2.93]
+Epoch 54 | train MAE=1.8955 kWh | weighted val MAE=2.8375 kWh [W:2.59, Sp:3.19,  Au:2.90]
+Epoch 55 | train MAE=1.8817 kWh | weighted val MAE=2.8111 kWh [W:2.58, Sp:3.26,  Au:2.82]
+Epoch 56 | train MAE=1.8669 kWh | weighted val MAE=2.8953 kWh [W:2.66, Sp:3.22,  Au:2.97]
+Epoch 57 | train MAE=1.8577 kWh | weighted val MAE=2.8935 kWh [W:2.75, Sp:3.25,  Au:2.86]
+Epoch 58 | train MAE=1.8459 kWh | weighted val MAE=2.9139 kWh [W:2.71, Sp:3.21,  Au:2.97]
+Epoch 59 | train MAE=1.8359 kWh | weighted val MAE=2.8821 kWh [W:2.70, Sp:3.26,  Au:2.88]
+Epoch 60 | train MAE=1.8181 kWh | weighted val MAE=2.8983 kWh [W:2.59, Sp:3.34,  Au:2.98]
+Epoch 61 | train MAE=1.8144 kWh | weighted val MAE=2.8573 kWh [W:2.63, Sp:3.22,  Au:2.91]
+Epoch 62 | train MAE=1.8033 kWh | weighted val MAE=2.8542 kWh [W:2.60, Sp:3.23,  Au:2.92]
+Epoch 63 | train MAE=1.7898 kWh | weighted val MAE=2.8707 kWh [W:2.54, Sp:3.26,  Au:3.01]
+Epoch 64 | train MAE=1.7799 kWh | weighted val MAE=2.8969 kWh [W:2.62, Sp:3.30,  Au:2.97]
+Epoch 65 | train MAE=1.7777 kWh | weighted val MAE=2.8980 kWh [W:2.50, Sp:3.30,  Au:3.09]
+Epoch 66 | train MAE=1.7749 kWh | weighted val MAE=2.8349 kWh [W:2.61, Sp:3.24,  Au:2.86]
+Epoch 67 | train MAE=1.7562 kWh | weighted val MAE=2.8582 kWh [W:2.58, Sp:3.28,  Au:2.92]
+Epoch 68 | train MAE=1.7572 kWh | weighted val MAE=2.9257 kWh [W:2.58, Sp:3.33,  Au:3.07]
+Epoch 69 | train MAE=1.7419 kWh | weighted val MAE=2.9472 kWh [W:2.64, Sp:3.32,  Au:3.07]
+Epoch 70 | train MAE=1.7440 kWh | weighted val MAE=2.8965 kWh [W:2.62, Sp:3.28,  Au:2.98]
+Epoch 71 | train MAE=1.7235 kWh | weighted val MAE=2.9144 kWh [W:2.72, Sp:3.30,  Au:2.92]
+Epoch 72 | train MAE=1.7358 kWh | weighted val MAE=2.9320 kWh [W:2.63, Sp:3.28,  Au:3.06]
+Epoch 73 | train MAE=1.7315 kWh | weighted val MAE=2.9080 kWh [W:2.61, Sp:3.33,  Au:2.99]
+Epoch 74 | train MAE=1.7144 kWh | weighted val MAE=2.9190 kWh [W:2.58, Sp:3.30,  Au:3.06]
+Early stopping after 50 epochs without improvement.
+
+✓ Best weighted validation MAE: 2.3487 kWh
+✓ Checkpoint: /Users/yukiainge/Dev/ai-neural-network-residential-energy/starter/checkpoints/lstm_daily_seed44.pt
+-> lstm_daily seed 44: best epoch 24 weighted MAE 2.3487 (skill +21.54%) | last epoch 74 weighted MAE 2.9190 | 22 s (elapsed 20.4 min)
+
+####################################################################################################
+# Run 10/15: gru_daily, seed 42
+####################################################################################################
+Device: cpu
+Train samples: 5521
+Val block 'winter': 14 midnight-aligned windows
+Val block 'spring': 14 midnight-aligned windows
+Val block 'autumn': 4 midnight-aligned windows
+Training kWh statistics: mu=+61.4659, sigma=32.1657
+Model: gru_daily | seed=42 | parameters=25,385
+Epoch 01 | train MAE=4.1995 kWh | weighted val MAE=2.5937 kWh [W:3.26, Sp:2.99,  Au:1.73] <- saved
+Epoch 02 | train MAE=3.7364 kWh | weighted val MAE=2.5914 kWh [W:3.14, Sp:3.03,  Au:1.83] <- saved
+Epoch 03 | train MAE=3.4924 kWh | weighted val MAE=2.4331 kWh [W:2.98, Sp:2.76,  Au:1.72] <- saved
+Epoch 04 | train MAE=3.4001 kWh | weighted val MAE=2.4591 kWh [W:2.89, Sp:2.87,  Au:1.82]
+Epoch 05 | train MAE=3.3366 kWh | weighted val MAE=2.3984 kWh [W:2.85, Sp:2.83,  Au:1.73] <- saved
+Epoch 06 | train MAE=3.2703 kWh | weighted val MAE=2.3177 kWh [W:2.72, Sp:2.77,  Au:1.69] <- saved
+Epoch 07 | train MAE=3.2237 kWh | weighted val MAE=2.4202 kWh [W:2.81, Sp:2.93,  Au:1.78]
+Epoch 08 | train MAE=3.1923 kWh | weighted val MAE=2.2794 kWh [W:2.58, Sp:2.85,  Au:1.69] <- saved
+Epoch 09 | train MAE=3.1445 kWh | weighted val MAE=2.3584 kWh [W:2.69, Sp:2.96,  Au:1.73]
+Epoch 10 | train MAE=3.1225 kWh | weighted val MAE=2.3910 kWh [W:2.68, Sp:3.02,  Au:1.79]
+Epoch 11 | train MAE=3.0938 kWh | weighted val MAE=2.3491 kWh [W:2.59, Sp:2.90,  Au:1.83]
+Epoch 12 | train MAE=3.0632 kWh | weighted val MAE=2.3950 kWh [W:2.67, Sp:2.93,  Au:1.85]
+Epoch 13 | train MAE=3.0345 kWh | weighted val MAE=2.4066 kWh [W:2.70, Sp:2.98,  Au:1.83]
+Epoch 14 | train MAE=3.0008 kWh | weighted val MAE=2.4572 kWh [W:2.73, Sp:3.04,  Au:1.89]
+Epoch 15 | train MAE=2.9638 kWh | weighted val MAE=2.3480 kWh [W:2.54, Sp:2.88,  Au:1.89]
+Epoch 16 | train MAE=2.9310 kWh | weighted val MAE=2.4722 kWh [W:2.66, Sp:2.98,  Au:2.03]
+Epoch 17 | train MAE=2.8918 kWh | weighted val MAE=2.4829 kWh [W:2.69, Sp:2.99,  Au:2.02]
+Epoch 18 | train MAE=2.8410 kWh | weighted val MAE=2.4183 kWh [W:2.54, Sp:2.87,  Au:2.07]
+Epoch 19 | train MAE=2.8083 kWh | weighted val MAE=2.4855 kWh [W:2.54, Sp:2.88,  Au:2.23]
+Epoch 20 | train MAE=2.7651 kWh | weighted val MAE=2.4611 kWh [W:2.40, Sp:2.86,  Au:2.32]
+Epoch 21 | train MAE=2.7209 kWh | weighted val MAE=2.4702 kWh [W:2.48, Sp:2.81,  Au:2.29]
+Epoch 22 | train MAE=2.6897 kWh | weighted val MAE=2.5593 kWh [W:2.48, Sp:2.84,  Au:2.50]
+Epoch 23 | train MAE=2.6381 kWh | weighted val MAE=2.5690 kWh [W:2.55, Sp:2.88,  Au:2.43]
+Epoch 24 | train MAE=2.6138 kWh | weighted val MAE=2.5049 kWh [W:2.54, Sp:2.72,  Au:2.37]
+Epoch 25 | train MAE=2.5702 kWh | weighted val MAE=2.5715 kWh [W:2.53, Sp:2.83,  Au:2.48]
+Epoch 26 | train MAE=2.5245 kWh | weighted val MAE=2.6243 kWh [W:2.69, Sp:2.81,  Au:2.47]
+Epoch 27 | train MAE=2.5002 kWh | weighted val MAE=2.6074 kWh [W:2.56, Sp:2.82,  Au:2.54]
+Epoch 28 | train MAE=2.4636 kWh | weighted val MAE=2.7252 kWh [W:2.65, Sp:2.89,  Au:2.71]
+Epoch 29 | train MAE=2.4146 kWh | weighted val MAE=2.6313 kWh [W:2.68, Sp:2.81,  Au:2.49]
+Epoch 30 | train MAE=2.3859 kWh | weighted val MAE=2.5951 kWh [W:2.67, Sp:2.92,  Au:2.36]
+Epoch 31 | train MAE=2.3449 kWh | weighted val MAE=2.8337 kWh [W:2.71, Sp:2.84,  Au:2.95]
+Epoch 32 | train MAE=2.3147 kWh | weighted val MAE=2.7566 kWh [W:2.72, Sp:2.84,  Au:2.75]
+Epoch 33 | train MAE=2.2853 kWh | weighted val MAE=2.7505 kWh [W:2.72, Sp:2.77,  Au:2.78]
+Epoch 34 | train MAE=2.2581 kWh | weighted val MAE=2.8598 kWh [W:2.82, Sp:2.88,  Au:2.89]
+Epoch 35 | train MAE=2.2169 kWh | weighted val MAE=2.7868 kWh [W:2.83, Sp:2.94,  Au:2.67]
+Epoch 36 | train MAE=2.1922 kWh | weighted val MAE=2.8205 kWh [W:2.66, Sp:2.88,  Au:2.95]
+Epoch 37 | train MAE=2.1572 kWh | weighted val MAE=2.8546 kWh [W:2.77, Sp:2.89,  Au:2.92]
+Epoch 38 | train MAE=2.1190 kWh | weighted val MAE=2.7712 kWh [W:2.75, Sp:2.94,  Au:2.70]
+Epoch 39 | train MAE=2.1115 kWh | weighted val MAE=2.7362 kWh [W:2.68, Sp:2.86,  Au:2.73]
+Epoch 40 | train MAE=2.0757 kWh | weighted val MAE=2.9128 kWh [W:2.82, Sp:2.88,  Au:3.02]
+Epoch 41 | train MAE=2.0491 kWh | weighted val MAE=2.8386 kWh [W:2.73, Sp:2.93,  Au:2.91]
+Epoch 42 | train MAE=2.0181 kWh | weighted val MAE=2.7221 kWh [W:2.66, Sp:2.94,  Au:2.68]
+Epoch 43 | train MAE=2.0116 kWh | weighted val MAE=2.9949 kWh [W:2.85, Sp:2.85,  Au:3.21]
+Epoch 44 | train MAE=1.9793 kWh | weighted val MAE=2.9315 kWh [W:2.82, Sp:2.97,  Au:3.02]
+Epoch 45 | train MAE=1.9728 kWh | weighted val MAE=2.8350 kWh [W:2.72, Sp:2.94,  Au:2.90]
+Epoch 46 | train MAE=1.9434 kWh | weighted val MAE=2.8632 kWh [W:2.68, Sp:2.91,  Au:3.03]
+Epoch 47 | train MAE=1.9463 kWh | weighted val MAE=2.9444 kWh [W:2.78, Sp:2.95,  Au:3.11]
+Epoch 48 | train MAE=1.9205 kWh | weighted val MAE=2.8770 kWh [W:2.70, Sp:2.97,  Au:3.01]
+Epoch 49 | train MAE=1.9129 kWh | weighted val MAE=2.9108 kWh [W:2.74, Sp:3.05,  Au:3.01]
+Epoch 50 | train MAE=1.8932 kWh | weighted val MAE=2.9186 kWh [W:2.78, Sp:3.04,  Au:2.99]
+Epoch 51 | train MAE=1.8770 kWh | weighted val MAE=2.9682 kWh [W:2.86, Sp:3.05,  Au:3.04]
+Epoch 52 | train MAE=1.8614 kWh | weighted val MAE=3.0386 kWh [W:2.98, Sp:3.10,  Au:3.07]
+Epoch 53 | train MAE=1.8586 kWh | weighted val MAE=2.9773 kWh [W:2.82, Sp:3.05,  Au:3.10]
+Epoch 54 | train MAE=1.8342 kWh | weighted val MAE=2.9665 kWh [W:2.80, Sp:3.19,  Au:3.02]
+Epoch 55 | train MAE=1.8253 kWh | weighted val MAE=2.9976 kWh [W:2.84, Sp:3.23,  Au:3.04]
+Epoch 56 | train MAE=1.8274 kWh | weighted val MAE=2.9578 kWh [W:2.72, Sp:3.11,  Au:3.12]
+Epoch 57 | train MAE=1.8127 kWh | weighted val MAE=2.9819 kWh [W:2.79, Sp:3.15,  Au:3.09]
+Epoch 58 | train MAE=1.8069 kWh | weighted val MAE=3.0639 kWh [W:2.85, Sp:3.22,  Au:3.20]
+Early stopping after 50 epochs without improvement.
+
+✓ Best weighted validation MAE: 2.2794 kWh
+✓ Checkpoint: /Users/yukiainge/Dev/ai-neural-network-residential-energy/starter/checkpoints/gru_daily_seed42.pt
+-> gru_daily seed 42: best epoch 8 weighted MAE 2.2794 (skill +23.86%) | last epoch 58 weighted MAE 3.0639 | 16 s (elapsed 20.7 min)
+
+####################################################################################################
+# Run 11/15: gru_daily, seed 43
+####################################################################################################
+Device: cpu
+Train samples: 5521
+Val block 'winter': 14 midnight-aligned windows
+Val block 'spring': 14 midnight-aligned windows
+Val block 'autumn': 4 midnight-aligned windows
+Training kWh statistics: mu=+61.4659, sigma=32.1657
+Model: gru_daily | seed=43 | parameters=25,385
+Epoch 01 | train MAE=4.1301 kWh | weighted val MAE=2.6070 kWh [W:3.23, Sp:3.02,  Au:1.78] <- saved
+Epoch 02 | train MAE=3.7288 kWh | weighted val MAE=2.4831 kWh [W:3.09, Sp:2.85,  Au:1.70] <- saved
+Epoch 03 | train MAE=3.4918 kWh | weighted val MAE=2.5119 kWh [W:2.98, Sp:2.86,  Au:1.87]
+Epoch 04 | train MAE=3.3856 kWh | weighted val MAE=2.4063 kWh [W:2.88, Sp:2.82,  Au:1.72] <- saved
+Epoch 05 | train MAE=3.3252 kWh | weighted val MAE=2.3866 kWh [W:2.84, Sp:2.82,  Au:1.72] <- saved
+Epoch 06 | train MAE=3.2747 kWh | weighted val MAE=2.2635 kWh [W:2.66, Sp:2.72,  Au:1.63] <- saved
+Epoch 07 | train MAE=3.2311 kWh | weighted val MAE=2.3147 kWh [W:2.74, Sp:2.79,  Au:1.65]
+Epoch 08 | train MAE=3.1880 kWh | weighted val MAE=2.3903 kWh [W:2.81, Sp:2.94,  Au:1.69]
+Epoch 09 | train MAE=3.1478 kWh | weighted val MAE=2.2481 kWh [W:2.59, Sp:2.71,  Au:1.67] <- saved
+Epoch 10 | train MAE=3.1067 kWh | weighted val MAE=2.3316 kWh [W:2.72, Sp:2.96,  Au:1.63]
+Epoch 11 | train MAE=3.0839 kWh | weighted val MAE=2.3700 kWh [W:2.71, Sp:2.90,  Au:1.77]
+Epoch 12 | train MAE=3.0520 kWh | weighted val MAE=2.4260 kWh [W:2.80, Sp:3.10,  Au:1.72]
+Epoch 13 | train MAE=3.0145 kWh | weighted val MAE=2.2884 kWh [W:2.63, Sp:2.88,  Au:1.65]
+Epoch 14 | train MAE=2.9750 kWh | weighted val MAE=2.3218 kWh [W:2.62, Sp:2.96,  Au:1.70]
+Epoch 15 | train MAE=2.9304 kWh | weighted val MAE=2.3937 kWh [W:2.45, Sp:2.84,  Au:2.12]
+Epoch 16 | train MAE=2.8722 kWh | weighted val MAE=2.4873 kWh [W:2.46, Sp:2.83,  Au:2.35]
+Epoch 17 | train MAE=2.8444 kWh | weighted val MAE=2.4002 kWh [W:2.54, Sp:2.84,  Au:2.04]
+Epoch 18 | train MAE=2.8021 kWh | weighted val MAE=2.4382 kWh [W:2.65, Sp:2.86,  Au:2.01]
+Epoch 19 | train MAE=2.7558 kWh | weighted val MAE=2.4827 kWh [W:2.55, Sp:2.93,  Au:2.19]
+Epoch 20 | train MAE=2.7040 kWh | weighted val MAE=2.4543 kWh [W:2.60, Sp:2.86,  Au:2.11]
+Epoch 21 | train MAE=2.6666 kWh | weighted val MAE=2.4791 kWh [W:2.59, Sp:2.87,  Au:2.18]
+Epoch 22 | train MAE=2.6279 kWh | weighted val MAE=2.5456 kWh [W:2.56, Sp:2.92,  Au:2.35]
+Epoch 23 | train MAE=2.5677 kWh | weighted val MAE=2.5063 kWh [W:2.54, Sp:2.99,  Au:2.23]
+Epoch 24 | train MAE=2.5088 kWh | weighted val MAE=2.5908 kWh [W:2.59, Sp:2.93,  Au:2.42]
+Epoch 25 | train MAE=2.4582 kWh | weighted val MAE=2.9125 kWh [W:2.97, Sp:2.96,  Au:2.83]
+Epoch 26 | train MAE=2.4119 kWh | weighted val MAE=2.7759 kWh [W:2.67, Sp:3.07,  Au:2.73]
+Epoch 27 | train MAE=2.3576 kWh | weighted val MAE=2.9077 kWh [W:2.76, Sp:3.10,  Au:2.96]
+Epoch 28 | train MAE=2.3015 kWh | weighted val MAE=2.9293 kWh [W:2.57, Sp:3.07,  Au:3.22]
+Epoch 29 | train MAE=2.2493 kWh | weighted val MAE=2.8547 kWh [W:2.65, Sp:3.01,  Au:2.98]
+Epoch 30 | train MAE=2.2171 kWh | weighted val MAE=2.9818 kWh [W:2.72, Sp:3.11,  Au:3.18]
+Epoch 31 | train MAE=2.1874 kWh | weighted val MAE=3.0782 kWh [W:2.81, Sp:3.12,  Au:3.32]
+Epoch 32 | train MAE=2.1539 kWh | weighted val MAE=3.2069 kWh [W:2.94, Sp:3.25,  Au:3.46]
+Epoch 33 | train MAE=2.1097 kWh | weighted val MAE=3.1480 kWh [W:2.83, Sp:3.13,  Au:3.47]
+Epoch 34 | train MAE=2.0935 kWh | weighted val MAE=3.0624 kWh [W:2.81, Sp:3.38,  Au:3.16]
+Epoch 35 | train MAE=2.0568 kWh | weighted val MAE=3.2039 kWh [W:2.88, Sp:3.37,  Au:3.45]
+Epoch 36 | train MAE=2.0257 kWh | weighted val MAE=2.9543 kWh [W:2.78, Sp:3.18,  Au:3.02]
+Epoch 37 | train MAE=2.0218 kWh | weighted val MAE=3.0570 kWh [W:2.86, Sp:3.10,  Au:3.23]
+Epoch 38 | train MAE=1.9819 kWh | weighted val MAE=3.0535 kWh [W:2.77, Sp:3.21,  Au:3.26]
+Epoch 39 | train MAE=1.9802 kWh | weighted val MAE=3.2246 kWh [W:2.83, Sp:3.19,  Au:3.64]
+Epoch 40 | train MAE=1.9435 kWh | weighted val MAE=3.0170 kWh [W:2.81, Sp:3.12,  Au:3.17]
+Epoch 41 | train MAE=1.9144 kWh | weighted val MAE=3.1605 kWh [W:2.82, Sp:3.11,  Au:3.53]
+Epoch 42 | train MAE=1.9115 kWh | weighted val MAE=3.1547 kWh [W:2.82, Sp:3.22,  Au:3.45]
+Epoch 43 | train MAE=1.8910 kWh | weighted val MAE=3.2201 kWh [W:2.92, Sp:3.22,  Au:3.52]
+Epoch 44 | train MAE=1.8823 kWh | weighted val MAE=3.1731 kWh [W:2.85, Sp:3.14,  Au:3.51]
+Epoch 45 | train MAE=1.8739 kWh | weighted val MAE=3.1317 kWh [W:2.84, Sp:3.23,  Au:3.37]
+Epoch 46 | train MAE=1.8643 kWh | weighted val MAE=3.1647 kWh [W:2.82, Sp:3.20,  Au:3.50]
+Epoch 47 | train MAE=1.8435 kWh | weighted val MAE=3.1888 kWh [W:2.85, Sp:3.22,  Au:3.51]
+Epoch 48 | train MAE=1.8313 kWh | weighted val MAE=3.0573 kWh [W:2.75, Sp:3.07,  Au:3.36]
+Epoch 49 | train MAE=1.8133 kWh | weighted val MAE=3.0715 kWh [W:2.74, Sp:3.18,  Au:3.35]
+Epoch 50 | train MAE=1.8012 kWh | weighted val MAE=3.1816 kWh [W:2.81, Sp:3.19,  Au:3.55]
+Epoch 51 | train MAE=1.7969 kWh | weighted val MAE=3.2246 kWh [W:2.81, Sp:3.23,  Au:3.64]
+Epoch 52 | train MAE=1.7831 kWh | weighted val MAE=3.1524 kWh [W:2.75, Sp:3.30,  Au:3.48]
+Epoch 53 | train MAE=1.7779 kWh | weighted val MAE=3.1172 kWh [W:2.77, Sp:3.24,  Au:3.40]
+Epoch 54 | train MAE=1.7666 kWh | weighted val MAE=3.2273 kWh [W:2.82, Sp:3.28,  Au:3.61]
+Epoch 55 | train MAE=1.7575 kWh | weighted val MAE=3.1347 kWh [W:2.72, Sp:3.24,  Au:3.50]
+Epoch 56 | train MAE=1.7513 kWh | weighted val MAE=3.1425 kWh [W:2.80, Sp:3.23,  Au:3.44]
+Epoch 57 | train MAE=1.7450 kWh | weighted val MAE=3.1720 kWh [W:2.75, Sp:3.27,  Au:3.55]
+Epoch 58 | train MAE=1.7339 kWh | weighted val MAE=3.2710 kWh [W:2.83, Sp:3.30,  Au:3.70]
+Epoch 59 | train MAE=1.7231 kWh | weighted val MAE=3.1729 kWh [W:2.85, Sp:3.40,  Au:3.38]
+Early stopping after 50 epochs without improvement.
+
+✓ Best weighted validation MAE: 2.2481 kWh
+✓ Checkpoint: /Users/yukiainge/Dev/ai-neural-network-residential-energy/starter/checkpoints/gru_daily_seed43.pt
+-> gru_daily seed 43: best epoch 9 weighted MAE 2.2481 (skill +24.90%) | last epoch 59 weighted MAE 3.1729 | 17 s (elapsed 21.0 min)
+
+####################################################################################################
+# Run 12/15: gru_daily, seed 44
+####################################################################################################
+Device: cpu
+Train samples: 5521
+Val block 'winter': 14 midnight-aligned windows
+Val block 'spring': 14 midnight-aligned windows
+Val block 'autumn': 4 midnight-aligned windows
+Training kWh statistics: mu=+61.4659, sigma=32.1657
+Model: gru_daily | seed=44 | parameters=25,385
+Epoch 01 | train MAE=4.1429 kWh | weighted val MAE=2.5850 kWh [W:3.24, Sp:2.91,  Au:1.77] <- saved
+Epoch 02 | train MAE=3.7007 kWh | weighted val MAE=2.5319 kWh [W:3.09, Sp:2.86,  Au:1.81] <- saved
+Epoch 03 | train MAE=3.4914 kWh | weighted val MAE=2.4953 kWh [W:2.97, Sp:2.88,  Au:1.83] <- saved
+Epoch 04 | train MAE=3.3767 kWh | weighted val MAE=2.4308 kWh [W:2.86, Sp:2.78,  Au:1.83] <- saved
+Epoch 05 | train MAE=3.3119 kWh | weighted val MAE=2.4315 kWh [W:2.74, Sp:2.88,  Au:1.90]
+Epoch 06 | train MAE=3.2589 kWh | weighted val MAE=2.3885 kWh [W:2.66, Sp:2.85,  Au:1.88] <- saved
+Epoch 07 | train MAE=3.2192 kWh | weighted val MAE=2.3995 kWh [W:2.70, Sp:2.92,  Au:1.84]
+Epoch 08 | train MAE=3.1735 kWh | weighted val MAE=2.4252 kWh [W:2.74, Sp:3.02,  Au:1.81]
+Epoch 09 | train MAE=3.1373 kWh | weighted val MAE=2.5392 kWh [W:2.80, Sp:3.13,  Au:1.99]
+Epoch 10 | train MAE=3.1146 kWh | weighted val MAE=2.3560 kWh [W:2.57, Sp:2.96,  Au:1.84] <- saved
+Epoch 11 | train MAE=3.0629 kWh | weighted val MAE=2.3898 kWh [W:2.58, Sp:3.09,  Au:1.85]
+Epoch 12 | train MAE=3.0330 kWh | weighted val MAE=2.4106 kWh [W:2.65, Sp:3.09,  Au:1.83]
+Epoch 13 | train MAE=3.0004 kWh | weighted val MAE=2.3938 kWh [W:2.59, Sp:3.10,  Au:1.84]
+Epoch 14 | train MAE=2.9694 kWh | weighted val MAE=2.4133 kWh [W:2.63, Sp:3.05,  Au:1.88]
+Epoch 15 | train MAE=2.9308 kWh | weighted val MAE=2.3715 kWh [W:2.54, Sp:3.05,  Au:1.87]
+Epoch 16 | train MAE=2.8974 kWh | weighted val MAE=2.4069 kWh [W:2.53, Sp:3.05,  Au:1.96]
+Epoch 17 | train MAE=2.8481 kWh | weighted val MAE=2.3577 kWh [W:2.48, Sp:3.02,  Au:1.91]
+Epoch 18 | train MAE=2.8207 kWh | weighted val MAE=2.3853 kWh [W:2.53, Sp:3.04,  Au:1.91]
+Epoch 19 | train MAE=2.7864 kWh | weighted val MAE=2.4001 kWh [W:2.59, Sp:3.04,  Au:1.89]
+Epoch 20 | train MAE=2.7565 kWh | weighted val MAE=2.4212 kWh [W:2.48, Sp:2.89,  Au:2.13]
+Epoch 21 | train MAE=2.7182 kWh | weighted val MAE=2.4411 kWh [W:2.46, Sp:2.99,  Au:2.15]
+Epoch 22 | train MAE=2.6790 kWh | weighted val MAE=2.4649 kWh [W:2.53, Sp:2.97,  Au:2.15]
+Epoch 23 | train MAE=2.6520 kWh | weighted val MAE=2.4535 kWh [W:2.49, Sp:3.11,  Au:2.09]
+Epoch 24 | train MAE=2.6207 kWh | weighted val MAE=2.4052 kWh [W:2.44, Sp:3.03,  Au:2.06]
+Epoch 25 | train MAE=2.5791 kWh | weighted val MAE=2.4319 kWh [W:2.49, Sp:3.01,  Au:2.08]
+Epoch 26 | train MAE=2.5493 kWh | weighted val MAE=2.5378 kWh [W:2.51, Sp:3.11,  Au:2.28]
+Epoch 27 | train MAE=2.5200 kWh | weighted val MAE=2.4390 kWh [W:2.44, Sp:3.04,  Au:2.14]
+Epoch 28 | train MAE=2.4854 kWh | weighted val MAE=2.4753 kWh [W:2.48, Sp:3.06,  Au:2.18]
+Epoch 29 | train MAE=2.4523 kWh | weighted val MAE=2.4921 kWh [W:2.50, Sp:3.06,  Au:2.20]
+Epoch 30 | train MAE=2.4081 kWh | weighted val MAE=2.5408 kWh [W:2.59, Sp:3.16,  Au:2.19]
+Epoch 31 | train MAE=2.3889 kWh | weighted val MAE=2.6296 kWh [W:2.55, Sp:3.18,  Au:2.44]
+Epoch 32 | train MAE=2.3670 kWh | weighted val MAE=2.5510 kWh [W:2.54, Sp:3.12,  Au:2.28]
+Epoch 33 | train MAE=2.3228 kWh | weighted val MAE=2.5262 kWh [W:2.54, Sp:3.15,  Au:2.20]
+Epoch 34 | train MAE=2.2846 kWh | weighted val MAE=2.4912 kWh [W:2.50, Sp:3.05,  Au:2.20]
+Epoch 35 | train MAE=2.2562 kWh | weighted val MAE=2.5577 kWh [W:2.65, Sp:3.16,  Au:2.16]
+Epoch 36 | train MAE=2.2266 kWh | weighted val MAE=2.5220 kWh [W:2.45, Sp:3.04,  Au:2.34]
+Epoch 37 | train MAE=2.1738 kWh | weighted val MAE=2.7764 kWh [W:2.65, Sp:3.32,  Au:2.63]
+Epoch 38 | train MAE=2.1494 kWh | weighted val MAE=2.6474 kWh [W:2.62, Sp:3.24,  Au:2.38]
+Epoch 39 | train MAE=2.1194 kWh | weighted val MAE=2.7793 kWh [W:2.66, Sp:3.30,  Au:2.64]
+Epoch 40 | train MAE=2.0942 kWh | weighted val MAE=2.7939 kWh [W:2.74, Sp:3.30,  Au:2.59]
+Epoch 41 | train MAE=2.0623 kWh | weighted val MAE=2.9229 kWh [W:2.76, Sp:3.43,  Au:2.84]
+Epoch 42 | train MAE=2.0479 kWh | weighted val MAE=2.8648 kWh [W:2.76, Sp:3.32,  Au:2.75]
+Epoch 43 | train MAE=2.0188 kWh | weighted val MAE=2.8367 kWh [W:2.76, Sp:3.32,  Au:2.67]
+Epoch 44 | train MAE=1.9994 kWh | weighted val MAE=2.7775 kWh [W:2.68, Sp:3.23,  Au:2.65]
+Epoch 45 | train MAE=1.9731 kWh | weighted val MAE=2.9709 kWh [W:2.80, Sp:3.35,  Au:2.96]
+Epoch 46 | train MAE=1.9709 kWh | weighted val MAE=2.8070 kWh [W:2.74, Sp:3.28,  Au:2.64]
+Epoch 47 | train MAE=1.9339 kWh | weighted val MAE=2.8064 kWh [W:2.64, Sp:3.29,  Au:2.73]
+Epoch 48 | train MAE=1.9156 kWh | weighted val MAE=2.9838 kWh [W:2.84, Sp:3.40,  Au:2.92]
+Epoch 49 | train MAE=1.9054 kWh | weighted val MAE=2.9355 kWh [W:2.75, Sp:3.48,  Au:2.85]
+Epoch 50 | train MAE=1.8917 kWh | weighted val MAE=2.9185 kWh [W:2.84, Sp:3.45,  Au:2.73]
+Epoch 51 | train MAE=1.8710 kWh | weighted val MAE=3.0865 kWh [W:2.95, Sp:3.48,  Au:3.03]
+Epoch 52 | train MAE=1.8420 kWh | weighted val MAE=3.0277 kWh [W:2.83, Sp:3.51,  Au:2.98]
+Epoch 53 | train MAE=1.8474 kWh | weighted val MAE=3.0798 kWh [W:2.90, Sp:3.54,  Au:3.03]
+Epoch 54 | train MAE=1.8281 kWh | weighted val MAE=3.0168 kWh [W:2.84, Sp:3.43,  Au:2.98]
+Epoch 55 | train MAE=1.8147 kWh | weighted val MAE=2.8985 kWh [W:2.81, Sp:3.27,  Au:2.80]
+Epoch 56 | train MAE=1.8076 kWh | weighted val MAE=3.0444 kWh [W:2.82, Sp:3.42,  Au:3.08]
+Epoch 57 | train MAE=1.8001 kWh | weighted val MAE=3.0088 kWh [W:2.83, Sp:3.40,  Au:3.00]
+Epoch 58 | train MAE=1.7865 kWh | weighted val MAE=2.9841 kWh [W:2.83, Sp:3.42,  Au:2.92]
+Epoch 59 | train MAE=1.7773 kWh | weighted val MAE=3.0717 kWh [W:2.91, Sp:3.52,  Au:3.01]
+Epoch 60 | train MAE=1.7637 kWh | weighted val MAE=3.0257 kWh [W:2.82, Sp:3.41,  Au:3.04]
+Early stopping after 50 epochs without improvement.
+
+✓ Best weighted validation MAE: 2.3560 kWh
+✓ Checkpoint: /Users/yukiainge/Dev/ai-neural-network-residential-energy/starter/checkpoints/gru_daily_seed44.pt
+-> gru_daily seed 44: best epoch 10 weighted MAE 2.3560 (skill +21.30%) | last epoch 60 weighted MAE 3.0257 | 17 s (elapsed 21.2 min)
+
+####################################################################################################
+# Run 13/15: mlp_daily, seed 42
+####################################################################################################
+Device: cpu
+Train samples: 5521
+Val block 'winter': 14 midnight-aligned windows
+Val block 'spring': 14 midnight-aligned windows
+Val block 'autumn': 4 midnight-aligned windows
+Training kWh statistics: mu=+61.4659, sigma=32.1657
+Model: mlp_daily | seed=42 | parameters=20,713
+Epoch 01 | train MAE=4.0296 kWh | weighted val MAE=2.4180 kWh [W:2.98, Sp:2.77,  Au:1.68] <- saved
+Epoch 02 | train MAE=3.6782 kWh | weighted val MAE=2.4720 kWh [W:3.00, Sp:2.99,  Au:1.68]
+Epoch 03 | train MAE=3.4684 kWh | weighted val MAE=2.3703 kWh [W:2.83, Sp:2.86,  Au:1.67] <- saved
+Epoch 04 | train MAE=3.3949 kWh | weighted val MAE=2.4207 kWh [W:2.90, Sp:2.75,  Au:1.78]
+Epoch 05 | train MAE=3.3105 kWh | weighted val MAE=2.4498 kWh [W:2.98, Sp:2.87,  Au:1.71]
+Epoch 06 | train MAE=3.2575 kWh | weighted val MAE=2.3381 kWh [W:2.80, Sp:2.89,  Au:1.60] <- saved
+Epoch 07 | train MAE=3.2256 kWh | weighted val MAE=2.3858 kWh [W:2.89, Sp:2.93,  Au:1.61]
+Epoch 08 | train MAE=3.1657 kWh | weighted val MAE=2.3221 kWh [W:2.72, Sp:2.73,  Au:1.72] <- saved
+Epoch 09 | train MAE=3.1389 kWh | weighted val MAE=2.3302 kWh [W:2.74, Sp:2.86,  Au:1.66]
+Epoch 10 | train MAE=3.1122 kWh | weighted val MAE=2.3104 kWh [W:2.67, Sp:2.70,  Au:1.76] <- saved
+Epoch 11 | train MAE=3.0858 kWh | weighted val MAE=2.2481 kWh [W:2.61, Sp:2.74,  Au:1.64] <- saved
+Epoch 12 | train MAE=3.0537 kWh | weighted val MAE=2.3558 kWh [W:2.69, Sp:2.89,  Au:1.75]
+Epoch 13 | train MAE=3.0243 kWh | weighted val MAE=2.3249 kWh [W:2.69, Sp:2.82,  Au:1.71]
+Epoch 14 | train MAE=2.9988 kWh | weighted val MAE=2.2441 kWh [W:2.52, Sp:2.88,  Au:1.65] <- saved
+Epoch 15 | train MAE=2.9906 kWh | weighted val MAE=2.2978 kWh [W:2.56, Sp:2.90,  Au:1.73]
+Epoch 16 | train MAE=2.9495 kWh | weighted val MAE=2.3680 kWh [W:2.57, Sp:2.91,  Au:1.89]
+Epoch 17 | train MAE=2.9413 kWh | weighted val MAE=2.3154 kWh [W:2.46, Sp:2.83,  Au:1.91]
+Epoch 18 | train MAE=2.9133 kWh | weighted val MAE=2.3296 kWh [W:2.55, Sp:2.92,  Au:1.82]
+Epoch 19 | train MAE=2.8895 kWh | weighted val MAE=2.3587 kWh [W:2.56, Sp:2.92,  Au:1.87]
+Epoch 20 | train MAE=2.8479 kWh | weighted val MAE=2.4685 kWh [W:2.67, Sp:3.14,  Au:1.93]
+Epoch 21 | train MAE=2.8332 kWh | weighted val MAE=2.3501 kWh [W:2.53, Sp:2.88,  Au:1.90]
+Epoch 22 | train MAE=2.8185 kWh | weighted val MAE=2.3831 kWh [W:2.61, Sp:2.99,  Au:1.85]
+Epoch 23 | train MAE=2.7887 kWh | weighted val MAE=2.2686 kWh [W:2.48, Sp:2.86,  Au:1.76]
+Epoch 24 | train MAE=2.7587 kWh | weighted val MAE=2.4692 kWh [W:2.61, Sp:3.04,  Au:2.04]
+Epoch 25 | train MAE=2.7325 kWh | weighted val MAE=2.4313 kWh [W:2.57, Sp:3.10,  Au:1.96]
+Epoch 26 | train MAE=2.7231 kWh | weighted val MAE=2.4018 kWh [W:2.55, Sp:3.10,  Au:1.90]
+Epoch 27 | train MAE=2.7064 kWh | weighted val MAE=2.2957 kWh [W:2.43, Sp:2.96,  Au:1.84]
+Epoch 28 | train MAE=2.6751 kWh | weighted val MAE=2.3934 kWh [W:2.50, Sp:3.00,  Au:1.98]
+Epoch 29 | train MAE=2.6602 kWh | weighted val MAE=2.4140 kWh [W:2.58, Sp:3.01,  Au:1.95]
+Epoch 30 | train MAE=2.6365 kWh | weighted val MAE=2.2919 kWh [W:2.37, Sp:2.84,  Au:1.94]
+Epoch 31 | train MAE=2.6185 kWh | weighted val MAE=2.3542 kWh [W:2.45, Sp:2.93,  Au:1.97]
+Epoch 32 | train MAE=2.5892 kWh | weighted val MAE=2.2523 kWh [W:2.35, Sp:2.92,  Au:1.82]
+Epoch 33 | train MAE=2.5829 kWh | weighted val MAE=2.2428 kWh [W:2.40, Sp:2.86,  Au:1.77] <- saved
+Epoch 34 | train MAE=2.5529 kWh | weighted val MAE=2.3337 kWh [W:2.53, Sp:2.93,  Au:1.84]
+Epoch 35 | train MAE=2.5488 kWh | weighted val MAE=2.3797 kWh [W:2.59, Sp:2.88,  Au:1.92]
+Epoch 36 | train MAE=2.5331 kWh | weighted val MAE=2.1980 kWh [W:2.40, Sp:2.65,  Au:1.77] <- saved
+Epoch 37 | train MAE=2.5254 kWh | weighted val MAE=2.3448 kWh [W:2.52, Sp:2.88,  Au:1.90]
+Epoch 38 | train MAE=2.4878 kWh | weighted val MAE=2.3396 kWh [W:2.56, Sp:2.83,  Au:1.87]
+Epoch 39 | train MAE=2.4774 kWh | weighted val MAE=2.3503 kWh [W:2.45, Sp:2.82,  Au:2.02]
+Epoch 40 | train MAE=2.4509 kWh | weighted val MAE=2.3679 kWh [W:2.50, Sp:2.90,  Au:1.97]
+Epoch 41 | train MAE=2.4449 kWh | weighted val MAE=2.4411 kWh [W:2.68, Sp:2.82,  Au:2.02]
+Epoch 42 | train MAE=2.4213 kWh | weighted val MAE=2.3334 kWh [W:2.48, Sp:2.84,  Au:1.93]
+Epoch 43 | train MAE=2.4151 kWh | weighted val MAE=2.3325 kWh [W:2.54, Sp:2.97,  Au:1.81]
+Epoch 44 | train MAE=2.4019 kWh | weighted val MAE=2.4057 kWh [W:2.55, Sp:2.95,  Au:1.99]
+Epoch 45 | train MAE=2.3791 kWh | weighted val MAE=2.3466 kWh [W:2.54, Sp:2.72,  Au:1.97]
+Epoch 46 | train MAE=2.3699 kWh | weighted val MAE=2.3798 kWh [W:2.50, Sp:2.90,  Au:1.99]
+Epoch 47 | train MAE=2.3730 kWh | weighted val MAE=2.3831 kWh [W:2.62, Sp:2.78,  Au:1.95]
+Epoch 48 | train MAE=2.3534 kWh | weighted val MAE=2.2943 kWh [W:2.47, Sp:2.75,  Au:1.89]
+Epoch 49 | train MAE=2.3398 kWh | weighted val MAE=2.4494 kWh [W:2.49, Sp:2.96,  Au:2.16]
+Epoch 50 | train MAE=2.3284 kWh | weighted val MAE=2.3470 kWh [W:2.49, Sp:2.81,  Au:1.97]
+Epoch 51 | train MAE=2.3100 kWh | weighted val MAE=2.3287 kWh [W:2.49, Sp:2.92,  Au:1.87]
+Epoch 52 | train MAE=2.3089 kWh | weighted val MAE=2.3940 kWh [W:2.66, Sp:2.84,  Au:1.91]
+Epoch 53 | train MAE=2.2834 kWh | weighted val MAE=2.3205 kWh [W:2.44, Sp:2.85,  Au:1.93]
+Epoch 54 | train MAE=2.2757 kWh | weighted val MAE=2.5008 kWh [W:2.62, Sp:3.02,  Au:2.12]
+Epoch 55 | train MAE=2.2700 kWh | weighted val MAE=2.3137 kWh [W:2.43, Sp:2.89,  Au:1.91]
+Epoch 56 | train MAE=2.2671 kWh | weighted val MAE=2.3266 kWh [W:2.41, Sp:2.81,  Au:2.00]
+Epoch 57 | train MAE=2.2445 kWh | weighted val MAE=2.3313 kWh [W:2.49, Sp:2.86,  Au:1.91]
+Epoch 58 | train MAE=2.2374 kWh | weighted val MAE=2.3806 kWh [W:2.53, Sp:2.89,  Au:1.98]
+Epoch 59 | train MAE=2.2256 kWh | weighted val MAE=2.3274 kWh [W:2.42, Sp:2.82,  Au:1.99]
+Epoch 60 | train MAE=2.1964 kWh | weighted val MAE=2.4022 kWh [W:2.51, Sp:2.84,  Au:2.08]
+Epoch 61 | train MAE=2.1993 kWh | weighted val MAE=2.3475 kWh [W:2.40, Sp:2.84,  Au:2.04]
+Epoch 62 | train MAE=2.2015 kWh | weighted val MAE=2.2916 kWh [W:2.41, Sp:2.75,  Au:1.94]
+Epoch 63 | train MAE=2.1783 kWh | weighted val MAE=2.2525 kWh [W:2.42, Sp:2.76,  Au:1.83]
+Epoch 64 | train MAE=2.1743 kWh | weighted val MAE=2.2685 kWh [W:2.47, Sp:2.78,  Au:1.81]
+Epoch 65 | train MAE=2.1587 kWh | weighted val MAE=2.4070 kWh [W:2.51, Sp:2.85,  Au:2.09]
+Epoch 66 | train MAE=2.1703 kWh | weighted val MAE=2.4009 kWh [W:2.47, Sp:2.93,  Au:2.06]
+Epoch 67 | train MAE=2.1424 kWh | weighted val MAE=2.3700 kWh [W:2.42, Sp:2.83,  Au:2.09]
+Epoch 68 | train MAE=2.1442 kWh | weighted val MAE=2.3415 kWh [W:2.52, Sp:2.83,  Au:1.92]
+Epoch 69 | train MAE=2.1289 kWh | weighted val MAE=2.3633 kWh [W:2.38, Sp:2.89,  Au:2.08]
+Epoch 70 | train MAE=2.1358 kWh | weighted val MAE=2.3070 kWh [W:2.43, Sp:2.85,  Au:1.91]
+Epoch 71 | train MAE=2.1179 kWh | weighted val MAE=2.3021 kWh [W:2.42, Sp:2.79,  Au:1.95]
+Epoch 72 | train MAE=2.1069 kWh | weighted val MAE=2.2716 kWh [W:2.41, Sp:2.81,  Au:1.86]
+Epoch 73 | train MAE=2.0996 kWh | weighted val MAE=2.3086 kWh [W:2.39, Sp:2.86,  Au:1.95]
+Epoch 74 | train MAE=2.1094 kWh | weighted val MAE=2.2754 kWh [W:2.45, Sp:2.74,  Au:1.87]
+Epoch 75 | train MAE=2.0982 kWh | weighted val MAE=2.3455 kWh [W:2.42, Sp:2.80,  Au:2.04]
+Epoch 76 | train MAE=2.0822 kWh | weighted val MAE=2.3170 kWh [W:2.47, Sp:2.85,  Au:1.90]
+Epoch 77 | train MAE=2.0802 kWh | weighted val MAE=2.3225 kWh [W:2.45, Sp:2.81,  Au:1.95]
+Epoch 78 | train MAE=2.0806 kWh | weighted val MAE=2.3234 kWh [W:2.51, Sp:2.89,  Au:1.86]
+Epoch 79 | train MAE=2.0672 kWh | weighted val MAE=2.3054 kWh [W:2.43, Sp:2.83,  Au:1.92]
+Epoch 80 | train MAE=2.0554 kWh | weighted val MAE=2.3029 kWh [W:2.46, Sp:2.85,  Au:1.88]
+Epoch 81 | train MAE=2.0622 kWh | weighted val MAE=2.3227 kWh [W:2.47, Sp:2.87,  Au:1.90]
+Epoch 82 | train MAE=2.0634 kWh | weighted val MAE=2.3455 kWh [W:2.47, Sp:2.89,  Au:1.95]
+Epoch 83 | train MAE=2.0512 kWh | weighted val MAE=2.3541 kWh [W:2.46, Sp:2.87,  Au:1.99]
+Epoch 84 | train MAE=2.0526 kWh | weighted val MAE=2.3080 kWh [W:2.43, Sp:2.82,  Au:1.93]
+Epoch 85 | train MAE=2.0677 kWh | weighted val MAE=2.3233 kWh [W:2.46, Sp:2.86,  Au:1.92]
+Epoch 86 | train MAE=2.0446 kWh | weighted val MAE=2.3660 kWh [W:2.48, Sp:2.89,  Au:1.99]
+Early stopping after 50 epochs without improvement.
+
+✓ Best weighted validation MAE: 2.1980 kWh
+✓ Checkpoint: /Users/yukiainge/Dev/ai-neural-network-residential-energy/starter/checkpoints/mlp_daily_seed42.pt
+-> mlp_daily seed 42: best epoch 36 weighted MAE 2.1980 (skill +26.58%) | last epoch 86 weighted MAE 2.3660 | 11 s (elapsed 21.4 min)
+
+####################################################################################################
+# Run 14/15: mlp_daily, seed 43
+####################################################################################################
+Device: cpu
+Train samples: 5521
+Val block 'winter': 14 midnight-aligned windows
+Val block 'spring': 14 midnight-aligned windows
+Val block 'autumn': 4 midnight-aligned windows
+Training kWh statistics: mu=+61.4659, sigma=32.1657
+Model: mlp_daily | seed=43 | parameters=20,713
+Epoch 01 | train MAE=4.0785 kWh | weighted val MAE=2.6384 kWh [W:2.97, Sp:2.86,  Au:2.19] <- saved
+Epoch 02 | train MAE=3.7576 kWh | weighted val MAE=2.4431 kWh [W:2.98, Sp:2.79,  Au:1.73] <- saved
+Epoch 03 | train MAE=3.5336 kWh | weighted val MAE=2.4715 kWh [W:2.91, Sp:2.73,  Au:1.90]
+Epoch 04 | train MAE=3.4136 kWh | weighted val MAE=2.4022 kWh [W:2.83, Sp:2.78,  Au:1.78] <- saved
+Epoch 05 | train MAE=3.3553 kWh | weighted val MAE=2.4492 kWh [W:2.82, Sp:2.94,  Au:1.83]
+Epoch 06 | train MAE=3.2992 kWh | weighted val MAE=2.4137 kWh [W:2.76, Sp:2.75,  Au:1.90]
+Epoch 07 | train MAE=3.2505 kWh | weighted val MAE=2.3419 kWh [W:2.65, Sp:2.73,  Au:1.84] <- saved
+Epoch 08 | train MAE=3.2001 kWh | weighted val MAE=2.4851 kWh [W:2.73, Sp:3.04,  Au:1.97]
+Epoch 09 | train MAE=3.1682 kWh | weighted val MAE=2.4398 kWh [W:2.70, Sp:2.80,  Au:2.00]
+Epoch 10 | train MAE=3.1308 kWh | weighted val MAE=2.3848 kWh [W:2.61, Sp:2.75,  Au:1.97]
+Epoch 11 | train MAE=3.1111 kWh | weighted val MAE=2.3597 kWh [W:2.66, Sp:2.76,  Au:1.85]
+Epoch 12 | train MAE=3.0865 kWh | weighted val MAE=2.4400 kWh [W:2.88, Sp:2.86,  Au:1.79]
+Epoch 13 | train MAE=3.0464 kWh | weighted val MAE=2.4398 kWh [W:2.65, Sp:2.74,  Au:2.07]
+Epoch 14 | train MAE=3.0260 kWh | weighted val MAE=2.3646 kWh [W:2.68, Sp:2.78,  Au:1.85]
+Epoch 15 | train MAE=2.9956 kWh | weighted val MAE=2.3598 kWh [W:2.62, Sp:2.90,  Au:1.83]
+Epoch 16 | train MAE=2.9779 kWh | weighted val MAE=2.4228 kWh [W:2.56, Sp:2.82,  Au:2.09]
+Epoch 17 | train MAE=2.9689 kWh | weighted val MAE=2.3669 kWh [W:2.52, Sp:2.74,  Au:2.03]
+Epoch 18 | train MAE=2.9285 kWh | weighted val MAE=2.3262 kWh [W:2.50, Sp:2.75,  Au:1.95] <- saved
+Epoch 19 | train MAE=2.9223 kWh | weighted val MAE=2.4153 kWh [W:2.66, Sp:2.83,  Au:1.96]
+Epoch 20 | train MAE=2.9243 kWh | weighted val MAE=2.3998 kWh [W:2.49, Sp:2.94,  Au:2.03]
+Epoch 21 | train MAE=2.8756 kWh | weighted val MAE=2.4627 kWh [W:2.66, Sp:2.89,  Au:2.05]
+Epoch 22 | train MAE=2.8441 kWh | weighted val MAE=2.3108 kWh [W:2.48, Sp:2.84,  Au:1.87] <- saved
+Epoch 23 | train MAE=2.8221 kWh | weighted val MAE=2.4773 kWh [W:2.62, Sp:2.92,  Au:2.12]
+Epoch 24 | train MAE=2.8035 kWh | weighted val MAE=2.3016 kWh [W:2.50, Sp:2.82,  Au:1.85] <- saved
+Epoch 25 | train MAE=2.7934 kWh | weighted val MAE=2.3975 kWh [W:2.56, Sp:2.98,  Au:1.94]
+Epoch 26 | train MAE=2.7890 kWh | weighted val MAE=2.4513 kWh [W:2.59, Sp:3.09,  Au:2.00]
+Epoch 27 | train MAE=2.7474 kWh | weighted val MAE=2.3898 kWh [W:2.47, Sp:2.91,  Au:2.05]
+Epoch 28 | train MAE=2.7380 kWh | weighted val MAE=2.5558 kWh [W:2.78, Sp:3.18,  Au:2.02]
+Epoch 29 | train MAE=2.7216 kWh | weighted val MAE=2.3986 kWh [W:2.54, Sp:2.97,  Au:1.97]
+Epoch 30 | train MAE=2.7007 kWh | weighted val MAE=2.4293 kWh [W:2.54, Sp:3.04,  Au:2.01]
+Epoch 31 | train MAE=2.6907 kWh | weighted val MAE=2.5191 kWh [W:2.77, Sp:3.19,  Au:1.93]
+Epoch 32 | train MAE=2.6760 kWh | weighted val MAE=2.5307 kWh [W:2.70, Sp:3.30,  Au:1.98]
+Epoch 33 | train MAE=2.6495 kWh | weighted val MAE=2.4638 kWh [W:2.51, Sp:3.08,  Au:2.11]
+Epoch 34 | train MAE=2.6264 kWh | weighted val MAE=2.3644 kWh [W:2.41, Sp:2.98,  Au:2.01]
+Epoch 35 | train MAE=2.6176 kWh | weighted val MAE=2.3563 kWh [W:2.43, Sp:3.04,  Au:1.94]
+Epoch 36 | train MAE=2.6238 kWh | weighted val MAE=2.4784 kWh [W:2.57, Sp:3.11,  Au:2.07]
+Epoch 37 | train MAE=2.5735 kWh | weighted val MAE=2.4498 kWh [W:2.56, Sp:3.11,  Au:2.01]
+Epoch 38 | train MAE=2.5581 kWh | weighted val MAE=2.5880 kWh [W:2.65, Sp:3.36,  Au:2.14]
+Epoch 39 | train MAE=2.5528 kWh | weighted val MAE=2.4016 kWh [W:2.41, Sp:3.14,  Au:2.03]
+Epoch 40 | train MAE=2.5320 kWh | weighted val MAE=2.4916 kWh [W:2.60, Sp:3.23,  Au:2.01]
+Epoch 41 | train MAE=2.5208 kWh | weighted val MAE=2.3058 kWh [W:2.46, Sp:3.06,  Au:1.77]
+Epoch 42 | train MAE=2.5158 kWh | weighted val MAE=2.4351 kWh [W:2.60, Sp:3.20,  Au:1.89]
+Epoch 43 | train MAE=2.5049 kWh | weighted val MAE=2.4261 kWh [W:2.52, Sp:3.17,  Au:1.96]
+Epoch 44 | train MAE=2.4713 kWh | weighted val MAE=2.4557 kWh [W:2.59, Sp:3.24,  Au:1.93]
+Epoch 45 | train MAE=2.4552 kWh | weighted val MAE=2.3943 kWh [W:2.64, Sp:3.11,  Au:1.79]
+Epoch 46 | train MAE=2.4441 kWh | weighted val MAE=2.5366 kWh [W:2.60, Sp:3.30,  Au:2.09]
+Epoch 47 | train MAE=2.4333 kWh | weighted val MAE=2.4694 kWh [W:2.61, Sp:3.19,  Au:1.97]
+Epoch 48 | train MAE=2.4237 kWh | weighted val MAE=2.5399 kWh [W:2.65, Sp:3.38,  Au:2.02]
+Epoch 49 | train MAE=2.3996 kWh | weighted val MAE=2.4430 kWh [W:2.65, Sp:3.12,  Au:1.89]
+Epoch 50 | train MAE=2.3888 kWh | weighted val MAE=2.4595 kWh [W:2.61, Sp:3.26,  Au:1.91]
+Epoch 51 | train MAE=2.3718 kWh | weighted val MAE=2.4252 kWh [W:2.55, Sp:3.21,  Au:1.91]
+Epoch 52 | train MAE=2.3607 kWh | weighted val MAE=2.3856 kWh [W:2.55, Sp:3.07,  Au:1.88]
+Epoch 53 | train MAE=2.3531 kWh | weighted val MAE=2.4757 kWh [W:2.58, Sp:3.18,  Au:2.02]
+Epoch 54 | train MAE=2.3401 kWh | weighted val MAE=2.4641 kWh [W:2.64, Sp:3.21,  Au:1.92]
+Epoch 55 | train MAE=2.3309 kWh | weighted val MAE=2.4515 kWh [W:2.53, Sp:3.19,  Au:2.01]
+Epoch 56 | train MAE=2.2975 kWh | weighted val MAE=2.5144 kWh [W:2.62, Sp:3.17,  Au:2.09]
+Epoch 57 | train MAE=2.2996 kWh | weighted val MAE=2.5026 kWh [W:2.62, Sp:3.19,  Au:2.04]
+Epoch 58 | train MAE=2.2978 kWh | weighted val MAE=2.5010 kWh [W:2.67, Sp:3.17,  Au:2.00]
+Epoch 59 | train MAE=2.2698 kWh | weighted val MAE=2.4891 kWh [W:2.66, Sp:3.18,  Au:1.97]
+Epoch 60 | train MAE=2.2663 kWh | weighted val MAE=2.5581 kWh [W:2.68, Sp:3.20,  Au:2.12]
+Epoch 61 | train MAE=2.2464 kWh | weighted val MAE=2.4582 kWh [W:2.63, Sp:3.16,  Au:1.94]
+Epoch 62 | train MAE=2.2462 kWh | weighted val MAE=2.5842 kWh [W:2.70, Sp:3.26,  Au:2.13]
+Epoch 63 | train MAE=2.2249 kWh | weighted val MAE=2.4452 kWh [W:2.66, Sp:3.13,  Au:1.89]
+Epoch 64 | train MAE=2.2264 kWh | weighted val MAE=2.4476 kWh [W:2.57, Sp:3.15,  Au:1.97]
+Epoch 65 | train MAE=2.2047 kWh | weighted val MAE=2.4489 kWh [W:2.58, Sp:3.10,  Au:1.99]
+Epoch 66 | train MAE=2.1955 kWh | weighted val MAE=2.5904 kWh [W:2.67, Sp:3.21,  Au:2.20]
+Epoch 67 | train MAE=2.1817 kWh | weighted val MAE=2.5611 kWh [W:2.64, Sp:3.29,  Au:2.11]
+Epoch 68 | train MAE=2.1782 kWh | weighted val MAE=2.5075 kWh [W:2.63, Sp:3.09,  Au:2.10]
+Epoch 69 | train MAE=2.1759 kWh | weighted val MAE=2.5389 kWh [W:2.61, Sp:3.17,  Au:2.15]
+Epoch 70 | train MAE=2.1645 kWh | weighted val MAE=2.5451 kWh [W:2.70, Sp:3.22,  Au:2.05]
+Epoch 71 | train MAE=2.1581 kWh | weighted val MAE=2.5620 kWh [W:2.69, Sp:3.20,  Au:2.11]
+Epoch 72 | train MAE=2.1523 kWh | weighted val MAE=2.4664 kWh [W:2.61, Sp:3.10,  Au:2.01]
+Epoch 73 | train MAE=2.1456 kWh | weighted val MAE=2.4686 kWh [W:2.61, Sp:3.10,  Au:2.01]
+Epoch 74 | train MAE=2.1393 kWh | weighted val MAE=2.4867 kWh [W:2.65, Sp:3.14,  Au:2.00]
+Early stopping after 50 epochs without improvement.
+
+✓ Best weighted validation MAE: 2.3016 kWh
+✓ Checkpoint: /Users/yukiainge/Dev/ai-neural-network-residential-energy/starter/checkpoints/mlp_daily_seed43.pt
+-> mlp_daily seed 43: best epoch 24 weighted MAE 2.3016 (skill +23.12%) | last epoch 74 weighted MAE 2.4867 | 10 s (elapsed 21.6 min)
+
+####################################################################################################
+# Run 15/15: mlp_daily, seed 44
+####################################################################################################
+Device: cpu
+Train samples: 5521
+Val block 'winter': 14 midnight-aligned windows
+Val block 'spring': 14 midnight-aligned windows
+Val block 'autumn': 4 midnight-aligned windows
+Training kWh statistics: mu=+61.4659, sigma=32.1657
+Model: mlp_daily | seed=44 | parameters=20,713
+Epoch 01 | train MAE=4.1308 kWh | weighted val MAE=2.5149 kWh [W:3.11, Sp:2.85,  Au:1.76] <- saved
+Epoch 02 | train MAE=3.6874 kWh | weighted val MAE=2.4113 kWh [W:2.82, Sp:2.73,  Au:1.85] <- saved
+Epoch 03 | train MAE=3.4714 kWh | weighted val MAE=2.4205 kWh [W:2.80, Sp:2.73,  Au:1.88]
+Epoch 04 | train MAE=3.3685 kWh | weighted val MAE=2.3574 kWh [W:2.79, Sp:2.78,  Au:1.71] <- saved
+Epoch 05 | train MAE=3.3083 kWh | weighted val MAE=2.3605 kWh [W:2.76, Sp:2.86,  Au:1.71]
+Epoch 06 | train MAE=3.2411 kWh | weighted val MAE=2.3776 kWh [W:2.70, Sp:2.79,  Au:1.85]
+Epoch 07 | train MAE=3.1988 kWh | weighted val MAE=2.3743 kWh [W:2.59, Sp:2.82,  Au:1.94]
+Epoch 08 | train MAE=3.1832 kWh | weighted val MAE=2.3134 kWh [W:2.57, Sp:2.79,  Au:1.82] <- saved
+Epoch 09 | train MAE=3.1320 kWh | weighted val MAE=2.3191 kWh [W:2.62, Sp:2.79,  Au:1.78]
+Epoch 10 | train MAE=3.1067 kWh | weighted val MAE=2.3018 kWh [W:2.57, Sp:2.84,  Au:1.76] <- saved
+Epoch 11 | train MAE=3.0687 kWh | weighted val MAE=2.3377 kWh [W:2.62, Sp:2.81,  Au:1.82]
+Epoch 12 | train MAE=3.0633 kWh | weighted val MAE=2.3225 kWh [W:2.68, Sp:2.86,  Au:1.69]
+Epoch 13 | train MAE=3.0069 kWh | weighted val MAE=2.2762 kWh [W:2.52, Sp:2.72,  Au:1.81] <- saved
+Epoch 14 | train MAE=3.0056 kWh | weighted val MAE=2.3178 kWh [W:2.59, Sp:2.84,  Au:1.78]
+Epoch 15 | train MAE=2.9780 kWh | weighted val MAE=2.3522 kWh [W:2.46, Sp:2.71,  Au:2.07]
+Epoch 16 | train MAE=2.9354 kWh | weighted val MAE=2.3035 kWh [W:2.59, Sp:2.78,  Au:1.78]
+Epoch 17 | train MAE=2.9284 kWh | weighted val MAE=2.2900 kWh [W:2.56, Sp:2.71,  Au:1.80]
+Epoch 18 | train MAE=2.8967 kWh | weighted val MAE=2.3892 kWh [W:2.43, Sp:2.71,  Au:2.19]
+Epoch 19 | train MAE=2.8866 kWh | weighted val MAE=2.2669 kWh [W:2.58, Sp:2.76,  Au:1.71] <- saved
+Epoch 20 | train MAE=2.8480 kWh | weighted val MAE=2.3530 kWh [W:2.53, Sp:2.77,  Au:1.97]
+Epoch 21 | train MAE=2.8289 kWh | weighted val MAE=2.3411 kWh [W:2.39, Sp:2.74,  Au:2.09]
+Epoch 22 | train MAE=2.8193 kWh | weighted val MAE=2.3182 kWh [W:2.51, Sp:2.73,  Au:1.93]
+Epoch 23 | train MAE=2.7867 kWh | weighted val MAE=2.3695 kWh [W:2.52, Sp:2.80,  Au:2.00]
+Epoch 24 | train MAE=2.7772 kWh | weighted val MAE=2.4487 kWh [W:2.57, Sp:2.85,  Au:2.13]
+Epoch 25 | train MAE=2.7458 kWh | weighted val MAE=2.3509 kWh [W:2.57, Sp:2.80,  Au:1.90]
+Epoch 26 | train MAE=2.7332 kWh | weighted val MAE=2.3226 kWh [W:2.36, Sp:2.71,  Au:2.09]
+Epoch 27 | train MAE=2.6973 kWh | weighted val MAE=2.3096 kWh [W:2.34, Sp:2.60,  Au:2.14]
+Epoch 28 | train MAE=2.6700 kWh | weighted val MAE=2.4138 kWh [W:2.47, Sp:2.90,  Au:2.12]
+Epoch 29 | train MAE=2.6765 kWh | weighted val MAE=2.3250 kWh [W:2.51, Sp:2.69,  Au:1.95]
+Epoch 30 | train MAE=2.6482 kWh | weighted val MAE=2.3801 kWh [W:2.43, Sp:2.74,  Au:2.15]
+Epoch 31 | train MAE=2.6378 kWh | weighted val MAE=2.2859 kWh [W:2.50, Sp:2.79,  Au:1.81]
+Epoch 32 | train MAE=2.6034 kWh | weighted val MAE=2.5242 kWh [W:2.52, Sp:3.12,  Au:2.23]
+Epoch 33 | train MAE=2.6019 kWh | weighted val MAE=2.2466 kWh [W:2.48, Sp:2.82,  Au:1.72] <- saved
+Epoch 34 | train MAE=2.5748 kWh | weighted val MAE=2.4515 kWh [W:2.54, Sp:2.93,  Au:2.12]
+Epoch 35 | train MAE=2.5746 kWh | weighted val MAE=2.4586 kWh [W:2.43, Sp:2.89,  Au:2.27]
+Epoch 36 | train MAE=2.5503 kWh | weighted val MAE=2.3586 kWh [W:2.39, Sp:2.85,  Au:2.08]
+Epoch 37 | train MAE=2.5364 kWh | weighted val MAE=2.4140 kWh [W:2.51, Sp:2.85,  Au:2.10]
+Epoch 38 | train MAE=2.5224 kWh | weighted val MAE=2.3270 kWh [W:2.44, Sp:2.82,  Au:1.97]
+Epoch 39 | train MAE=2.5006 kWh | weighted val MAE=2.4868 kWh [W:2.45, Sp:2.97,  Au:2.28]
+Epoch 40 | train MAE=2.4654 kWh | weighted val MAE=2.5171 kWh [W:2.41, Sp:2.94,  Au:2.41]
+Epoch 41 | train MAE=2.4645 kWh | weighted val MAE=2.3921 kWh [W:2.51, Sp:2.86,  Au:2.05]
+Epoch 42 | train MAE=2.4557 kWh | weighted val MAE=2.4443 kWh [W:2.47, Sp:2.88,  Au:2.20]
+Epoch 43 | train MAE=2.4316 kWh | weighted val MAE=2.4524 kWh [W:2.46, Sp:2.98,  Au:2.18]
+Epoch 44 | train MAE=2.4196 kWh | weighted val MAE=2.4781 kWh [W:2.45, Sp:2.81,  Au:2.35]
+Epoch 45 | train MAE=2.4118 kWh | weighted val MAE=2.3769 kWh [W:2.45, Sp:2.95,  Au:2.02]
+Epoch 46 | train MAE=2.4026 kWh | weighted val MAE=2.3964 kWh [W:2.47, Sp:2.89,  Au:2.08]
+Epoch 47 | train MAE=2.3768 kWh | weighted val MAE=2.3835 kWh [W:2.55, Sp:2.88,  Au:1.97]
+Epoch 48 | train MAE=2.3744 kWh | weighted val MAE=2.4112 kWh [W:2.48, Sp:2.91,  Au:2.10]
+Epoch 49 | train MAE=2.3664 kWh | weighted val MAE=2.3711 kWh [W:2.42, Sp:2.85,  Au:2.08]
+Epoch 50 | train MAE=2.3364 kWh | weighted val MAE=2.4788 kWh [W:2.56, Sp:2.91,  Au:2.18]
+Epoch 51 | train MAE=2.3321 kWh | weighted val MAE=2.4830 kWh [W:2.42, Sp:2.92,  Au:2.33]
+Epoch 52 | train MAE=2.3371 kWh | weighted val MAE=2.4183 kWh [W:2.46, Sp:2.99,  Au:2.09]
+Epoch 53 | train MAE=2.3179 kWh | weighted val MAE=2.3418 kWh [W:2.43, Sp:2.80,  Au:2.03]
+Epoch 54 | train MAE=2.2988 kWh | weighted val MAE=2.4266 kWh [W:2.45, Sp:2.87,  Au:2.18]
+Epoch 55 | train MAE=2.2948 kWh | weighted val MAE=2.4476 kWh [W:2.51, Sp:2.97,  Au:2.13]
+Epoch 56 | train MAE=2.2752 kWh | weighted val MAE=2.4534 kWh [W:2.50, Sp:2.92,  Au:2.17]
+Epoch 57 | train MAE=2.2761 kWh | weighted val MAE=2.4174 kWh [W:2.47, Sp:2.90,  Au:2.13]
+Epoch 58 | train MAE=2.2609 kWh | weighted val MAE=2.5394 kWh [W:2.47, Sp:2.95,  Au:2.40]
+Epoch 59 | train MAE=2.2370 kWh | weighted val MAE=2.6026 kWh [W:2.53, Sp:2.98,  Au:2.48]
+Epoch 60 | train MAE=2.2475 kWh | weighted val MAE=2.5061 kWh [W:2.47, Sp:2.94,  Au:2.33]
+Epoch 61 | train MAE=2.2257 kWh | weighted val MAE=2.3765 kWh [W:2.46, Sp:2.90,  Au:2.03]
+Epoch 62 | train MAE=2.2058 kWh | weighted val MAE=2.4652 kWh [W:2.43, Sp:2.85,  Au:2.31]
+Epoch 63 | train MAE=2.2073 kWh | weighted val MAE=2.4304 kWh [W:2.48, Sp:2.86,  Au:2.17]
+Epoch 64 | train MAE=2.1882 kWh | weighted val MAE=2.4999 kWh [W:2.44, Sp:2.91,  Au:2.36]
+Epoch 65 | train MAE=2.1814 kWh | weighted val MAE=2.4529 kWh [W:2.46, Sp:2.94,  Au:2.20]
+Epoch 66 | train MAE=2.1756 kWh | weighted val MAE=2.4887 kWh [W:2.49, Sp:2.87,  Au:2.30]
+Epoch 67 | train MAE=2.1697 kWh | weighted val MAE=2.5503 kWh [W:2.58, Sp:2.98,  Au:2.30]
+Epoch 68 | train MAE=2.1494 kWh | weighted val MAE=2.6502 kWh [W:2.57, Sp:3.12,  Au:2.50]
+Epoch 69 | train MAE=2.1512 kWh | weighted val MAE=2.4704 kWh [W:2.48, Sp:2.91,  Au:2.24]
+Epoch 70 | train MAE=2.1538 kWh | weighted val MAE=2.5689 kWh [W:2.50, Sp:2.94,  Au:2.46]
+Epoch 71 | train MAE=2.1557 kWh | weighted val MAE=2.4967 kWh [W:2.51, Sp:2.95,  Au:2.25]
+Epoch 72 | train MAE=2.1223 kWh | weighted val MAE=2.4261 kWh [W:2.46, Sp:2.82,  Au:2.20]
+Epoch 73 | train MAE=2.1245 kWh | weighted val MAE=2.5646 kWh [W:2.46, Sp:2.95,  Au:2.47]
+Epoch 74 | train MAE=2.1089 kWh | weighted val MAE=2.4591 kWh [W:2.47, Sp:2.90,  Au:2.23]
+Epoch 75 | train MAE=2.1135 kWh | weighted val MAE=2.4773 kWh [W:2.44, Sp:2.87,  Au:2.32]
+Epoch 76 | train MAE=2.1085 kWh | weighted val MAE=2.5321 kWh [W:2.51, Sp:2.92,  Au:2.36]
+Epoch 77 | train MAE=2.0934 kWh | weighted val MAE=2.4949 kWh [W:2.51, Sp:2.93,  Au:2.26]
+Epoch 78 | train MAE=2.0989 kWh | weighted val MAE=2.4759 kWh [W:2.52, Sp:2.90,  Au:2.22]
+Epoch 79 | train MAE=2.0943 kWh | weighted val MAE=2.4932 kWh [W:2.55, Sp:2.91,  Au:2.23]
+Epoch 80 | train MAE=2.0857 kWh | weighted val MAE=2.5034 kWh [W:2.50, Sp:2.91,  Au:2.30]
+Epoch 81 | train MAE=2.0863 kWh | weighted val MAE=2.5031 kWh [W:2.51, Sp:2.92,  Au:2.29]
+Epoch 82 | train MAE=2.0752 kWh | weighted val MAE=2.4835 kWh [W:2.49, Sp:2.85,  Au:2.30]
+Epoch 83 | train MAE=2.0831 kWh | weighted val MAE=2.5042 kWh [W:2.51, Sp:2.92,  Au:2.29]
+Early stopping after 50 epochs without improvement.
+
+✓ Best weighted validation MAE: 2.2466 kWh
+✓ Checkpoint: /Users/yukiainge/Dev/ai-neural-network-residential-energy/starter/checkpoints/mlp_daily_seed44.pt
+-> mlp_daily seed 44: best epoch 33 weighted MAE 2.2466 (skill +24.95%) | last epoch 83 weighted MAE 2.5042 | 11 s (elapsed 21.8 min)
+
+ONNX export of the best seed per model (best-epoch checkpoint)
+  mlp_max      seed 42 | validate_onnx: PASS | 1894.2 KB | /Users/yukiainge/Dev/ai-neural-network-residential-energy/results/onnx/mlp_max.onnx
+/Users/yukiainge/Dev/ai-neural-network-residential-energy/.venv/lib/python3.13/site-packages/torch/onnx/_internal/torchscript_exporter/symbolic_opset9.py:4496: UserWarning: Exporting a model to ONNX with a batch_size other than 1, with a variable length with LSTM can cause an error when running the ONNX model with a different batch size. Make sure to save the model with a batch size of 1, or define the initial states (h0/c0) as inputs of the model. 
+  return _generic_rnn(
+  lstm_hourly  seed 44 | validate_onnx: PASS | 81.2 KB | /Users/yukiainge/Dev/ai-neural-network-residential-energy/results/onnx/lstm_hourly.onnx
+  lstm_daily   seed 44 | validate_onnx: PASS | 134.7 KB | /Users/yukiainge/Dev/ai-neural-network-residential-energy/results/onnx/lstm_daily.onnx
+/Users/yukiainge/Dev/ai-neural-network-residential-energy/.venv/lib/python3.13/site-packages/torch/onnx/_internal/torchscript_exporter/symbolic_opset9.py:4604: UserWarning: Exporting a model to ONNX with a batch_size other than 1, with a variable length with GRU can cause an error when running the ONNX model with a different batch size. Make sure to save the model with a batch size of 1, or define the initial states (h0/c0) as inputs of the model. 
+  return _generic_rnn(
+  gru_daily    seed 43 | validate_onnx: PASS | 110.4 KB | /Users/yukiainge/Dev/ai-neural-network-residential-energy/results/onnx/gru_daily.onnx
+  mlp_daily    seed 42 | validate_onnx: PASS | 90.9 KB | /Users/yukiainge/Dev/ai-neural-network-residential-energy/results/onnx/mlp_daily.onnx
+
+============================================================================================================================
+BEST EPOCH (team standard: epoch picked on the test blocks). Mean over seeds, MAE in kWh.
+============================================================================================================================
+model        seeds  weighted    std    min    max  winter  spring  autumn  W+S avg  weekend  skill %    params train win
+persistence      -    2.9936      -      -      -   3.320   3.674   2.327    3.497    3.019    +0.00         -         -
+last_week        -    3.6687      -      -      -   5.973   3.397   1.500    4.685    3.375   -22.55         -         -
+mlp_max          3    2.4736  0.047  2.421  2.512   2.564   2.641   2.300    2.602    2.548   +17.37   483,608     5,521
+lstm_hourly      3    2.7351  0.111  2.629  2.850   3.526   2.424   2.099    2.975    2.812    +8.63    19,736     5,521
+lstm_daily       3    2.3921  0.067  2.349  2.469   2.534   2.877   2.008    2.705    2.286   +20.09    31,593     5,521
+gru_daily        3    2.2945  0.056  2.248  2.356   2.581   2.839   1.736    2.710    2.201   +23.35    25,385     5,521
+mlp_daily        3    2.2487  0.052  2.198  2.302   2.460   2.764   1.779    2.612    2.301   +24.88    20,713     5,521
+
+============================================================================================================================
+LAST EPOCH (no picking on test days). Mean over seeds, MAE in kWh.
+============================================================================================================================
+model         weighted    std  W+S avg  skill %  gap to best epoch  mean best epoch
+mlp_max         2.7786  0.050    2.704    +7.18             +0.305             51.0
+lstm_hourly     2.7837  0.083    2.979    +7.01             +0.049             70.0
+lstm_daily      2.8731  0.075    2.919    +4.02             +0.481             19.3
+gru_daily       3.0875  0.076    3.090    -3.14             +0.793              9.0
+mlp_daily       2.4523  0.075    2.764   +18.08             +0.204             31.0
+----------------------------------------------------------------------------------------------------------------------------
+Test windows per block: winter=14, spring=14, autumn=4
+WARNING: the autumn block has only 4 of 14 days (raw.csv ends early) but carries 40% of the weighted MAE. Read the weighted MAE and the autumn column with care; 'W+S avg' does not depend on it.
+
+Time per run (seconds): mlp_max=27, lstm_hourly=361, lstm_daily=21, gru_daily=17, mlp_daily=11
+Total: 21.8 min
+Saved: /Users/yukiainge/Dev/ai-neural-network-residential-energy/results/lstm_results.csv
+       /Users/yukiainge/Dev/ai-neural-network-residential-energy/results/lstm_per_day.csv
+       /Users/yukiainge/Dev/ai-neural-network-residential-energy/results/lstm_summary.csv

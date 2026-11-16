@@ -10,7 +10,7 @@ Two scores are kept for every run:
     last epoch  the model after the full training budget (no picking on test days)
 
 Run from the repo root:
-    python starter/lstm_experiments.py --quick           1 seed, 3 epochs (smoke test)
+    python starter/lstm_experiments.py --smoke-test      1 seed, 3 epochs
     python starter/lstm_experiments.py                   all models, 3 seeds
     python starter/lstm_experiments.py --export          also export + validate best seeds
     python starter/lstm_experiments.py --models lstm_hourly gru_daily --seeds 42 43
@@ -24,7 +24,7 @@ Output:
     starter/checkpoints/<run_id>/   best-epoch and last-epoch checkpoints
     results/onnx/<run_id>/          with --export
 
-Run IDs default to the Madrid date/time and run kind. Legacy CSVs remain in
+Run IDs default to the data hash, run kind and Madrid date/time. Legacy CSVs remain in
 place; their checkpoints and ONNX files move into folders named from the
 recorded date, run kind and data hash. Legacy start times are unknown.
 """
@@ -105,15 +105,82 @@ def save_history(frame: pd.DataFrame, kind: str, metadata: dict) -> None:
         comparison.to_csv(RESULTS_DIR / "lstm_comparison.csv")
 
 
+def rename_existing_runs() -> None:
+    """Give saved runs hash-first IDs and explicit experiment names."""
+    renamed = {}
+    kinds = {"full": "model_comparison", "quick": "smoke_test"}
+    moves = []
+    manifests = []
+    for marker in sorted((RESULTS_DIR / "runs").glob("*/metadata.json")):
+        metadata = json.loads(marker.read_text())
+        old_kind = metadata.get("run_kind")
+        if old_kind not in kinds:
+            continue
+        old_id = metadata["run_id"]
+        kind = kinds[old_kind]
+        prefix = metadata.get("run_started_at")
+        stamp = (datetime.datetime.fromisoformat(prefix).strftime("%Y%m%d_%H%M%S_%f")
+                 if prefix else metadata["date"])
+        new_id = f"{metadata['data_sha256']}__{kind}__{stamp}"
+        renamed[old_id] = new_id
+        metadata.update(run_id=new_id, run_kind=kind)
+        for parent in (RESULTS_DIR / "runs", CHECKPOINT_DIR, RESULTS_DIR / "onnx"):
+            source = parent / old_id
+            if source.exists():
+                moves.append((source, parent / new_id))
+        manifests.append((RESULTS_DIR / "runs" / new_id / "metadata.json", metadata))
+    for parent in (RESULTS_DIR, CHECKPOINT_DIR, RESULTS_DIR / "onnx"):
+        for source in parent.rglob("*"):
+            # Directory contents are renamed after their parents move.
+            if source.is_file() and "_quick" in source.name:
+                target = source.with_name(source.name.replace("_quick_test", "_smoke_test").replace("_quick", "_smoke_test"))
+                for old_id, new_id in renamed.items():
+                    if old_id in target.parts:
+                        target = Path(*(new_id if part == old_id else part for part in target.parts))
+                        break
+                moves.append((source, target))
+    full_log = RESULTS_DIR / "lstm_full_run.log"
+    if full_log.exists():
+        moves.append((full_log, RESULTS_DIR / "lstm_model_comparison.log"))
+    # A file can appear in overlapping searches; move it once.
+    moves = list(dict.fromkeys(moves))
+    for _, destination in moves:
+        if destination.exists():
+            raise FileExistsError(destination)
+    for source, destination in moves:
+        for old_id, new_id in renamed.items():
+            if old_id in source.parts and not source.exists():
+                source = Path(*(new_id if part == old_id else part for part in source.parts))
+                break
+        source.rename(destination)
+    for marker, metadata in manifests:
+        marker.write_text(json.dumps(metadata, indent=2) + "\n")
+    if renamed:
+        for path in RESULTS_DIR.rglob("*.csv"):
+            frame = pd.read_csv(path)
+            if "run_id" in frame:
+                frame["run_id"] = frame["run_id"].replace(renamed)
+            if "run_kind" in frame:
+                frame["run_kind"] = frame["run_kind"].replace(kinds)
+            frame.rename(columns={column: column.replace(old_id, new_id)
+                                  for column in frame.columns
+                                  for old_id, new_id in renamed.items() if old_id in column}, inplace=True)
+            frame.to_csv(path, index=False)
+        for old_id, new_id in renamed.items():
+            print(f"Renamed {old_id} -> {new_id}")
+
+
 def organize_existing_runs() -> None:
     """Import legacy results once, using their recorded date and data hash."""
-    for tag, kind in (("", "full"), ("_quick", "quick")):
+    rename_existing_runs()
+    smoke_tag = "_smoke_test" if (RESULTS_DIR / "lstm_results_smoke_test.csv").exists() else "_quick"
+    for tag, kind in (("", "model_comparison"), (smoke_tag, "smoke_test")):
         source = RESULTS_DIR / f"lstm_results{tag}.csv"
         if not source.exists():
             continue
         runs = pd.read_csv(source)
         first = runs.iloc[0]
-        run_id = f"{first['date']}_{kind}_{first['data_sha256']}"
+        run_id = f"{first['data_sha256']}__{kind}__{first['date']}"
         run_dir = RESULTS_DIR / "runs" / run_id
         marker = run_dir / "metadata.json"
         if marker.exists():
@@ -332,15 +399,16 @@ def main() -> None:
     parser.add_argument("--models", nargs="+", default=MODEL_NAMES, choices=MODEL_NAMES)
     parser.add_argument("--seeds", nargs="+", type=int, default=DEFAULT_SEEDS)
     parser.add_argument("--epochs", type=int, default=train.EPOCHS)
-    parser.add_argument("--quick", action="store_true", help="1 seed, 3 epochs, separate output files")
+    parser.add_argument("--smoke-test", "--quick", dest="smoke_test", action="store_true",
+                        help="pipeline check: 1 seed, 3 epochs (--quick is a legacy alias)")
     parser.add_argument("--export", action="store_true", help="export + validate the best seed per model")
     parser.add_argument("--run-id", help="unique folder name; default: Madrid date/time and run kind")
     parser.add_argument("--organize-existing", action="store_true", help="organize legacy runs and exit without training")
     args = parser.parse_args()
 
     tag = ""
-    if args.quick:
-        args.seeds, args.epochs, tag = args.seeds[:1], 3, "_quick"
+    if args.smoke_test:
+        args.seeds, args.epochs, tag = args.seeds[:1], 3, "_smoke_test"
 
     CHECKPOINT_DIR.mkdir(exist_ok=True)
     RESULTS_DIR.mkdir(exist_ok=True)
@@ -348,8 +416,9 @@ def main() -> None:
     if args.organize_existing:
         return
     now = datetime.datetime.now(RUN_TIMEZONE)
-    run_kind = "quick" if args.quick else "full"
-    run_id = args.run_id or f"{now:%Y%m%d_%H%M%S_%f}_{run_kind}"
+    ledger = run_ledger()
+    run_kind = "smoke_test" if args.smoke_test else "model_comparison"
+    run_id = args.run_id or f"{ledger['data_sha256']}__{run_kind}__{now:%Y%m%d_%H%M%S_%f}"
     if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_.-]*", run_id):
         parser.error("--run-id must contain only letters, numbers, underscores, dots or hyphens")
     run_dir = RESULTS_DIR / "runs" / run_id
@@ -365,7 +434,6 @@ def main() -> None:
     summary_csv = run_dir / "lstm_summary.csv"
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    ledger = run_ledger()
     ledger.update(run_id=run_id, run_started_at=now.isoformat(), run_kind=run_kind)
     (run_dir / "metadata.json").write_text(json.dumps(ledger, indent=2) + "\n")
     print(f"Run ID: {run_id}")

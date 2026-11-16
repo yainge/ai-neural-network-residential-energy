@@ -1,0 +1,141 @@
+Models: ['mlp_max', 'lstm_hourly', 'lstm_daily', 'gru_daily', 'mlp_daily']
+Seeds: [42] | epochs: 3 | device: cpu | torch threads: 4
+Settings from train.py: batch=32, lr=0.001, patience=50, weights={'winter': 0.4, 'spring': 0.2, 'autumn': 0.4}
+Ledger: {'date': '2026-11-15', 'git_commit': '88bfeae', 'git_uncommitted_changes': True, 'data_sha256': '0f1e4e06f969', 'data_rows': 6984, 'data_last_timestamp': '2026-10-18 23:00:00', 'torch_version': '2.15.0'}
+
+Train samples: 5521
+Val block 'winter': 14 midnight-aligned windows
+Val block 'spring': 14 midnight-aligned windows
+Val block 'autumn': 4 midnight-aligned windows
+
+####################################################################################################
+# Run 1/5: mlp_max, seed 42
+####################################################################################################
+Device: cpu
+Train samples: 5521
+Val block 'winter': 14 midnight-aligned windows
+Val block 'spring': 14 midnight-aligned windows
+Val block 'autumn': 4 midnight-aligned windows
+Training kWh statistics: mu=+61.4659, sigma=32.1657
+Model: mlp_max | seed=42 | parameters=483,608
+Epoch 01 | train MAE=6.9917 kWh | weighted val MAE=3.3556 kWh [W:3.96, Sp:3.40,  Au:2.73] <- saved
+Epoch 02 | train MAE=4.8743 kWh | weighted val MAE=3.4583 kWh [W:3.96, Sp:3.16,  Au:3.10]
+Epoch 03 | train MAE=4.1940 kWh | weighted val MAE=3.2509 kWh [W:3.79, Sp:3.08,  Au:2.80] <- saved
+
+✓ Best weighted validation MAE: 3.2509 kWh
+✓ Checkpoint: /Users/yukiainge/Dev/ai-neural-network-residential-energy/starter/checkpoints/mlp_max_seed42_quick.pt
+-> mlp_max seed 42: best epoch 3 weighted MAE 3.2509 (skill -8.59%) | last epoch 3 weighted MAE 3.2509 | 2 s (elapsed 0.0 min)
+
+####################################################################################################
+# Run 2/5: lstm_hourly, seed 42
+####################################################################################################
+Device: cpu
+Train samples: 5521
+Val block 'winter': 14 midnight-aligned windows
+Val block 'spring': 14 midnight-aligned windows
+Val block 'autumn': 4 midnight-aligned windows
+Training kWh statistics: mu=+61.4659, sigma=32.1657
+Model: lstm_hourly | seed=42 | parameters=19,736
+Epoch 01 | train MAE=14.2461 kWh | weighted val MAE=9.6205 kWh [W:11.51, Sp:8.10,  Au:8.49] <- saved
+Epoch 02 | train MAE=8.1832 kWh | weighted val MAE=5.4672 kWh [W:6.06, Sp:5.98,  Au:4.61] <- saved
+Epoch 03 | train MAE=6.2823 kWh | weighted val MAE=5.0786 kWh [W:5.65, Sp:5.74,  Au:4.17] <- saved
+
+✓ Best weighted validation MAE: 5.0786 kWh
+✓ Checkpoint: /Users/yukiainge/Dev/ai-neural-network-residential-energy/starter/checkpoints/lstm_hourly_seed42_quick.pt
+-> lstm_hourly seed 42: best epoch 3 weighted MAE 5.0786 (skill -69.65%) | last epoch 3 weighted MAE 5.0786 | 12 s (elapsed 0.2 min)
+
+####################################################################################################
+# Run 3/5: lstm_daily, seed 42
+####################################################################################################
+Device: cpu
+Train samples: 5521
+Val block 'winter': 14 midnight-aligned windows
+Val block 'spring': 14 midnight-aligned windows
+Val block 'autumn': 4 midnight-aligned windows
+Training kWh statistics: mu=+61.4659, sigma=32.1657
+Model: lstm_daily | seed=42 | parameters=31,593
+Epoch 01 | train MAE=4.1211 kWh | weighted val MAE=2.6142 kWh [W:3.27, Sp:2.92,  Au:1.81] <- saved
+Epoch 02 | train MAE=3.8205 kWh | weighted val MAE=2.6571 kWh [W:3.23, Sp:2.97,  Au:1.93]
+Epoch 03 | train MAE=3.6512 kWh | weighted val MAE=2.6041 kWh [W:3.14, Sp:2.86,  Au:1.94] <- saved
+
+✓ Best weighted validation MAE: 2.6041 kWh
+✓ Checkpoint: /Users/yukiainge/Dev/ai-neural-network-residential-energy/starter/checkpoints/lstm_daily_seed42_quick.pt
+-> lstm_daily seed 42: best epoch 3 weighted MAE 2.6041 (skill +13.01%) | last epoch 3 weighted MAE 2.6041 | 1 s (elapsed 0.2 min)
+
+####################################################################################################
+# Run 4/5: gru_daily, seed 42
+####################################################################################################
+Device: cpu
+Train samples: 5521
+Val block 'winter': 14 midnight-aligned windows
+Val block 'spring': 14 midnight-aligned windows
+Val block 'autumn': 4 midnight-aligned windows
+Training kWh statistics: mu=+61.4659, sigma=32.1657
+Model: gru_daily | seed=42 | parameters=25,385
+Epoch 01 | train MAE=4.1995 kWh | weighted val MAE=2.5937 kWh [W:3.26, Sp:2.99,  Au:1.73] <- saved
+Epoch 02 | train MAE=3.7624 kWh | weighted val MAE=2.5966 kWh [W:3.14, Sp:3.03,  Au:1.84]
+Epoch 03 | train MAE=3.5439 kWh | weighted val MAE=2.4859 kWh [W:3.05, Sp:2.83,  Au:1.75] <- saved
+
+✓ Best weighted validation MAE: 2.4859 kWh
+✓ Checkpoint: /Users/yukiainge/Dev/ai-neural-network-residential-energy/starter/checkpoints/gru_daily_seed42_quick.pt
+-> gru_daily seed 42: best epoch 3 weighted MAE 2.4859 (skill +16.96%) | last epoch 3 weighted MAE 2.4859 | 1 s (elapsed 0.3 min)
+
+####################################################################################################
+# Run 5/5: mlp_daily, seed 42
+####################################################################################################
+Device: cpu
+Train samples: 5521
+Val block 'winter': 14 midnight-aligned windows
+Val block 'spring': 14 midnight-aligned windows
+Val block 'autumn': 4 midnight-aligned windows
+Training kWh statistics: mu=+61.4659, sigma=32.1657
+Model: mlp_daily | seed=42 | parameters=20,713
+Epoch 01 | train MAE=4.0296 kWh | weighted val MAE=2.4180 kWh [W:2.98, Sp:2.77,  Au:1.68] <- saved
+Epoch 02 | train MAE=3.6720 kWh | weighted val MAE=2.4434 kWh [W:2.99, Sp:2.96,  Au:1.64]
+Epoch 03 | train MAE=3.4521 kWh | weighted val MAE=2.3988 kWh [W:2.97, Sp:2.81,  Au:1.62] <- saved
+
+✓ Best weighted validation MAE: 2.3988 kWh
+✓ Checkpoint: /Users/yukiainge/Dev/ai-neural-network-residential-energy/starter/checkpoints/mlp_daily_seed42_quick.pt
+-> mlp_daily seed 42: best epoch 3 weighted MAE 2.3988 (skill +19.87%) | last epoch 3 weighted MAE 2.3988 | 1 s (elapsed 0.3 min)
+
+ONNX export of the best seed per model (best-epoch checkpoint)
+  mlp_max      seed 42 | validate_onnx: PASS | 1894.2 KB | /Users/yukiainge/Dev/ai-neural-network-residential-energy/results/onnx/mlp_max_quick.onnx
+/Users/yukiainge/Dev/ai-neural-network-residential-energy/.venv/lib/python3.13/site-packages/torch/onnx/_internal/torchscript_exporter/symbolic_opset9.py:4496: UserWarning: Exporting a model to ONNX with a batch_size other than 1, with a variable length with LSTM can cause an error when running the ONNX model with a different batch size. Make sure to save the model with a batch size of 1, or define the initial states (h0/c0) as inputs of the model. 
+  return _generic_rnn(
+  lstm_hourly  seed 42 | validate_onnx: PASS | 81.2 KB | /Users/yukiainge/Dev/ai-neural-network-residential-energy/results/onnx/lstm_hourly_quick.onnx
+  lstm_daily   seed 42 | validate_onnx: PASS | 134.7 KB | /Users/yukiainge/Dev/ai-neural-network-residential-energy/results/onnx/lstm_daily_quick.onnx
+/Users/yukiainge/Dev/ai-neural-network-residential-energy/.venv/lib/python3.13/site-packages/torch/onnx/_internal/torchscript_exporter/symbolic_opset9.py:4604: UserWarning: Exporting a model to ONNX with a batch_size other than 1, with a variable length with GRU can cause an error when running the ONNX model with a different batch size. Make sure to save the model with a batch size of 1, or define the initial states (h0/c0) as inputs of the model. 
+  return _generic_rnn(
+  gru_daily    seed 42 | validate_onnx: PASS | 110.4 KB | /Users/yukiainge/Dev/ai-neural-network-residential-energy/results/onnx/gru_daily_quick.onnx
+  mlp_daily    seed 42 | validate_onnx: PASS | 90.9 KB | /Users/yukiainge/Dev/ai-neural-network-residential-energy/results/onnx/mlp_daily_quick.onnx
+
+============================================================================================================================
+BEST EPOCH (team standard: epoch picked on the test blocks). Mean over seeds, MAE in kWh.
+============================================================================================================================
+model        seeds  weighted    std    min    max  winter  spring  autumn  W+S avg  weekend  skill %    params train win
+persistence      -    2.9936      -      -      -   3.320   3.674   2.327    3.497    3.019    +0.00         -         -
+last_week        -    3.6687      -      -      -   5.973   3.397   1.500    4.685    3.375   -22.55         -         -
+mlp_max          1    3.2509    nan  3.251  3.251   3.791   3.076   2.798    3.434    3.209    -8.59   483,608     5,521
+lstm_hourly      1    5.0786    nan  5.079  5.079   5.653   5.745   4.171    5.699    5.528   -69.65    19,736     5,521
+lstm_daily       1    2.6041    nan  2.604  2.604   3.140   2.863   1.939    3.001    2.735   +13.01    31,593     5,521
+gru_daily        1    2.4859    nan  2.486  2.486   3.049   2.827   1.752    2.938    2.578   +16.96    25,385     5,521
+mlp_daily        1    2.3988    nan  2.399  2.399   2.972   2.807   1.621    2.890    2.391   +19.87    20,713     5,521
+
+============================================================================================================================
+LAST EPOCH (no picking on test days). Mean over seeds, MAE in kWh.
+============================================================================================================================
+model         weighted    std  W+S avg  skill %  gap to best epoch  mean best epoch
+mlp_max         3.2509    nan    3.434    -8.59             +0.000              3.0
+lstm_hourly     5.0786    nan    5.699   -69.65             +0.000              3.0
+lstm_daily      2.6041    nan    3.001   +13.01             +0.000              3.0
+gru_daily       2.4859    nan    2.938   +16.96             +0.000              3.0
+mlp_daily       2.3988    nan    2.890   +19.87             +0.000              3.0
+----------------------------------------------------------------------------------------------------------------------------
+Test windows per block: winter=14, spring=14, autumn=4
+WARNING: the autumn block has only 4 of 14 days (raw.csv ends early) but carries 40% of the weighted MAE. Read the weighted MAE and the autumn column with care; 'W+S avg' does not depend on it.
+
+Time per run (seconds): mlp_max=2, lstm_hourly=12, lstm_daily=1, gru_daily=1, mlp_daily=1
+Total: 0.3 min
+Saved: /Users/yukiainge/Dev/ai-neural-network-residential-energy/results/lstm_results_quick.csv
+       /Users/yukiainge/Dev/ai-neural-network-residential-energy/results/lstm_per_day_quick.csv
+       /Users/yukiainge/Dev/ai-neural-network-residential-energy/results/lstm_summary_quick.csv
