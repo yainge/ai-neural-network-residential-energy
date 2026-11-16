@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-15",
+  "data_sha256": "0f1e4e06f969",
+  "data_rows": 6984,
+  "data_last_timestamp": "2026-10-18 23:00:00",
+  "n_train_windows": 5521,
+  "n_test_winter": 14,
+  "n_test_spring": 14,
+  "n_test_autumn": 4,
+  "run_id": "0f1e4e06f969__model_comparison__2026-11-15",
+  "run_started_at": "",
+  "run_kind": "model_comparison"
+}
