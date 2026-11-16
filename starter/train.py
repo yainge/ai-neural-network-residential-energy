@@ -6,6 +6,7 @@ early stopping, and data split. Preserve only the platform ONNX contract.
 
 from __future__ import annotations
 
+import argparse
 from pathlib import Path
 
 import numpy as np
@@ -14,7 +15,7 @@ import torch.nn as nn
 from torch.utils.data import DataLoader
 
 from dataset import prepare_multi_datasets
-from model import ConsumptionPredictor
+from lstm_models import DEFAULT_MODEL, MODEL_NAMES, build_model, count_parameters, default_config
 
 EPOCHS = 100
 BATCH_SIZE = 32
@@ -65,9 +66,15 @@ def evaluate_epoch(model, loader, loss_fn, device) -> float:
     return total / len(loader.dataset)
 
 
-def main() -> None:
-    torch.manual_seed(42)
-    np.random.seed(42)
+def main(
+    model_name: str = DEFAULT_MODEL,
+    seed: int = 42,
+    epochs: int = EPOCHS,
+    checkpoint_path: Path = CHECKPOINT,
+) -> dict:
+    """Train one model. With no arguments this is the original training run."""
+    torch.manual_seed(seed)
+    np.random.seed(seed)
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
     print(f"Device: {device}")
@@ -79,19 +86,23 @@ def main() -> None:
     train_loader = DataLoader(train_ds, batch_size=BATCH_SIZE, shuffle=True)
     val_loaders = {name: DataLoader(ds, batch_size=BATCH_SIZE, shuffle=False)for name, ds in val_dict.items()}
 
-    model = ConsumptionPredictor(mu=mu, sigma=sigma).to(device)
+    model_config = default_config(model_name)
+    model = build_model(model_name, mu=mu, sigma=sigma, config=model_config).to(device)
+    print(f"Model: {model_name} | seed={seed} | parameters={count_parameters(model):,}")
     optimizer = torch.optim.AdamW(
         model.parameters(), lr=LEARNING_RATE, weight_decay=1e-3
     )
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
-        optimizer, T_max=EPOCHS, eta_min=1e-6
+        optimizer, T_max=epochs, eta_min=1e-6
     )
     loss_fn = nn.L1Loss()
 
     best_val = float("inf")
+    best_epoch = 0
+    best_seasonal: dict[str, float] = {}
     epochs_without_improvement = 0
 
-    for epoch in range(1, EPOCHS + 1):
+    for epoch in range(1, epochs + 1):
         train_mae = train_epoch(
             model, train_loader, optimizer, loss_fn, device
         )
@@ -110,6 +121,8 @@ def main() -> None:
 
         if weighted_val_mae < best_val:
             best_val = weighted_val_mae
+            best_epoch = epoch
+            best_seasonal = dict(seasonal_maes)
             epochs_without_improvement = 0
             torch.save(
                 {
@@ -118,8 +131,12 @@ def main() -> None:
                     "mu": mu,
                     "sigma": sigma,
                     "best_val_mae": best_val,
+                    "model_name": model_name,
+                    "model_config": model_config,
+                    "seed": seed,
+                    "epoch": epoch,
                 },
-                CHECKPOINT,
+                checkpoint_path,
             )
             marker = " <- saved"
         else:
@@ -139,8 +156,29 @@ def main() -> None:
             break
 
     print(f"\n✓ Best weighted validation MAE: {best_val:.4f} kWh")
-    print(f"✓ Checkpoint: {CHECKPOINT}")
+    print(f"✓ Checkpoint: {checkpoint_path}")
+
+    return {
+        "model": model_name,
+        "seed": seed,
+        "best_val_mae": best_val,
+        "best_epoch": best_epoch,
+        "seasonal_mae": best_seasonal,
+        "final_epoch": epoch,
+        "final_val_mae": weighted_val_mae,
+        "final_seasonal_mae": dict(seasonal_maes),
+        "final_state_dict": {k: v.detach().cpu().clone() for k, v in model.state_dict().items()},
+        "mu": mu,
+        "sigma": sigma,
+        "model_config": model_config,
+        "n_train_windows": len(train_ds),
+        "n_parameters": count_parameters(model),
+    }
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description="Train one model on the team split.")
+    parser.add_argument("--model", default=DEFAULT_MODEL, choices=MODEL_NAMES)
+    parser.add_argument("--seed", type=int, default=42)
+    args = parser.parse_args()
+    main(model_name=args.model, seed=args.seed)

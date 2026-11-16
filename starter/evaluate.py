@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import argparse
 from pathlib import Path
 
 import numpy as np
@@ -9,7 +10,7 @@ import torch
 from torch.utils.data import DataLoader
 
 from dataset import prepare_multi_datasets
-from model import ConsumptionPredictor
+from lstm_models import MODEL_NAMES, load_checkpoint_model
 
 CHECKPOINT = Path(__file__).resolve().parent / "model.pt"
 BATCH_SIZE = 128
@@ -27,7 +28,7 @@ def metrics(y_true: np.ndarray, y_pred: np.ndarray) -> tuple[float, float]:
 
 
 def evaluate_season(
-    model: ConsumptionPredictor, ds, device: str
+    model: torch.nn.Module, ds, device: str
 ) -> tuple[float, float, float, float]:
     """Evaluate model and persistence on a single dataset block."""
     loader = DataLoader(ds, batch_size=BATCH_SIZE, shuffle=False)
@@ -79,19 +80,15 @@ def evaluate_season(
     return mae, mse, base_mae, base_mse, mae_WE, mse_WE, base_mae_WE, base_mse_WE
 
 
-def main() -> None:
-    if not CHECKPOINT.exists():
+def main(model_name: str | None = None, checkpoint_path: Path = CHECKPOINT) -> None:
+    if not checkpoint_path.exists():
         raise FileNotFoundError("model.pt not found. Run: python starter/train.py")
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
     _, val_dict = prepare_multi_datasets()
 
-    checkpoint = torch.load(CHECKPOINT, map_location=device)
-    model = ConsumptionPredictor(
-        mu=checkpoint["mu"], sigma=checkpoint["sigma"]
-    ).to(device)
-    model.load_state_dict(checkpoint["model_state_dict"])
-    model.eval()
+    model, _, model_name = load_checkpoint_model(checkpoint_path, device, model_name)
+    print(f"Model: {model_name}")
 
     print("Validation Results ")
     print("---------------------------------------")
@@ -127,4 +124,10 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description="Evaluate model.pt on the team split.")
+    parser.add_argument(
+        "--model", default=None, choices=MODEL_NAMES,
+        help="Only needed for old checkpoints that do not store the model name.",
+    )
+    args = parser.parse_args()
+    main(model_name=args.model)
