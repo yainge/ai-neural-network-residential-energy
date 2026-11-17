@@ -1,4 +1,4 @@
-"""Closure handling for La Pedrera, computed from the ONNX input alone.
+"""
 
 The model never receives a date, so it cannot know that tomorrow is a closure.
 It can only see closures that already happened inside its 7-day input window.
@@ -17,8 +17,7 @@ Use cleaning and rules together, and only at inference/export time: on the
 historical closures (Mondays 6 Jul and 7 Sep) the building reopened the next
 day, so training with "stay closed" would teach the wrong thing.
 
-Usage once the team has a model:  model = ClosureAwareForecast(ConsumptionPredictor(...))
-Investigation and tests:          starter/closure_analysis.ipynb
+Usage with the final model:  model = ClosureAwareForecast(ConsumptionPredictor(...))
 """
 
 from __future__ import annotations
@@ -66,7 +65,6 @@ class ClosureFeatures(nn.Module):
     3 late_opening       oldest day is a closed Friday, the rest open (1 Jan)
     4..10 closed_day_k   one flag per input day, oldest (4) to yesterday (10)
 
-    Can also be concatenated to a network's inputs as extra features.
     """
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
@@ -74,7 +72,6 @@ class ClosureFeatures(nn.Module):
         closed = closed_days(x)                                                 # [B, 7]
 
         # Count closed days backwards from yesterday until the first open day.
-        # (Unrolled loop: torch.cumprod has no ONNX opset 17 export.)
         still_closed = torch.ones_like(closed[:, 0])
         streak = torch.zeros_like(closed[:, 0])                                 # [B]
         for block in range(DAYS_IN_WINDOW - 1, -1, -1):
